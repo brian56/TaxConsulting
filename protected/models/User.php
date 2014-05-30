@@ -4,16 +4,16 @@
  * This is the model class for table "user".
  *
  * The followings are the available columns in table 'user':
- * @property integer $id
- * @property integer $hospital_id
- * @property integer $user_level_id
+ * @property string $id
+ * @property string $company_id
+ * @property string $user_level_id
  * @property integer $is_actived
  * @property string $email
  * @property string $password
  * @property string $user_name
  * @property string $contact_phone
  * @property string $register_date
- * @property integer $device_os_id
+ * @property string $device_os_id
  * @property string $device_id
  * @property integer $notify
  * @property string $token
@@ -24,7 +24,7 @@
  * @property Info[] $infos
  * @property InfoComment[] $infoComments
  * @property LogEvent[] $logEvents
- * @property Hospital $hospital
+ * @property Company $company
  * @property DeviceOs $deviceOs
  * @property UserLevel $userLevel
  */
@@ -46,15 +46,15 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('register_date','default',
-						'value'=>new CDbExpression('NOW()'),//automatically add the current date in register_date
-					'setOnEmpty'=>false,'on'=>'insert'),
-			array('hospital_id', 'required'),
-			array('hospital_id, user_level_id, is_actived, device_os_id', 'numerical', 'notify', 'integerOnly'=>true),
-			array('email, password, user_name, contact_phone, register_date, device_id, notify, token, token_expired_date', 'safe'),
+			array('company_id, user_level_id, email, password, user_name, contact_phone, register_date, device_os_id, device_id, token, token_expired_date', 'required'),
+			array('is_actived, notify', 'numerical', 'integerOnly'=>true),
+			array('company_id, user_level_id', 'length', 'max'=>11),
+			array('password, user_name', 'length', 'max'=>256),
+			array('contact_phone', 'length', 'max'=>50),
+			array('device_os_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, hospital_id, user_level_id, is_actived, email, password, user_name, contact_phone, register_date, device_os_id, device_id, notify, token, token_expired_date', 'safe', 'on'=>'search'),
+			array('id, company_id, user_level_id, is_actived, email, password, user_name, contact_phone, register_date, device_os_id, device_id, notify, token, token_expired_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +70,7 @@ class User extends CActiveRecord
 			'infos' => array(self::HAS_MANY, 'Info', 'user_id'),
 			'infoComments' => array(self::HAS_MANY, 'InfoComment', 'user_id'),
 			'logEvents' => array(self::HAS_MANY, 'LogEvent', 'user_id'),
-			'hospital' => array(self::BELONGS_TO, 'Hospital', 'hospital_id'),
+			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
 			'deviceOs' => array(self::BELONGS_TO, 'DeviceOs', 'device_os_id'),
 			'userLevel' => array(self::BELONGS_TO, 'UserLevel', 'user_level_id'),
 		);
@@ -83,16 +83,16 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'hospital_id' => 'Hospital',
+			'company_id' => 'Company',
 			'user_level_id' => 'User Level',
 			'is_actived' => 'Is Actived',
 			'email' => 'Email',
 			'password' => 'Password',
-			'user_name' => 'Name',
+			'user_name' => 'User Name',
 			'contact_phone' => 'Contact Phone',
 			'register_date' => 'Register Date',
 			'device_os_id' => 'Device Os',
-			'device_id' => 'Device Token Id',
+			'device_id' => 'Device',
 			'notify' => 'Notify',
 			'token' => 'Token',
 			'token_expired_date' => 'Token Expired Date',
@@ -117,18 +117,18 @@ class User extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('hospital_id',$this->hospital_id);
-		$criteria->compare('user_level_id',$this->user_level_id);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('company_id',$this->company_id,true);
+		$criteria->compare('user_level_id',$this->user_level_id,true);
 		$criteria->compare('is_actived',$this->is_actived);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('contact_phone',$this->contact_phone,true);
 		$criteria->compare('register_date',$this->register_date,true);
-		$criteria->compare('device_os_id',$this->device_os_id);
+		$criteria->compare('device_os_id',$this->device_os_id,true);
 		$criteria->compare('device_id',$this->device_id,true);
-		$criteria->compare('notify',$this->notify,true);
+		$criteria->compare('notify',$this->notify);
 		$criteria->compare('token',$this->token,true);
 		$criteria->compare('token_expired_date',$this->token_expired_date,true);
 

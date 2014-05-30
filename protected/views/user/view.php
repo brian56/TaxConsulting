@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Users'=>array('index'),
-	$model->name,
+	$model->id,
 );
 
 $this->menu=array(
@@ -22,13 +22,17 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+		'company_id',
 		'user_level_id',
 		'is_actived',
-		'name',
+		'email',
+		'password',
+		'user_name',
 		'contact_phone',
 		'register_date',
 		'device_os_id',
 		'device_id',
+		'notify',
 		'token',
 		'token_expired_date',
 	),

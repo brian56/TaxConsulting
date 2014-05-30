@@ -24,48 +24,55 @@
 		<?php echo $form->dropDownList($model, 'info_type_id', CHtml::listData(InfoType::model()->findAll(), 'id', 'name')); ?>
 		<?php echo $form->error($model,'info_type_id'); ?>
 	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'hospital_id'); ?>
-		<?php echo $form->dropDownList($model, 'hospital_id', CHtml::listData(Hospital::model()->findAll(), 'id', 'name')); ?>
-		<?php echo $form->error($model,'hospital_id'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll(), 'id', 'user_name'), array('empty'=>'-- Select an user --')); ?>
+		<?php echo $form->textField($model,'user_id',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'company_id'); ?>
+		<?php echo $form->dropDownList($model, 'company_id', CHtml::listData(Company::model()->findAll(), 'id', 'name')); ?>
+		<?php echo $form->error($model,'company_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>'Invisibled', '1'=>'Visibled'),array('empty'=>'-- Select status --')); ?>
+		<?php echo $form->error($model,'status'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title'); ?>
+		<?php echo $form->textField($model,'title',array('size'=>11,'maxlength'=>11)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'content',array('rows'=>3, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
-	
+
 	<div class="row">
-		<?php echo $form->labelEx($model,'appointment_status'); ?>
-		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>'Pending', '1'=>'Confirmed', '-1'=>'Refused'), array('empty'=>'-- Empty --')); ?>
-		<?php echo $form->error($model,'appointment_status'); ?>
+		<?php echo $form->labelEx($model,'date_create'); ?>
+		<?php echo $form->textField($model,'date_create'); ?>
+		<?php echo $form->error($model,'date_create'); ?>
 	</div>
-	
+
 	<div class="row">
-		<?php echo $form->labelEx($model,'appointment_date'); ?>
-		<?php echo $form->textField($model,'appointment_date'); ?>
-		<?php echo $form->error($model,'appointment_date'); ?>
+		<?php echo $form->labelEx($model,'date_update'); ?>
+		<?php echo $form->textField($model,'date_update'); ?>
+		<?php echo $form->error($model,'date_update'); ?>
 	</div>
-	
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'access_level_id'); ?>
 		<?php echo $form->dropDownList($model, 'access_level_id', CHtml::listData(AccessLevel::model()->findAll(), 'id', 'name')); ?>
 		<?php echo $form->error($model,'access_level_id'); ?>
 	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

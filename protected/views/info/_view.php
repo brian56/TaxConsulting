@@ -17,8 +17,8 @@
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('hospital_id')); ?>:</b>
-	<?php echo CHtml::encode($data->hospital_id); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('company_id')); ?>:</b>
+	<?php echo CHtml::encode($data->company_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
@@ -34,10 +34,6 @@
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date_meeting')); ?>:</b>
-	<?php echo CHtml::encode($data->date_meeting); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_create')); ?>:</b>
 	<?php echo CHtml::encode($data->date_create); ?>
 	<br />

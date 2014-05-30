@@ -1,8 +1,8 @@
 <?php
 
-class DefaultController extends RController
+class DefaultController extends Controller
 {
-/**
+	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
@@ -69,7 +69,6 @@ class DefaultController extends RController
 		if(isset($_POST['Info']))
 		{
 			$model->attributes=$_POST['Info'];
-			$model->date_create=new CDbExpression('now()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -94,7 +93,6 @@ class DefaultController extends RController
 		if(isset($_POST['Info']))
 		{
 			$model->attributes=$_POST['Info'];
-			$model->date_update=new CDbExpression('now()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -172,4 +170,3 @@ class DefaultController extends RController
 		}
 	}
 }
-	

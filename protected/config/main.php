@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'Hospital Application',
+    'name' => 'Tax consulting Application',
     // preloading 'log' component
     'preload' => array(
         'bootstrap',
@@ -98,7 +98,7 @@ return array(
           ), */
         // uncomment the following to use a MySQL database
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=hospital',
+            'connectionString' => 'mysql:host=localhost;dbname=tax',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',

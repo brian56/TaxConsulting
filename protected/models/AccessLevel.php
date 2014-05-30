@@ -4,7 +4,7 @@
  * This is the model class for table "access_level".
  *
  * The followings are the available columns in table 'access_level':
- * @property integer $id
+ * @property string $id
  * @property string $name
  * @property string $name_en
  *
@@ -29,7 +29,7 @@ class AccessLevel extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, name_en', 'safe'),
+			array('name, name_en', 'required'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, name_en', 'safe', 'on'=>'search'),
@@ -78,7 +78,7 @@ class AccessLevel extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('name_en',$this->name_en,true);
 

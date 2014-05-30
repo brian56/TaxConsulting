@@ -21,13 +21,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
+		<?php echo $form->textField($model,'user_id',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'info_id'); ?>
-		<?php echo $form->textField($model,'info_id'); ?>
+		<?php echo $form->textField($model,'info_id',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'info_id'); ?>
 	</div>
 

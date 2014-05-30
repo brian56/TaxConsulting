@@ -4,7 +4,7 @@
  * This is the model class for table "device_os".
  *
  * The followings are the available columns in table 'device_os':
- * @property integer $id
+ * @property string $id
  * @property string $name
  * @property string $version
  * @property string $device_type
@@ -30,7 +30,9 @@ class DeviceOs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, version, device_type', 'safe'),
+			array('name, version, device_type', 'required'),
+			array('name, device_type', 'length', 'max'=>100),
+			array('version', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, version, device_type', 'safe', 'on'=>'search'),
@@ -63,34 +65,6 @@ class DeviceOs extends CActiveRecord
 	}
 
 	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('version',$this->version,true);
-		$criteria->compare('device_type',$this->device_type,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
-
-	/**
 	 * Get the OS name and device type (phone/tablet)
 	 * @return string
 	 */
@@ -109,6 +83,35 @@ class DeviceOs extends CActiveRecord
 		$list    = CHtml::listData($Devices , 'id', 'nameandos');
 		return $list;
 	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('version',$this->version,true);
+		$criteria->compare('device_type',$this->device_type,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

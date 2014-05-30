@@ -18,13 +18,6 @@ class HospitalController extends Controller {
 	public function filters() {
 		return array ();
 	}
-	public function actionIndex() {
-		echo CJSON::encode ( array (
-				1,
-				2,
-				3 
-		) );
-	}
 	public function responseMissingParam($param) {
 		$response ['status'] = Params::status_params_missing;
 		$response ['message'] = Params::message_params_missing.$param;

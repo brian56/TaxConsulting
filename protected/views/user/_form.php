@@ -20,8 +20,14 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'company_id'); ?>
+		<?php echo $form->textField($model,'company_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->error($model,'company_id'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'user_level_id'); ?>
-		<?php echo $form->textField($model,'user_level_id'); ?>
+		<?php echo $form->textField($model,'user_level_id',array('size'=>11,'maxlength'=>11)); ?>
 		<?php echo $form->error($model,'user_level_id'); ?>
 	</div>
 
@@ -32,14 +38,26 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textArea($model,'name',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<?php echo $form->labelEx($model,'email'); ?>
+		<?php echo $form->textArea($model,'email',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'password'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'user_name'); ?>
+		<?php echo $form->textField($model,'user_name',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'user_name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'contact_phone'); ?>
-		<?php echo $form->textArea($model,'contact_phone',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'contact_phone',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'contact_phone'); ?>
 	</div>
 
@@ -51,7 +69,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'device_os_id'); ?>
-		<?php echo $form->textField($model,'device_os_id'); ?>
+		<?php echo $form->textField($model,'device_os_id',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'device_os_id'); ?>
 	</div>
 
@@ -59,6 +77,12 @@
 		<?php echo $form->labelEx($model,'device_id'); ?>
 		<?php echo $form->textArea($model,'device_id',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'device_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'notify'); ?>
+		<?php echo $form->textField($model,'notify'); ?>
+		<?php echo $form->error($model,'notify'); ?>
 	</div>
 
 	<div class="row">

@@ -35,7 +35,7 @@ class Params {
 	
 	// foreign key params
 	const param_User_Id = 'user_id';
-	const param_Hospital_Id = 'hospital_id';
+	const param_Company_Id = 'company_id';
 	const param_Access_Level_Id = 'access_level_id';
 	const param_User_Level_Id = 'user_level_id';
 	const param_Info_Type_Id = 'info_type_id';

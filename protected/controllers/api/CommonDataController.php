@@ -21,13 +21,6 @@ class CommonDataController extends Controller {
 	public function filters() {
 		return array ();
 	}
-	public function actionIndex() {
-		echo CJSON::encode ( array (
-				1,
-				2,
-				3 
-		) );
-	}
 	// Actions
 	public function actionGetData() {
 		// Get the respective model instance

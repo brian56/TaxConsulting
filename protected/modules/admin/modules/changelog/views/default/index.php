@@ -16,6 +16,5 @@ $this->menu=array(
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
-	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id);}',
+	'itemView'=>'_view',
 )); ?>

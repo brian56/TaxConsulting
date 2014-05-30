@@ -13,17 +13,17 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'hospital_id'); ?>
-		<?php echo $form->textField($model,'hospital_id'); ?>
+		<?php echo $form->label($model,'company_id'); ?>
+		<?php echo $form->textField($model,'company_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
+		<?php echo $form->textField($model,'user_id',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
@@ -33,7 +33,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'change_type'); ?>
-		<?php echo $form->textField($model,'change_type',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->textArea($model,'change_type',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">

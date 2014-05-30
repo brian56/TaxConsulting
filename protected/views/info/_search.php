@@ -13,22 +13,22 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'info_type_id'); ?>
-		<?php echo $form->textField($model,'info_type_id'); ?>
+		<?php echo $form->textField($model,'info_type_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
+		<?php echo $form->textField($model,'user_id',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'hospital_id'); ?>
-		<?php echo $form->textField($model,'hospital_id'); ?>
+		<?php echo $form->label($model,'company_id'); ?>
+		<?php echo $form->textField($model,'company_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
@@ -47,11 +47,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'date_meeting'); ?>
-		<?php echo $form->textField($model,'date_meeting'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'date_create'); ?>
 		<?php echo $form->textField($model,'date_create'); ?>
 	</div>
@@ -63,7 +58,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'access_level_id'); ?>
-		<?php echo $form->textField($model,'access_level_id'); ?>
+		<?php echo $form->textField($model,'access_level_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row buttons">

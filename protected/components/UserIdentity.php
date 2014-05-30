@@ -8,7 +8,7 @@
 class UserIdentity extends CUserIdentity {
 
     private $_id;
-    private $hospital_id;
+    private $company_id;
 
     /**
      * Authenticates a user.
@@ -40,7 +40,7 @@ class UserIdentity extends CUserIdentity {
         	$this->errorCode = self::ERROR_USERNAME_INVALID;
         } else {
             $this->_id = $record->id;
-            $this->hospital_id = $record->hospital_id;
+            $this->company_id = $record->company_id;
             $this->username = $record->email;
             $this->errorCode = self::ERROR_NONE;
         }
@@ -50,8 +50,8 @@ class UserIdentity extends CUserIdentity {
     public function getId() {
         return $this->_id;
     }
-    public function getHospitalId() {
-        return $this->hospital_id;
+    public function getCompanyId() {
+        return $this->company_id;
     }
 
 //	public function authenticate()

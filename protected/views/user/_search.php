@@ -13,12 +13,17 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id',array('size'=>20,'maxlength'=>20)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'company_id'); ?>
+		<?php echo $form->textField($model,'company_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'user_level_id'); ?>
-		<?php echo $form->textField($model,'user_level_id'); ?>
+		<?php echo $form->textField($model,'user_level_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
@@ -27,13 +32,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textArea($model,'name',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'email'); ?>
+		<?php echo $form->textArea($model,'email',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'user_name'); ?>
+		<?php echo $form->textField($model,'user_name',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'contact_phone'); ?>
-		<?php echo $form->textArea($model,'contact_phone',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'contact_phone',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
@@ -43,12 +53,17 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'device_os_id'); ?>
-		<?php echo $form->textField($model,'device_os_id'); ?>
+		<?php echo $form->textField($model,'device_os_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'device_id'); ?>
 		<?php echo $form->textArea($model,'device_id',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'notify'); ?>
+		<?php echo $form->textField($model,'notify'); ?>
 	</div>
 
 	<div class="row">

@@ -32,11 +32,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'title'); ?>
 		<?php echo $form->textArea($model,'title',array('rows'=>6, 'cols'=>50)); ?>
 	</div>

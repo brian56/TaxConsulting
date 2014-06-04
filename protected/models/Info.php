@@ -8,7 +8,6 @@
  * @property string $info_type_id
  * @property string $user_id
  * @property string $company_id
- * @property integer $status
  * @property string $title
  * @property string $content
  * @property string $date_create
@@ -40,14 +39,13 @@ class Info extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('info_type_id, user_id, company_id, status, title, content, date_create, date_update, access_level_id', 'required'),
-			array('status', 'numerical', 'integerOnly'=>true),
+			array('info_type_id, user_id, company_id, title, content, access_level_id', 'required'),
 			array('info_type_id, company_id', 'length', 'max'=>11),
 			array('user_id', 'length', 'max'=>20),
 			array('access_level_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, info_type_id, user_id, company_id, status, title, content, date_create, date_update, access_level_id', 'safe', 'on'=>'search'),
+			array('id, info_type_id, user_id, company_id, title, content, date_create, date_update, access_level_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,7 +75,6 @@ class Info extends CActiveRecord
 			'info_type_id' => 'Info Type',
 			'user_id' => 'User',
 			'company_id' => 'Company',
-			'status' => 'Status',
 			'title' => 'Title',
 			'content' => 'Content',
 			'date_create' => 'Date Create',
@@ -108,7 +105,6 @@ class Info extends CActiveRecord
 		$criteria->compare('info_type_id',$this->info_type_id,true);
 		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('company_id',$this->company_id,true);
-		$criteria->compare('status',$this->status);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('date_create',$this->date_create,true);
@@ -129,5 +125,34 @@ class Info extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+	
+	public function beforeSave()
+	{
+		if($this->isNewRecord)
+		{
+			$this->date_create= date('Y-m-d H:i:s');
+		}else{
+			$this->date_update = date('Y-m-d H:i:s');
+		}
+		return parent::beforeSave();
+	}
+	
+	public function afterSave(){
+		//send notification to all user in company
+		if($this->infoType->name_en==='Notice' && $this->accessLevel->name_en!=='Admin only') {
+			$criteria = new CDbCriteria();
+			$criteria->select = array('device_id');
+			$criteria->condition = 'company_id=:company_id AND is_actived=:is_actived';
+			$criteria->params = array(':company_id'=>$this->company_id, ':is_actived'=>1);
+			$users = User::model()->findAll($criteria);
+			if(!is_null($users)) {
+				$userDeviceIds = array();
+				foreach ($users as $user) {
+					$userDeviceIds[] = $user->device_id;
+				}
+				SendNotification::actionPushMultiDevice($userDeviceIds, $this->title);
+			}
+		}
 	}
 }

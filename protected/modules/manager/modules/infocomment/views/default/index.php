@@ -25,4 +25,10 @@ $this->menu=array(
 		'dataProvider' => $dataProvider,
 		'itemView' => '_view' 
 ) ); */
+echo "<pre>";
+$now = date('Y-m-d H:i:s');
+			$tomorrow = strtotime("+1 day", strtotime($now));
+			$token_expired_date = date('Y-m-d H:i:s', $tomorrow);
+			print_r($token_expired_date);
+echo "</pre>";
 ?>

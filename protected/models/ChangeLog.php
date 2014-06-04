@@ -113,4 +113,13 @@ class ChangeLog extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function beforeSave()
+	{
+		if($this->isNewRecord)
+		{
+			$this->date_create= date('Y-m-d H:i:s');
+		}
+		return parent::beforeSave();
+	}
 }

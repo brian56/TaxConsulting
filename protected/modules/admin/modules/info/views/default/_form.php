@@ -27,7 +27,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll(), 'id', 'user_name'), array('empty'=>'-- Select an user --')); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
@@ -35,12 +35,6 @@
 		<?php echo $form->labelEx($model,'company_id'); ?>
 		<?php echo $form->dropDownList($model, 'company_id', CHtml::listData(Company::model()->findAll(), 'id', 'name')); ?>
 		<?php echo $form->error($model,'company_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>'Invisibled', '1'=>'Visibled'),array('empty'=>'-- Select status --')); ?>
-		<?php echo $form->error($model,'status'); ?>
 	</div>
 
 	<div class="row">

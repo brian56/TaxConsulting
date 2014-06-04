@@ -44,7 +44,7 @@ return array(
                 'changelog',
                 'deviceos',
                 'event',
-                'hospital',
+                'company',
                 'info',
                 'infotype',
                 'infocomment',

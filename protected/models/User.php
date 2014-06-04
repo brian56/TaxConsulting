@@ -147,4 +147,13 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function beforeSave()
+	{
+		if($this->isNewRecord)
+		{
+			$this->register_date= date('Y-m-d H:i:s');
+		}
+		return parent::beforeSave();
+	}
 }

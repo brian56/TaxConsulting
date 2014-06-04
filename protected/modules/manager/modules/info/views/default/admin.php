@@ -49,7 +49,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'info_type_id',
 		'user_id',
 		'company_id',
-		'status',
 		'title',
 		/*
 		'content',

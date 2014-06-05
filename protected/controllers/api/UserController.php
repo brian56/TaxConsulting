@@ -54,8 +54,7 @@ class UserController extends Controller {
 	}
 	
 	/**
-	 * get all user belong to any individual hospital
-	 * param: hospital_id
+	 * get all user belong to any individual company
 	 */
 	public function actionGetByCompany() {
 		// Get the respective model instance
@@ -74,7 +73,7 @@ class UserController extends Controller {
 		}
 		
 		if (!isset ( $_GET [Params::param_Company_Id] )) {
-			Response::MissingParam(Params::param_Hospital_Id);
+			Response::MissingParam(Params::param_Company_Id);
 		}
 		$criteria->condition = 'company_id=:company_id';
 		$criteria->params = array (
@@ -149,7 +148,7 @@ class UserController extends Controller {
 		}
 		
 		//if email existed, let user chose another email or login with current email
-		if(!is_null($this->checkEmailExisted($_POST [Params::param_Email], $_POST [Params::param_Hospital_Id]))) {
+		if(!is_null($this->checkEmailExisted($_POST [Params::param_Email], $_POST [Params::param_Company_Id]))) {
 			$message = "Email existed. Please use another email or login with current email.";
 			Response::Failed($message);
 		}
@@ -167,10 +166,9 @@ class UserController extends Controller {
 		$now = date('Y-m-d H:i:s');
 		$tomorrow = strtotime("+1 day", strtotime($now));
 		$user->token_expired_date = date('Y-m-d H:i:s', $tomorrow);
-		//echo date("Y-m-d", $date);
 		if ($user->insert ()) {
 			$data = array('token' => $user->token );
-			Response::Success($this->modelName, $data);
+			Response::SuccessWithSimpleArray($this->modelName, $data);
 		} else {
 			$message = 'Register failed.';
 			Response::Failed($message);
@@ -201,13 +199,13 @@ class UserController extends Controller {
 			$device_id = $_POST [Params::param_Device_Id];
 		}
 		$user = $this->checkEmailExisted ( $email, $company_id );
-		if (!is_null($user) && $user->is_actived === 1 && $password===$user->password) {
+		if (!is_null($user) && $user->is_actived == 1 && $password==$user->password) {
 			// email existed, password correct, login successfully
 			// check if device id is not existed, replace with the new
 			if ($device_id!=='' && ! $this->checkDeviceIdExisted ( $email, $company_id, $device_id )) {
 				// new device id, replace current device id in database
 				User::model ()->updateByPk ( $user->id, array (
-						'device_id' => $device_id 
+						'device_id' => $device_id
 				) );
 			}
 			$now = date('Y-m-d H:i:s');
@@ -221,9 +219,9 @@ class UserController extends Controller {
 			) );
 			
 			$data = array('token' => $token);
-			Response::Success($this->modelName, $data);
+			Response::SuccessWithSimpleArray($this->modelName, $data);
 		} else {
-			$message = 'Login failed, incorrect email/password or your account had been deactived by administrator.';
+			$message = 'Login failed, incorrect email-password or your account had been deactived by administrator.';
 			Response::Failed($message);
 		}
 	}
@@ -244,13 +242,13 @@ class UserController extends Controller {
 	
 	/**
 	 * Check if email existed or not 
-	 * @param unknown $email user's email
-	 * @param unknown $hospital_id user's hospital id
+	 * @param string $email user's email
+	 * @param int $company_id user's company id
 	 * @return ActiveRecord an user object if existed, null if didn't existed
 	 */
-	public function checkEmailExisted($email, $company_id) {
+	public function checkEmailExisted($email='', $company_id=0) {
 		$criteria = new CDbCriteria ();
-		$criteria->condition = 'email=:email AND company_id=:company_id';
+		$criteria->condition = 't.email=:email AND t.company_id=:company_id';
 		$criteria->params = array (
 				':email' => $email,
 				':company_id' => $company_id 
@@ -263,13 +261,13 @@ class UserController extends Controller {
 	 * Check if device id is existed or not 
 	 * if not existed or different, update current to new device id
 	 * @param string $email user's email
-	 * @param number $hospital_id user's hospital id
+	 * @param number $company_id user's company id
 	 * @param string $device_id user's device id
 	 * @return boolean TRUE if device id existed, otherwise FALSE
 	 */
 	public function checkDeviceIdExisted($email='', $company_id=0, $device_id='') {
 		$criteria = new CDbCriteria ();
-		$criteria->condition = 'email=:email AND company_id=:company_id AND device_id=:device_id';
+		$criteria->condition = 't.email=:email AND t.company_id=:company_id AND t.device_id=:device_id';
 		$criteria->params = array (
 				':email' => $email,
 				':company_id' => $company_id,

@@ -28,24 +28,22 @@ class InfoCommentController extends Controller {
 			$criteria->offset = $_GET [Params::param_Offset];
 		}
 		if (isset ( $_GET [Params::param_Limit] )) {
-			$limit = $_GET [Params::param_Limit];
-			$criteria->limit = $limit;
+			$criteria->limit = $_GET [Params::param_Limit];
 		}
 		if (isset ( $_GET [Params::param_Order] )) {
-			$orderBy = $_GET [Params::param_Order];
-			$criteria->order = $order;
+			$criteria->order = $_GET [Params::param_Order];
 		}
 		
 		if (!isset ( $_GET [Params::param_Company_Id] )) {
 			Response::MissingParam(Params::param_Company_Id);
 		}
 		
-		$conditions [] = 'company_id=:company_id';
+		$conditions [] = 't.company_id=:company_id';
 		$criteria->params = array_merge ( $criteria->params, array (
 				':company_id' => $_GET [Params::param_Company_Id]
 		) );
 		
-		$criteria->conditions = $conditions[0];
+		$criteria->condition = $conditions[0];
 		$models = InfoComment::model ()->findAll ( $criteria );
 		
 		// Did we get some results?
@@ -67,12 +65,10 @@ class InfoCommentController extends Controller {
 			$criteria->offset = $_GET [Params::param_Offset];
 		}
 		if (isset ( $_GET [Params::param_Limit] )) {
-			$limit = $_GET [Params::param_Limit];
-			$criteria->limit = $limit;
+			$criteria->limit = $_GET [Params::param_Limit];
 		}
 		if (isset ( $_GET [Params::param_Order] )) {
-			$orderBy = $_GET [Params::param_Order];
-			$criteria->order = $order;
+			$criteria->order = $_GET [Params::param_Order];
 		}
 		
 		if (!isset ( $_GET [Params::param_Info_Type_Id] )) {
@@ -82,16 +78,16 @@ class InfoCommentController extends Controller {
 			Response::MissingParam(Params::param_Company_Id);			
 		}
 		
-		$conditions [] = 'info_type_id=:info_type_id';
+		$conditions [] = 't.info_type_id=:info_type_id';
 		$criteria->params = array_merge ( $criteria->params, array (
 				':info_type_id' => $_GET [Params::param_Info_Type_Id]
 		) );
-		$conditions [] = 'company_id=:company_id';
+		$conditions [] = 't.company_id=:company_id';
 		$criteria->params = array_merge ( $criteria->params, array (
 				':company_id' => $_GET [Params::param_Company_Id]
 		) );
 		
-		$criteria->conditions = implode ( ' AND ', $conditions );
+		$criteria->condition = implode ( ' AND ', $conditions );
 		$models = InfoComment::model ()->findAll ( $criteria );
 		
 		// Did we get some results?
@@ -113,19 +109,17 @@ class InfoCommentController extends Controller {
 			$criteria->offset = $_GET [Params::param_Offset];
 		}
 		if (isset ( $_GET [Params::param_Limit] )) {
-			$limit = $_GET [Params::param_Limit];
-			$criteria->limit = $limit;
+			$criteria->limit = $_GET [Params::param_Limit];
 		}
 		if (isset ( $_GET [Params::param_Order] )) {
-			$orderBy = $_GET [Params::param_Order];
-			$criteria->order = $order;
+			$criteria->order = $_GET [Params::param_Order];
 		}
 		
 		if (!isset ( $_GET [Params::param_Info_Id] )) {
 			Response::MissingParam(Params::param_Info_Id);
 		}
 		
-		$criteria->conditions = 'info_id=:info_id';
+		$criteria->condition = 't.info_id=:info_id';
 		$criteria->params = array_merge ( $criteria->params, array (
 				':info_id' => $_GET [Params::param_Info_Id]
 		) );

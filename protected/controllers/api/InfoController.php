@@ -74,13 +74,13 @@ class InfoController extends Controller {
 			$criteria->order = $_GET [Params::param_Order];
 		}
 		
-		$conditions[] = 'info_type_id=:info_type_id';
+		$conditions[] = 't.info_type_id=:info_type_id';
 		$criteria->params = array_merge($criteria->params, array(':info_type_id' => $_GET[Params::param_Info_Type_Id]));
-		$conditions[] = 'company_id=:company_id';
+		$conditions[] = 't.company_id=:company_id';
 		$criteria->params = array_merge($criteria->params, array(':company_id' => $_GET[Params::param_Company_Id]));
 
-		$criteria->conditions=implode(' AND ',$conditions);
-		
+		$criteria->condition=implode(' AND ',$conditions);
+
 		$criteria->with = array('user', 'company', 'infoComments');
 		
 		$models = Info::model ()->findAll($criteria);
@@ -120,23 +120,23 @@ class InfoController extends Controller {
 			$criteria->order = $_GET [Params::param_Order];
 		}
 
-		$conditions[] = 'company_id=:company_id';
+		$conditions[] = 't.company_id=:company_id';
 		$criteria->params = array_merge($criteria->params, array(':company_id' => $_GET[Params::param_Company_Id]));
 
-		$conditions[] = 'user_id=:user_id';
+		$conditions[] = 't.user_id=:user_id';
 		$user_id = Response::getUserIdFromToken($_GET[Params::param_Token]);
 		if(!is_null($user_id)) {
-			$criteria->params = array(':user_id' => $user_id);
+			$criteria->params = array_merge($criteria->params, array(':user_id' => $user_id));
 		} else {
 			$message = "Authenticate failed. Token had been expired.";
 			Response::Failed($message);
 		}
 		
-		$conditions[] = 'info_type_id=:info_type_id';
+		$conditions[] = 't.info_type_id=:info_type_id';
 		$criteria->params = array_merge($criteria->params, array(':info_type_id' => $_GET[Params::param_Info_Type_Id]));
 		
 		if($conditions!=null) {
-			$criteria->conditions=implode(' AND ',$conditions);
+			$criteria->condition=implode(' AND ',$conditions);
 		}
 
 		$criteria->with = array('infoComments');

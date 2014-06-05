@@ -126,10 +126,10 @@ class InfoComment extends CActiveRecord
 		$userDeviceId = User::model()->findByAttributes(array('id'=>$this->info->user_id, 'is_actived'=>1), 'device_id');
 		$criteria = new CDbCriteria();
 		$criteria->select = array('device_id');
-		$criteria->condition = 'id=:id AND is_actived=1';
+		$criteria->condition = 't.id=:id AND t.is_actived=1';
 		$criteria->params = array(':id'=>$this->info->user_id);
 		$user = User::model()->find($criteria);
-		if(!is_null($user)) {
+		if(!is_null($user) && !is_null($user->device_id) && $user->device_id!='') {
 			$userDeviceId = $user->device_id;
 			$message = "You have new reply.";
 			SendNotification::actionPushOneDevice($userDeviceId, $message);

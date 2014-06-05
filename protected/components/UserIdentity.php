@@ -8,7 +8,6 @@
 class UserIdentity extends CUserIdentity {
 
     private $_id;
-    private $company_id;
 
     /**
      * Authenticates a user.
@@ -34,24 +33,27 @@ class UserIdentity extends CUserIdentity {
         $record = User::model()->findByAttributes(array("email" => $this->username));
         if ($record === null) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        } elseif ($record->password !== $this->password) {
+        } elseif ($record->password !== md5($this->password)) {
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } elseif ($record->user_level_id < 2) {
         	$this->errorCode = self::ERROR_USERNAME_INVALID;
         } else {
             $this->_id = $record->id;
-            $this->company_id = $record->company_id;
             $this->username = $record->email;
             $this->errorCode = self::ERROR_NONE;
+            $this->setState('company_id', $record->company_id);
+            if($record->user_level_id ==3) {
+            	Yii::app()->user->setState("isAdmin", true);
+            	Yii::app()->user->setState("isManager", true);
+            } else if($record->user_level_id ==2) {
+            	Yii::app()->user->setState("isManager", true);
+            }
         }
         return !$this->errorCode;
     }
 
     public function getId() {
         return $this->_id;
-    }
-    public function getCompanyId() {
-        return $this->company_id;
     }
 
 //	public function authenticate()

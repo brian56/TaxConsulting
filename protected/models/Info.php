@@ -140,16 +140,17 @@ class Info extends CActiveRecord
 	
 	public function afterSave(){
 		//send notification to all user in company
-		if($this->infoType->name_en==='Notice' && $this->accessLevel->name_en!=='Admin only') {
+		if($this->infoType->name_en=='Notice' && $this->accessLevel->name_en!='Admin only') {
 			$criteria = new CDbCriteria();
 			$criteria->select = array('device_id');
-			$criteria->condition = 'company_id=:company_id AND is_actived=:is_actived';
+			$criteria->condition = 't.company_id=:company_id AND t.is_actived=:is_actived';
 			$criteria->params = array(':company_id'=>$this->company_id, ':is_actived'=>1);
 			$users = User::model()->findAll($criteria);
 			if(!is_null($users)) {
 				$userDeviceIds = array();
 				foreach ($users as $user) {
-					$userDeviceIds[] = $user->device_id;
+					if(!is_null($user->device_id) && $user->device_id!='')
+						$userDeviceIds[] = $user->device_id;
 				}
 				SendNotification::actionPushMultiDevice($userDeviceIds, $this->title);
 			}

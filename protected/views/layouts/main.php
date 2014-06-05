@@ -38,18 +38,18 @@
 				array(
 					'label'=>'Manager', 
 					'url'=>array('/manager'), 
-					'visible' => !Yii::app()->user->isGuest, 
+					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
 					'active'=>(isset(Yii::app()->controller->module->id) && (Yii::app()->controller->module->id=='manager')),
 				),
 				array(
 					'label'=>'Administrator', 
 					'url'=>array('/admin'), 
-					'visible' => !Yii::app()->user->isGuest, 
+					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isAdmin")) , 
 					'active'=>(isset(Yii::app()->controller->module->id) && Yii::app()->controller->module->id=='admin')),
 				array(
 					'label'=>'Rights', 
 					'url'=>array('/rights'), 
-					'visible' => !Yii::app()->user->isGuest, 
+					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isAdmin")), 
 					'active'=>(isset(Yii::app()->controller->module->id) && Yii::app()->controller->module->id=='rights')),
 				array(
 					'label' => 'Login', 
@@ -64,58 +64,6 @@
 		));
 	?>
 	
-	<?php
-	
- /*    $this->widget('bootstrap.widgets.TbNavbar', array(
-        'type' => 'inverse', // null or 'inverse'
-        'brand' => Yii::app()->name,
-        //'brandUrl' => Yii::app()->homeUrl,
-        'collapse' => true, // requires bootstrap-responsive.css
-        'items' => array(
-            array(
-                'class' => 'bootstrap.widgets.TbMenu',
-                'items' => array(
-                    array('label' => 'Manage', 'url' => '#', 'items' => array(
-                        array('label' => 'Product Category', 'url' => array('/productTemplates')),
-                        array('label' => 'User', 'url' => array('/users')),
-                        array('label' => 'Product', 'url' => array('/products')),
-                        array('label' => 'Order', 'url' => array('/orders')),
-                        array('label' => 'RFQ', 'url' => array('/rfq')),
-                        array('label' => 'Quote', 'url' => array('/quotes')),
-                        array('label' => 'Member', 'url' => array('/members')),
-                    )),
-                    array('label' => 'Companies', 'url' => array('/companies')),
-                    array('label' => 'Articles', 'url' =>'#', 'items' => array(
-                        array('label' => 'Article', 'url' => array('/articles')),
-                        array('label' => 'Footer', 'url' => array('/footer')),
-                        array('label' => 'News and Events', 'url' => array('/events')),
-                    )),
-                    array('label' => 'Global', 'url' => '#', 'items' => array(
-                        array('label' => 'Home Setting', 'url' => array('/globalsetting/home/setting?c=c_default&a=a_index')),
-                        array('label' => 'Member Setting', 'url' => array('/globalsetting/default/memberSetting')),
-                        array('label' => 'Account Setting', 'url' => array('/rights')),
-                    )),
-                    array('label' => 'Slider', 'url' => array('/slider')),
-                    array('label' => 'Promotion', 'url' => array('/promotions')),
-                ),
-            ),
-            array(
-                'class' => 'bootstrap.widgets.TbMenu',
-                'htmlOptions' => array('class' => 'pull-right'),
-                'items' => (Yii::app()->user->isGuest) ? array(
-                    array('label' => 'Login', 'url' => '/back/userProfile/default/login'),) : array(
-                    '---',
-                    array('label' => "Welcome " . Yii::app()->user->name,'icon'=>'home', 'url' => (yii::app()->homeUrl) . 'userProfile/default/index', 'items' => array(
-                        array('label' => 'Profile', 'url' => (yii::app()->homeUrl) . 'userProfile/default/index'),
-                        array('label' => 'Change password', 'url' => (yii::app()->homeUrl) . 'userProfile/default/changePass'),
-                        '---',
-                        array('label' => 'Logout', 'url' => array('/vietrade/default/logout')),
-                    )),
-                ),
-            ),
-        ),
-    )); */
-    ?> 
 	</div><!-- mainmenu -->
 	
 	<?php if(isset($this->breadcrumbs)):?>
@@ -124,7 +72,8 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
-	<?php echo $content; ?>
+	<?php echo $content; 
+	?>
 
 	<div class="clear"></div>
 

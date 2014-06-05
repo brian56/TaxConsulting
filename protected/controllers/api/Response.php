@@ -48,6 +48,18 @@ class Response {
 		$response ['data'] = json_decode ( self::renderJsonDeep ( $data ) );
 		self::_sendResponse ( 200, CJSON::encode ( $response ) );
     }
+    
+    /**
+     * Response to user that request was successful, and data was a simple array
+     * @param string $model model's name
+     * @param array $data data to return to user
+     */
+    public static function SuccessWithSimpleArray($modelName='', $data = array()) {
+    	$response ['status'] = Params::status_success;
+		$response ['message'] = Params::message_success . $modelName;
+		$response ['data'] = $data;
+		self::_sendResponse ( 200, CJSON::encode ( $response ) );
+    }
     /**
      * Response to user that request is successful, but no data to return
      * @param string $model model's name

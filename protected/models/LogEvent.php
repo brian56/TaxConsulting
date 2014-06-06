@@ -33,12 +33,31 @@ class LogEvent extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('event_id, user_id, company_id, date_create', 'required'),
-			array('event_id, company_id', 'length', 'max'=>11),
-			array('user_id', 'length', 'max'=>20),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, event_id, user_id, company_id, date_create', 'safe', 'on'=>'search'),
+				array (
+						'date_create',
+						'default',
+						'value' => new CDbExpression ( 'NOW()' ), // automatically add the current date in register_date
+						'setOnEmpty' => false,
+						'on' => 'insert'
+				),
+				array (
+						'event_id, user_id, company_id',
+						'required' 
+				),
+				array (
+						'event_id, company_id',
+						'length',
+						'max' => 11 
+				),
+				array (
+						'user_id',
+						'length',
+						'max' => 20 
+				),
+				// The following rule is used by search().
+				// @todo Please remove those attributes that should not be searched.
+				array (
+						'id, event_id, user_id, company_id, date_create', 'safe', 'on'=>'search'),
 		);
 	}
 

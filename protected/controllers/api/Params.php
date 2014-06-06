@@ -9,7 +9,7 @@ class Params {
 	const status_params_missing = - 1;
 	const message_params_missing = 'Missing params:';
 	const status_params_error = - 2;
-	const message_params_error = 'Param\'s format error:';
+	const message_params_error = "Param's format error:";
 	const status_failed = - 3;
 	const message_failed = 'Can not excute request.';
 	
@@ -27,6 +27,7 @@ class Params {
 	const param_Device_Id = 'device_id';
 	const param_Token = 'token';
 	const param_Is_Actived = 'is_actived';
+	const param_Notify = 'notify';
 	
 	// info, info's comment params
 	const param_Status = 'status';

@@ -38,14 +38,33 @@ class Info extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('info_type_id, user_id, company_id, title, content, access_level_id', 'required'),
-			array('info_type_id, company_id', 'length', 'max'=>11),
-			array('user_id', 'length', 'max'=>20),
-			array('access_level_id', 'length', 'max'=>10),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, info_type_id, user_id, company_id, title, content, date_create, date_update, access_level_id', 'safe', 'on'=>'search'),
+		return array (
+				array (
+						'info_type_id, user_id, company_id, title, content, access_level_id',
+						'required' 
+				),
+				array (
+						'info_type_id, company_id',
+						'length',
+						'max' => 11 
+				),
+				array (
+						'user_id',
+						'length',
+						'max' => 20 
+				),
+				array (
+						'access_level_id',
+						'length',
+						'max' => 10 
+				),
+				// The following rule is used by search().
+				// @todo Please remove those attributes that should not be searched.
+				array (
+						'id, info_type_id, user_id, company_id, title, content, date_create, date_update, access_level_id',
+						'safe',
+						'on' => 'search' 
+				) 
 		);
 	}
 

@@ -32,12 +32,23 @@ class InfoComment extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('user_id, info_id, content, date_create, date_update', 'required'),
-			array('user_id, info_id', 'length', 'max'=>20),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, info_id, content, date_create, date_update', 'safe', 'on'=>'search'),
+		return array (
+				array (
+						'user_id, info_id, content, date_create, date_update',
+						'required' 
+				),
+				array (
+						'user_id, info_id',
+						'length',
+						'max' => 20 
+				),
+				// The following rule is used by search().
+				// @todo Please remove those attributes that should not be searched.
+				array (
+						'id, user_id, info_id, content, date_create, date_update',
+						'safe',
+						'on' => 'search' 
+				) 
 		);
 	}
 

@@ -129,6 +129,8 @@ class Info extends CActiveRecord
 		$criteria->compare('date_create',$this->date_create,true);
 		$criteria->compare('date_update',$this->date_update,true);
 		$criteria->compare('access_level_id',$this->access_level_id,true);
+		$criteria->order = 'date_create DESC';
+		$criteria->with = array('user', 'company', 'accessLevel', 'infoComments', 'infoType');
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

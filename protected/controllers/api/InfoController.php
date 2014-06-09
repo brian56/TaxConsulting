@@ -21,7 +21,7 @@ class InfoController extends Controller {
 	public function filters() {
 		return array ();
 	}
-
+	
 	// Actions
 	public function actionGetAll() {
 		// Get the respective model instance
@@ -220,6 +220,7 @@ class InfoController extends Controller {
 	public function actionDelete() {
 		
 	}
+	
 }
 
 ?>

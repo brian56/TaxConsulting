@@ -1,6 +1,6 @@
 <?php
 
-class DefaultController extends RController 
+class DefaultController extends Controller 
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -15,7 +15,7 @@ class DefaultController extends RController
 	public function filters()
 	{
 		return array(
-				'rights',
+				'accessControl',
 		);
 	}
 
@@ -29,7 +29,7 @@ class DefaultController extends RController
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
@@ -122,10 +122,16 @@ class DefaultController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('AccessLevel');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {
+			$this->redirect ( array (
+					'/site/login'
+			) );
+		} else {
+			$dataProvider=new CActiveDataProvider('AccessLevel');
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		}
 	}
 
 	/**

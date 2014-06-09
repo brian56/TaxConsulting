@@ -24,7 +24,6 @@ $this->menu=array(
 		'id',
 		'event_id',
 		'user_id',
-		'company_id',
 		'date_create',
 	),
 )); ?>

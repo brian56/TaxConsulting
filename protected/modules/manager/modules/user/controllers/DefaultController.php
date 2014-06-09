@@ -1,6 +1,6 @@
 <?php
 
-class DefaultController extends RController
+class DefaultController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -12,12 +12,10 @@ class DefaultController extends RController
 	 * @return array action filters
 	 */
 	public function filters()
-	{
-		return array(
-				'rights',
-		);
-	}
-
+    {
+        return array( 'accessControl' ); // perform access control for CRUD operations
+    }
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -36,7 +34,7 @@ class DefaultController extends RController
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -121,10 +119,22 @@ class DefaultController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('User');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isManager')) {
+			$this->redirect ( array (
+					'/site/login'
+			) );
+		} else  {
+			$criteria = new CDbCriteria();
+			$criteria->condition = 't.company_id=:company_id AND t.user_level_id=1';
+			$criteria->params = array(':company_id'=>Yii::app()->user->getState('companyId'));
+			$dataProvider=new CActiveDataProvider(
+					'User',
+					array('criteria' => $criteria)
+				);
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		}
 	}
 
 	/**

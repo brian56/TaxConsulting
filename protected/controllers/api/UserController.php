@@ -131,7 +131,7 @@ class UserController extends Controller {
 		}
 		$company_id = $_POST [Params::param_Company_Id];
 		$device_id = $_POST [Params::param_Device_Id];
-		$user = $this->checkDeviceId($company_id, $device_id);
+		$user = $this->checkDeviceIdOnly($company_id, $device_id);
 		if (is_null($user)) {
 			$user = new User ();
 			$user->company_id = $_POST [Params::param_Company_Id];
@@ -147,11 +147,14 @@ class UserController extends Controller {
 			$user->token = '';
 			$user->token_expired_date = '';
 			if ($user->insert ()) {
-				Response::SuccessNoData($this->modelName);
+				$message = 'Register device successfully';
+				Response::SuccessWithMessage($this->modelName, $message);
 			} else {
-				$message = 'Register device failed.';
+				$message = 'Register Failed.';
 				Response::Failed($message);
 			}
+		} else {
+			Response::DeviceRegistered();
 		}
 	}
 	

@@ -22,7 +22,6 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'company_id',
 		'user_level_id',
 		'is_actived',
 		'email',

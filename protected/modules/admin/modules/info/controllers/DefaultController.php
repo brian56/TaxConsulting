@@ -1,20 +1,29 @@
 <?php
 
-class DefaultController extends RController
+class DefaultController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-
+	
+	public function beforeControllerAction(CAction $action)
+	{
+		if (Yii::app()->user->isGuest && ! ($action->controller->id == 'site' && $action->id == 'login')) {
+			$this->redirect ( array (
+					'/site/login'
+			) );
+		}
+		return true;
+	}
 	/**
 	 * @return array action filters
 	 */
 	public function filters()
 	{
 		return array(
-				'rights',
+				'accessControl',
 		);
 	}
 
@@ -121,10 +130,16 @@ class DefaultController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Info');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {
+			$this->redirect ( array (
+					'/site/login'
+			) );
+		} else {
+			$dataProvider=new CActiveDataProvider('Info');
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		}
 	}
 
 	/**

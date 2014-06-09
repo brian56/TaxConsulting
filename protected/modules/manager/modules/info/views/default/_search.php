@@ -27,11 +27,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id',array('size'=>11,'maxlength'=>11)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'title'); ?>
 		<?php echo $form->textArea($model,'title',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
@@ -39,16 +34,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'content'); ?>
 		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'date_create'); ?>
-		<?php echo $form->textField($model,'date_create'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'date_update'); ?>
-		<?php echo $form->textField($model,'date_update'); ?>
 	</div>
 
 	<div class="row">

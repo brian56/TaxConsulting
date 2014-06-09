@@ -17,16 +17,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id',array('size'=>11,'maxlength'=>11)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'user_level_id'); ?>
-		<?php echo $form->textField($model,'user_level_id',array('size'=>11,'maxlength'=>11)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'is_actived'); ?>
 		<?php echo $form->textField($model,'is_actived'); ?>
 	</div>
@@ -47,11 +37,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'register_date'); ?>
-		<?php echo $form->textField($model,'register_date'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'device_os_id'); ?>
 		<?php echo $form->textField($model,'device_os_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
@@ -69,11 +54,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'token'); ?>
 		<?php echo $form->textArea($model,'token',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'token_expired_date'); ?>
-		<?php echo $form->textField($model,'token_expired_date'); ?>
 	</div>
 
 	<div class="row buttons">

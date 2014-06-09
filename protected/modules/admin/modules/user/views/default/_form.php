@@ -21,7 +21,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->dropDownList($model, 'company_id', CHtml::listData(Hospital::model()->findAll(), 'id', 'name_en'), array('empty'=>'-- Select a company --')); ?>
+		<?php echo $form->dropDownList($model, 'company_id', CHtml::listData(Company::model()->findAll(), 'id', 'name_en'), array('empty'=>'-- Select a company --')); ?>
 		<?php echo $form->error($model,'company_id'); ?>
 	</div>
 

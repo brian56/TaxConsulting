@@ -1,17 +1,20 @@
 <?php
-/* @var $this DefaultController */
+/* @var $this CompanyController */
+/* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	$this->module->id,
+	'Companies',
+);
+
+$this->menu=array(
+	array('label'=>'Create Company', 'url'=>array('create')),
+	array('label'=>'Manage Company', 'url'=>array('admin')),
 );
 ?>
-<h1><?php echo $this->uniqueId . '/' . $this->action->id; ?></h1>
 
-<p>
-This is the view content for action "<?php echo $this->action->id; ?>".
-The action belongs to the controller "<?php echo get_class($this); ?>"
-in the "<?php echo $this->module->id; ?>" module.
-</p>
-<p>
-You may customize this page by editing <tt><?php echo __FILE__; ?></tt>
-</p>
+<h1>Companies</h1>
+
+<?php $this->widget('zii.widgets.CListView', array(
+	'dataProvider'=>$dataProvider,
+	'itemView'=>'_view',
+)); ?>

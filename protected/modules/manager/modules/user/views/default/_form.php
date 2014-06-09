@@ -20,18 +20,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->dropDownList($model, 'company_id', CHtml::listData(Hospital::model()->findAll(), 'id', 'name_en'), array('empty'=>'-- Select a company --')); ?>
-		<?php echo $form->error($model,'company_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_level_id'); ?>
-		<?php echo $form->textField($model,'user_level_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'user_level_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'is_actived'); ?>
 		<?php echo $form->dropDownList($model, 'is_actived', array('1'=>'Actived', '0'=>'Inactived')); ?>
 		<?php echo $form->error($model,'is_actived'); ?>
@@ -62,12 +50,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'register_date'); ?>
-		<?php echo $form->textField($model,'register_date'); ?>
-		<?php echo $form->error($model,'register_date'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'device_os_id'); ?>
 		<?php echo $form->dropDownList($model, 'device_os_id', DeviceOS::getFullDeviceOS(), array('empty'=>'-- Select a device OS --')); ?>
 		<?php echo $form->error($model,'device_os_id'); ?>
@@ -89,12 +71,6 @@
 		<?php echo $form->labelEx($model,'token'); ?>
 		<?php echo $form->textArea($model,'token',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'token'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'token_expired_date'); ?>
-		<?php echo $form->textField($model,'token_expired_date'); ?>
-		<?php echo $form->error($model,'token_expired_date'); ?>
 	</div>
 
 	<div class="row buttons">

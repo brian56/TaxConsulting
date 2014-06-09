@@ -27,14 +27,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll(), 'id', 'user_name'), array('empty'=>'-- Select an user --')); ?>
+		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll('company_id=:company_id', array(':company_id'=>Yii::app()->user->getState('companyId'))), 'id', 'user_name'), array('empty'=>'-- Select an user --'));	?>
 		<?php echo $form->error($model,'user_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->dropDownList($model, 'company_id', CHtml::listData(Company::model()->findAll(), 'id', 'name')); ?>
-		<?php echo $form->error($model,'company_id'); ?>
 	</div>
 
 	<div class="row">
@@ -47,18 +41,6 @@
 		<?php echo $form->labelEx($model,'content'); ?>
 		<?php echo $form->textArea($model,'content',array('rows'=>3, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'content'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_create'); ?>
-		<?php echo $form->textField($model,'date_create'); ?>
-		<?php echo $form->error($model,'date_create'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_update'); ?>
-		<?php echo $form->textField($model,'date_update'); ?>
-		<?php echo $form->error($model,'date_update'); ?>
 	</div>
 
 	<div class="row">

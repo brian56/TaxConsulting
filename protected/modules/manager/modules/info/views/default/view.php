@@ -27,17 +27,15 @@ $this->menu=array(
 		),
 		array(
 				'name' => 'user_id',
-				'value' => $model->getUserName(),
+				'value' => $model->getInfoUserName(),
 		),
-		'appointment_status',
-		'appointment_date',
 		'title',
 		'content',
 		'date_create',
 		'date_update',
 		array(
 				'name' => 'access_level_id',
-				'value' => $model->getAccessLevelName(),
+				'value' => $model->getInfoAccessLevelName(),
 		),
 	),
 )); ?>
@@ -49,10 +47,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		)),
 		'columns'=>array(
 			'id',
-			array(
-					'name' => 'info_id',
-					'value' => '$data->infoTitle',
-			),
 			array(
 					'name' => 'user_id',
 					'value' => '$data->userName',

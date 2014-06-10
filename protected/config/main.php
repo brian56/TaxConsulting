@@ -130,7 +130,8 @@ return array(
         ),
         'gcm' => array(
         		'class' => 'ext.apns-gcm.YiiGcm',
-        		'apiKey' => 'AIzaSyCmvUK69cXXj8AdfhCw6QvqXazPQ2eKkZA'
+        		'apiKey' => 'AIzaSyD8l-FWorhKveB4BwU6QC_2VL2Dku6-h14'
+        		//new Sender ID for android 456108508168
         ),
         // using both gcm and apns, make sure you have 'gcm' and 'apns' in your component
         'apnsGcm' => array(

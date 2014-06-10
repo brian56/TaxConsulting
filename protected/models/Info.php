@@ -23,37 +23,28 @@
  */
 class Info extends CActiveRecord
 {
-	private $numberComments;
-	public function getNumberComments(){
+	//add new attributes to model
+	public function getInfoUserName() {
+		return $this->user->email;
+	}
+	public function getInfoTypeName() {
+		return $this->infoType->name;
+	}
+	public function getInfoCommentsCount() {
 		return count($this->infoComments);
 	}
-	
-	private $isCommented;
-	public function getIsCommented(){
-		if(count($this->infoComments>0)){
-			return 'Yes';
-		}
-		return 'No';
-	}
-	
-	private $companyName;
-	public function getCompanyName(){
-		return $this->company->name;
-	}
-	
-	private $accessLevelName;
-	public function getAccessLevelName(){
+	public function getInfoAccessLevelName() {
 		return $this->accessLevel->name;
 	}
 	
-	private $infoTypeName;
-	public function getInfoTypeName(){
-		return $this->infoType->name;
-	}
+	public function getAttributes($names = true) {
+		$attrs = parent::getAttributes($names);
+		$attrs['infoUserName'] = $this->getInfoUserName();
+		$attrs['infoTypeName'] = $this->getInfoTypeName();
+		$attrs['infoCommentsCount'] = $this->getInfoCommentsCount();
+		$attrs['infoAccessLevelName'] = $this->getInfoAccessLevelName();
 	
-	private $userName;
-	public function getUserName(){
-		return $this->user->user_name;
+		return $attrs;
 	}
 	/**
 	 * @return string the associated database table name

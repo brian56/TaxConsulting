@@ -58,17 +58,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		array(
-			'name' => 'info_type_id',
-			'value' => '$data->infoTypeName',
+				'name' => 'info_type_id',
+				'value' => '$data->infoTypeName',
 		),
 		array(
-			'name' => 'user_id',
-			'value' => '$data->userName',
+				'name' => 'user_id',
+				'value' => '$data->infoUserName',
 		),
 		'title',
 		array(
 				'name' => 'access_level_id',
-				'value' => '$data->accessLevelName',
+				'value' => '$data->infoAccessLevelName',
 		),
 		/*
 		'content',

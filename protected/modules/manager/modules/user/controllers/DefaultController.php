@@ -119,22 +119,17 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isManager')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		} else  {
-			$criteria = new CDbCriteria();
-			$criteria->condition = 't.company_id=:company_id AND t.user_level_id=1';
-			$criteria->params = array(':company_id'=>Yii::app()->user->getState('companyId'));
-			$dataProvider=new CActiveDataProvider(
-					'User',
-					array('criteria' => $criteria)
-				);
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider,
-			));
-		}
+		$criteria = new CDbCriteria();
+		$criteria->condition = 't.company_id=:company_id AND t.user_level_id=1';
+		$criteria->order = 'register_date DESC';
+		$criteria->params = array(':company_id'=>Yii::app()->user->getState('companyId'));
+		$dataProvider=new CActiveDataProvider(
+				'User',
+				array('criteria' => $criteria)
+			);
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**

@@ -27,7 +27,7 @@ $('.search-form form').submit(function(){
 
 <h4>Manage questions</h4>
 <script type="text/javascript">
-    timeout = 1000;
+    timeout = 3000;
     function refresh() {       
         <?php
         echo CHtml::ajax(array(
@@ -59,12 +59,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		array(
 			'name' => 'user_id',
-			'value' => '$data->userName',
+			'value' => '$data->infoUserName',
 		),
 		'title',
 		array(
 				'name' => 'access_level_id',
-				'value' => '$data->accessLevelName',
+				'value' => '$data->infoAccessLevelName',
 		),
 		/*
 		'content',

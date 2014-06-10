@@ -17,13 +17,15 @@
  */
 class InfoComment extends CActiveRecord
 {
-	private $userName;
-	public function getUserName(){
-		return $this->user->user_name;
+	public function getUserName() {
+		return $this->user->email;
 	}
-	private $infoTitle;
-	public function getInfoTitle(){
-		return $this->info->title;
+	
+	public function getAttributes($names = true) {
+		$attrs = parent::getAttributes($names);
+		$attrs['userName'] = $this->getUserName();
+	
+		return $attrs;
 	}
 	/**
 	 * @return string the associated database table name

@@ -30,6 +30,36 @@
  */
 class User extends CActiveRecord
 {
+	private $userLevelName;
+	public function getUserLevelName(){
+		return $this->userLevel->name;
+	}
+	
+	private $deviceOsName;
+	public function getDeviceOsName(){
+		return $this->deviceOs->name." ".$this->deviceOs->device_type." ".$this->deviceOs->version;
+	}
+	
+	private $isActived;
+	public function getIsActived(){
+		if($this->is_actived>0) {
+			return 'Yes';
+		}
+		return 'No';
+	}
+	
+	private $companyName;
+	public function getCompanyName(){
+		return $this->company->name;
+	}
+	
+	private $notifyName;
+	public function getNotifyName(){
+		if($this->notify>0) {
+			return 'Yes';
+		}
+		return 'No';
+	}
 	/**
 	 * @return string the associated database table name
 	 */
@@ -85,7 +115,7 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'company_id' => 'Company',
 			'user_level_id' => 'User Level',
-			'is_actived' => 'Is Actived',
+			'is_actived' => 'Actived',
 			'email' => 'Email',
 			'password' => 'Password',
 			'user_name' => 'User Name',
@@ -153,6 +183,9 @@ class User extends CActiveRecord
 		if($this->isNewRecord)
 		{
 			$this->register_date= date('Y-m-d H:i:s');
+			if(Yii::app()->user->getState('isManager')) {
+				$this->company_id = Yii::app()->user->getState('companyId');
+			}
 		}
 		return parent::beforeSave();
 	}

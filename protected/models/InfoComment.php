@@ -17,6 +17,14 @@
  */
 class InfoComment extends CActiveRecord
 {
+	private $userName;
+	public function getUserName(){
+		return $this->user->user_name;
+	}
+	private $infoTitle;
+	public function getInfoTitle(){
+		return $this->info->title;
+	}
 	/**
 	 * @return string the associated database table name
 	 */
@@ -72,7 +80,7 @@ class InfoComment extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
+			'user_id' => 'Author',
 			'info_id' => 'Info',
 			'content' => 'Content',
 			'date_create' => 'Date Create',

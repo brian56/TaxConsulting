@@ -23,6 +23,38 @@
  */
 class Info extends CActiveRecord
 {
+	private $numberComments;
+	public function getNumberComments(){
+		return count($this->infoComments);
+	}
+	
+	private $isCommented;
+	public function getIsCommented(){
+		if(count($this->infoComments>0)){
+			return 'Yes';
+		}
+		return 'No';
+	}
+	
+	private $companyName;
+	public function getCompanyName(){
+		return $this->company->name;
+	}
+	
+	private $accessLevelName;
+	public function getAccessLevelName(){
+		return $this->accessLevel->name;
+	}
+	
+	private $infoTypeName;
+	public function getInfoTypeName(){
+		return $this->infoType->name;
+	}
+	
+	private $userName;
+	public function getUserName(){
+		return $this->user->user_name;
+	}
 	/**
 	 * @return string the associated database table name
 	 */
@@ -92,7 +124,7 @@ class Info extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'info_type_id' => 'Info Type',
-			'user_id' => 'User',
+			'user_id' => 'Author',
 			'company_id' => 'Company',
 			'title' => 'Title',
 			'content' => 'Content',
@@ -153,6 +185,9 @@ class Info extends CActiveRecord
 		if($this->isNewRecord)
 		{
 			$this->date_create= date('Y-m-d H:i:s');
+			if(Yii::app()->user->getState('isManager')) {
+				$this->company_id = Yii::app()->user->getState('companyId');
+			}
 		}else{
 			$this->date_update = date('Y-m-d H:i:s');
 		}

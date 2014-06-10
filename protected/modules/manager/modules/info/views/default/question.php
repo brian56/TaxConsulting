@@ -25,9 +25,9 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h4>Manage Infos</h4>
+<h4>Manage questions</h4>
 <script type="text/javascript">
-    timeout = 3000;
+    timeout = 1000;
     function refresh() {       
         <?php
         echo CHtml::ajax(array(
@@ -53,14 +53,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'info-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->search('info_type_id=3'),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
-		array(
-			'name' => 'info_type_id',
-			'value' => '$data->infoTypeName',
-		),
 		array(
 			'name' => 'user_id',
 			'value' => '$data->userName',

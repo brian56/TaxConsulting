@@ -1,5 +1,4 @@
-<?php 
- $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'info-grid',
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
@@ -7,20 +6,16 @@
 		'id',
 		array(
 			'name' => 'info_type_id',
-			'value' => '$data->infoType->name',
+			'value' => '$data->infoTypeName',
 		),
 		array(
 			'name' => 'user_id',
-			'value' => '$data->user->email',
-		),
-		array(
-			'name' => 'company_id',
-			'value' => '$data->company->name',
+			'value' => '$data->userName',
 		),
 		'title',
 		array(
-			'name' => 'access_level_id',
-			'value' => '$data->accessLevel->name',
+				'name' => 'access_level_id',
+				'value' => '$data->accessLevelName',
 		),
 		/*
 		'content',
@@ -32,4 +27,6 @@
 			'class'=>'CButtonColumn',
 		),
 	),
+	'htmlOptions'=>array('style'=>'cursor: pointer;'),
+	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

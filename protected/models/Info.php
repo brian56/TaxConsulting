@@ -188,11 +188,7 @@ class Info extends CActiveRecord
 	public function afterSave(){
 		//send notification to all user in company
 		if($this->infoType->name_en=='Notice' && $this->accessLevel->name_en!='Admin only') {
-			$criteria = new CDbCriteria();
-			$criteria->select = array('device_id');
-			$criteria->condition = 't.company_id=:company_id AND t.is_actived=:is_actived';
-			$criteria->params = array(':company_id'=>$this->company_id, ':is_actived'=>1);
-			$users = User::model()->findAll($criteria);
+			$users = User::model()->getCompanyUserDeviceIds($this->company_id);
 			if(!is_null($users)) {
 				$userDeviceIds = array();
 				foreach ($users as $user) {

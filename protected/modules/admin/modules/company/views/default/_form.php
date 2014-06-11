@@ -38,6 +38,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'rss_url'); ?>
+		<?php echo $form->textArea($model,'rss_url',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'rss_url'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'introduction'); ?>
 		<?php echo $form->textArea($model,'introduction',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'introduction'); ?>

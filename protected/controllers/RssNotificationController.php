@@ -1,6 +1,6 @@
 <?php
 
-class CompanyController extends Controller
+class RssNotificationController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class CompanyController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Company;
+		$model=new RssNotification;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Company']))
+		if(isset($_POST['RssNotification']))
 		{
-			$model->attributes=$_POST['Company'];
+			$model->attributes=$_POST['RssNotification'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +91,9 @@ class CompanyController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Company']))
+		if(isset($_POST['RssNotification']))
 		{
-			$model->attributes=$_POST['Company'];
+			$model->attributes=$_POST['RssNotification'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +122,7 @@ class CompanyController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Company');
+		$dataProvider=new CActiveDataProvider('RssNotification');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class CompanyController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Company('search');
+		$model=new RssNotification('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Company']))
-			$model->attributes=$_GET['Company'];
+		if(isset($_GET['RssNotification']))
+			$model->attributes=$_GET['RssNotification'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class CompanyController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Company the loaded model
+	 * @return RssNotification the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Company::model()->findByPk($id);
+		$model=RssNotification::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,14 +160,64 @@ class CompanyController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Company $model the model to be validated
+	 * @param RssNotification $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='company-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='rss-notification-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	private function getFeeds()
+	{
+		$companies = Company::model()->getAllRssUrl();
+		if(!is_null($companies)) {
+			foreach ($companies as $company) {
+				$rawFeed = file_get_contents($company->rss_url);
+				
+				// give an XML object to be iterate
+				$xml = new SimpleXMLElement($rawFeed);
+				
+				$rss_notification = new RssNotification();
+				$post_pubDate = "";
+				$post_url = "";
+				$post_title = "";
+				$post_author = "";
+					
+				foreach($xml->channel->item as $item)
+				{
+					$post_pubDate = $item->pubDate;
+					$post_url = $item->link;
+					$post_title = $item->title;
+				}
+			}
+		}
+		
+	}
+	
+	public function run()
+	{
+		if($this->checkConnection())
+			echo $feeds = $this->getFeeds();
+	}
+	
+	/** check if the pc is connected to internet
+	 * @return TRUE if there is a connection
+	 */
+	private function checkConnection()
+	{
+		// Initiates a socket connection to www.google.com at port 80
+		$conn = @fsockopen("www.google.com", 80);
+		if($conn)
+		{
+			// there is a connection
+			fclose($conn);
+			return TRUE;
+		}
+	
+		return FALSE;
 	}
 }

@@ -25,6 +25,7 @@ $this->menu=array(
 		'is_actived',
 		'name',
 		'name_en',
+		'rss_url',
 		'introduction',
 	),
 )); ?>

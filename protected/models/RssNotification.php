@@ -1,31 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "company".
+ * This is the model class for table "rss_notification".
  *
- * The followings are the available columns in table 'company':
- * @property string $id
- * @property integer $is_actived
- * @property string $name
- * @property string $name_en
- * @property string $rss_url
- * @property string $introduction
+ * The followings are the available columns in table 'rss_notification':
+ * @property integer $id
+ * @property string $company_id
+ * @property integer $notify
+ * @property string $last_post_pubDate
+ * @property string $last_post_title
+ * @property string $last_post_url
+ * @property integer $last_post_author
  *
  * The followings are the available model relations:
- * @property ChangeLog[] $changeLogs
- * @property Info[] $infos
- * @property LogEvent[] $logEvents
- * @property RssNotification[] $rssNotifications
- * @property User[] $users
+ * @property Company $company
  */
-class Company extends CActiveRecord
+class RssNotification extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'company';
+		return 'rss_notification';
 	}
 
 	/**
@@ -36,11 +33,13 @@ class Company extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, name_en, rss_url, introduction', 'required'),
-			array('is_actived', 'numerical', 'integerOnly'=>true),
+			array('company_id, last_post_pubDate, last_post_title, last_post_url, last_post_author', 'required'),
+			array('notify, last_post_author', 'numerical', 'integerOnly'=>true),
+			array('company_id', 'length', 'max'=>11),
+			array('last_post_pubDate', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, is_actived, name, name_en, rss_url, introduction', 'safe', 'on'=>'search'),
+			array('id, company_id, notify, last_post_pubDate, last_post_title, last_post_url, last_post_author', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,11 +51,7 @@ class Company extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'changeLogs' => array(self::HAS_MANY, 'ChangeLog', 'company_id'),
-			'infos' => array(self::HAS_MANY, 'Info', 'company_id'),
-			'logEvents' => array(self::HAS_MANY, 'LogEvent', 'company_id'),
-			'rssNotifications' => array(self::HAS_MANY, 'RssNotification', 'company_id'),
-			'users' => array(self::HAS_MANY, 'User', 'company_id'),
+			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
 		);
 	}
 
@@ -67,11 +62,12 @@ class Company extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'is_actived' => 'Is Actived',
-			'name' => 'Name',
-			'name_en' => 'Name En',
-			'rss_url' => 'Rss Url',
-			'introduction' => 'Introduction',
+			'company_id' => 'Company',
+			'notify' => 'Notify',
+			'last_post_pubDate' => 'Last Post Pub Date',
+			'last_post_title' => 'Last Post Title',
+			'last_post_url' => 'Last Post Url',
+			'last_post_author' => 'Last Post Author',
 		);
 	}
 
@@ -93,12 +89,13 @@ class Company extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('is_actived',$this->is_actived);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('name_en',$this->name_en,true);
-		$criteria->compare('rss_url',$this->rss_url,true);
-		$criteria->compare('introduction',$this->introduction,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('company_id',$this->company_id,true);
+		$criteria->compare('notify',$this->notify);
+		$criteria->compare('last_post_pubDate',$this->last_post_pubDate,true);
+		$criteria->compare('last_post_title',$this->last_post_title,true);
+		$criteria->compare('last_post_url',$this->last_post_url,true);
+		$criteria->compare('last_post_author',$this->last_post_author);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -109,18 +106,10 @@ class Company extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Company the static model class
+	 * @return RssNotification the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-	
-	public function getAllRssUrl() {
-		$criteria = new CDbCriteria();
-		$criteria->select = array('rss_url', 'id');
-		$criteria->condition = 't.is_actived=:is_actived';
-		$criteria->params = array(':is_actived'=>1);
-		return $this->findAll($criteria);
 	}
 }

@@ -21,6 +21,10 @@
 	<?php echo CHtml::encode($data->name_en); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('rss_url')); ?>:</b>
+	<?php echo CHtml::encode($data->rss_url); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('introduction')); ?>:</b>
 	<?php echo CHtml::encode($data->introduction); ?>
 	<br />

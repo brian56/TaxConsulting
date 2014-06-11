@@ -32,6 +32,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'rss_url'); ?>
+		<?php echo $form->textArea($model,'rss_url',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'introduction'); ?>
 		<?php echo $form->textArea($model,'introduction',array('rows'=>6, 'cols'=>50)); ?>
 	</div>

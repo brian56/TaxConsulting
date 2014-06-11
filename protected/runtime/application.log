@@ -2019,3 +2019,12 @@ Stack trace:
 #11 {main}
 REQUEST_URI=/TaxConsulting/manager/info/default/question
 ---
+2014/06/11 11:41:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "manager/userdefault/view/id/1".' in /Applications/XAMPP/xamppfiles/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('manager/userdef...')
+#1 /Applications/XAMPP/xamppfiles/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/TaxConsulting/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/manager/userdefault/view/id/1
+HTTP_REFERER=http://appromobile.com/TaxConsulting/manager/user/default/admin
+---

@@ -34,10 +34,8 @@ class InfoController extends Controller {
 		if (isset ( $_GET [Params::param_Limit] )) {
 			$criteria->limit = $_GET [Params::param_Limit];
 		}
+		$criteria->order = 't.date_create DESC';
 		
-		if (isset ( $_GET [Params::param_Order] )) {
-			$criteria->order = $_GET [Params::param_Order];
-		}
 		$criteria->with = array('user', 'company', 'infoComments', 'infoType');
 		
 		$models = Info::model()->findAll($criteria);
@@ -70,9 +68,7 @@ class InfoController extends Controller {
 		if (isset ( $_GET [Params::param_Limit] )) {
 			$criteria->limit = $_GET [Params::param_Limit];
 		}		
-		if (isset ( $_GET [Params::param_Order] )) {
-			$criteria->order = $_GET [Params::param_Order];
-		}
+		$criteria->order = 't.date_create DESC';
 		
 		$conditions[] = 't.info_type_id=:info_type_id';
 		$criteria->params = array_merge($criteria->params, array(':info_type_id' => $_GET[Params::param_Info_Type_Id]));
@@ -116,9 +112,7 @@ class InfoController extends Controller {
 		if (isset ( $_GET [Params::param_Limit] )) {
 			$criteria->limit = $_GET [Params::param_Limit];
 		}
-		if (isset ( $_GET [Params::param_Order] )) {
-			$criteria->order = $_GET [Params::param_Order];
-		}
+		$criteria->order = 't.date_create DESC';
 
 		$conditions[] = 't.company_id=:company_id';
 		$criteria->params = array_merge($criteria->params, array(':company_id' => $_GET[Params::param_Company_Id]));

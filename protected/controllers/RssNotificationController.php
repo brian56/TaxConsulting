@@ -180,8 +180,11 @@ class RssNotificationController extends Controller
 				
 				// give an XML object to be iterate
 				$xml = new SimpleXMLElement($rawFeed);
+				$criteria = new CDbCriteria();
+				$criteria->condition = 't.company_id=:company_id';
+				$criteria->params = array(':company_id'=>$company->id);
+				$rss_notification = RssNotification::model()->find($criteria);
 				
-				$rss_notification = new RssNotification();
 				$post_pubDate = "";
 				$post_url = "";
 				$post_title = "";
@@ -192,6 +195,10 @@ class RssNotificationController extends Controller
 					$post_pubDate = $item->pubDate;
 					$post_url = $item->link;
 					$post_title = $item->title;
+					if(strtotime($post_pubDate)>strtotime($rss_notification->last_post_pubDate)) {
+						$userDeviceIds = User::model()->getCompanyUserDeviceIds($company->id);
+						SendNotification::actionPushMultiDevice($userDeviceIds, $post_title, $post_url);
+					}
 				}
 			}
 		}

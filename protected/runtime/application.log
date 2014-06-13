@@ -2028,3 +2028,81 @@ Stack trace:
 REQUEST_URI=/TaxConsulting/manager/userdefault/view/id/1
 HTTP_REFERER=http://appromobile.com/TaxConsulting/manager/user/default/admin
 ---
+2014/06/13 13:31:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/company".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/company')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/admin/company
+HTTP_REFERER=http://localhost/TaxConsulting/admin
+---
+2014/06/13 13:32:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/company/index".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/company/i...')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/admin/company/index
+---
+2014/06/13 13:33:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/company".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/company')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/admin/company
+HTTP_REFERER=http://localhost/TaxConsulting/admin
+---
+2014/06/13 13:33:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/company".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/company')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/admin/company
+HTTP_REFERER=http://localhost/TaxConsulting/admin
+---
+2014/06/13 13:37:03 [error] [php] Undefined variable: data (D:\xampp\htdocs\TaxConsulting\protected\models\Company.php:163)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\modules\admin\modules\company\controllers\DefaultController.php(73): Company->save()
+#1 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionCreate()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): DefaultController->runAction()
+#4 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): DefaultController->filterAccessControl()
+#7 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(265): DefaultController->runActionWithFilters()
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): DefaultController->run()
+#11 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/admin/companydefault/create
+in D:\xampp\htdocs\TaxConsulting\protected\models\Company.php (163)
+in D:\xampp\htdocs\TaxConsulting\protected\modules\admin\modules\company\controllers\DefaultController.php (73)
+in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/13 13:38:50 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:31)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\models\Company.php(153): Info->insert()
+#1 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1097): Company->afterSave()
+#2 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): Company->insert()
+#3 D:\xampp\htdocs\TaxConsulting\protected\modules\admin\modules\company\controllers\DefaultController.php(73): Company->save()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionCreate()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): DefaultController->runAction()
+#7 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): DefaultController->filterAccessControl()
+#10 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 D:\xampp\htdocs\yii\framework\web\CController.php(265): DefaultController->runActionWithFilters()
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): DefaultController->run()
+#14 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/admin/companydefault/create
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (31)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (43)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Company.php (153)

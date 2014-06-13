@@ -19,6 +19,18 @@ class RssNotificationController extends Controller
 		);
 	}
 
+	public function actionPushRSS() {
+		$content = '';
+		if(isset($_POST['company_id']) && $_POST['company_id']!=='')
+		{
+			$content = $_POST['data'];
+			$message = 'testing';
+			$push_tokens = array('APA91bF5RbiRiHEsVQv7Usj3LE82WQNULV2B6-Z36tYg8pR5zcZ7E5vUiKAC2iQaCJwT40s9ZyH8NNJ5HlG_XBvOPjohSRGTGIkz2b-XqwdmQWV1Cqy7GVZQZ4vWzT-4QnWbs0EmxObYoN4heIoMX2Mc9SG5z4ukWg','APA91bGtYCCfcNGvZb2uiabB5wOiy72TMIIjFSUOZJ8iJqDRHfj3n-426D2oGXqurTCvmGDFfrN-JFUVGYd31L6JJMRceD2SX4rrxoxnHaof6C55FAFHjfinVbagO4gpniMq1v7R72W2bwBt6rt-PpEbzu3cFfmhaQ');
+			$gcm = Yii::app()->gcm;
+			$gcm->sendMulti($push_tokens, $message, array('extra' => 'multi devices ', 'title'=> $content, 'value' =>''), array( 'delayWhileIdle' => true ));
+		}
+	}
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -173,35 +185,38 @@ class RssNotificationController extends Controller
 	
 	private function getFeeds()
 	{
-		$companies = Company::model()->getAllRssUrl();
-		if(!is_null($companies)) {
-			foreach ($companies as $company) {
-				$rawFeed = file_get_contents($company->rss_url);
+// 		$companies = Company::model()->getAllRssUrl();
+// 		if(!is_null($companies)) {
+// 			foreach ($companies as $company) {
+				//$rawFeed = file_get_contents($company->rss_url);
+				$rawFeed = file_get_contents(Yii::app()->user->getState('rss_url'));
 				
 				// give an XML object to be iterate
 				$xml = new SimpleXMLElement($rawFeed);
 				$criteria = new CDbCriteria();
 				$criteria->condition = 't.company_id=:company_id';
-				$criteria->params = array(':company_id'=>$company->id);
+				$criteria->params = array(':company_id'=>Yii::app()->user->getState('company_id'));
 				$rss_notification = RssNotification::model()->find($criteria);
 				
 				$post_pubDate = "";
 				$post_url = "";
 				$post_title = "";
-				$post_author = "";
-					
+				$data = '';
 				foreach($xml->channel->item as $item)
 				{
 					$post_pubDate = $item->pubDate;
 					$post_url = $item->link;
 					$post_title = $item->title;
 					if(strtotime($post_pubDate)>strtotime($rss_notification->last_post_pubDate)) {
-						$userDeviceIds = User::model()->getCompanyUserDeviceIds($company->id);
-						SendNotification::actionPushMultiDevice($userDeviceIds, $post_title, $post_url);
+						$data.= $post_pubDate;
+						$data.= "\n";
+						//$userDeviceIds = User::model()->getCompanyUserDeviceIds($company->id);
+						//SendNotification::actionPushMultiDevice($userDeviceIds, $post_title, $post_url);
 					}
 				}
-			}
-		}
+				echo $data;
+// 			}
+// 		}
 		
 	}
 	

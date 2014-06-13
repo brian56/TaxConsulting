@@ -123,4 +123,45 @@ class Company extends CActiveRecord
 		$criteria->params = array(':is_actived'=>1);
 		return $this->findAll($criteria);
 	}
+	
+	public function afterSave() {
+		$rss = new RssNotification();
+		$rss->company_id = $this->id;
+		$rss->last_post_pubDate =  date('Y-m-d H:i:s');
+		$rss->insert ();
+		
+		$rawFeed = file_get_contents($this->rss_url);
+		
+		// give an XML object to be iterate
+		$xml = new SimpleXMLElement($rawFeed);
+		$criteria = new CDbCriteria();
+		$criteria->condition = 't.company_id=:company_id';
+		$criteria->params = array(':company_id'=>$this->id);
+		$rss_notification = RssNotification::model()->find($criteria);
+		foreach($xml->channel->item as $item)
+		{
+			//$post_pubDate = $item->pubDate;
+			//$post_url = $item->link;
+			//$post_title = $item->title;
+			
+			$info = new Info();
+			$info->company_id = $this->id;
+			$info->user_id = Yii::app()->user->getState('user_id');
+			$info->date_create = strtotime($item->pubDate);
+			$info->title = $item->title;
+			$info->info_type_id = 1;
+			$info->content = $item->link;
+			$info->access_level_id = 1;
+			$info->insert();
+			//check for new rss post
+// 			if(strtotime($post_pubDate)>strtotime($rss_notification->last_post_pubDate)) {
+// 				$data.= $post_pubDate;
+// 				$data.= "\n";
+// 				//$userDeviceIds = User::model()->getCompanyUserDeviceIds($company->id);
+// 				//SendNotification::actionPushMultiDevice($userDeviceIds, $post_title, $post_url);
+// 			}
+			
+		}
+		//echo $data;
+	}
 }

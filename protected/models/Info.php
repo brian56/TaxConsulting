@@ -67,6 +67,10 @@ class Info extends CActiveRecord
 						'required' 
 				),
 				array (
+						'date_create',
+						'safe' 
+				),
+				array (
 						'info_type_id, company_id',
 						'length',
 						'max' => 11 
@@ -173,21 +177,26 @@ class Info extends CActiveRecord
 	
 	public function beforeSave()
 	{
-		if($this->isNewRecord)
+		if($this->isNewRecord &&!isset($this->date_create))
 		{
+// 			var_dump($this->date_create);
+// 			die();
 			$this->date_create= date('Y-m-d H:i:s');
-			if(Yii::app()->user->getState('isManager')) {
-				$this->company_id = Yii::app()->user->getState('companyId');
-			}
-		}else{
+		}else if(!$this->isNewRecord){
 			$this->date_update = date('Y-m-d H:i:s');
+		}
+		if(Yii::app()->user->getState('isManager')) {
+			$this->company_id = Yii::app()->user->getState('companyId');
 		}
 		return parent::beforeSave();
 	}
 	
 	public function afterSave(){
 		//send notification to all user in company
-		if($this->accessLevel->name_en!='Admin only') {
+		$now = date('Y-m-d H:i:s');
+		$date_create = strtotime("+1 day", strtotime($this->date_create));
+		$isNew = (strtotime($date_create)>strtotime($now));
+		if($this->accessLevel->name_en!='Admin only' && $isNew) {
 			$users = User::model()->getCompanyUserDeviceIds($this->company_id);
 			if(!is_null($users)) {
 				$userDeviceIds = array();

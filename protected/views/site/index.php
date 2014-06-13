@@ -66,6 +66,24 @@ else
         		)
     		)
     	);
+		
+		echo "<p></p>";
+		$this->widget ( 'booster.widgets.TbButton', array (
+				'label' => 'Push RSS Notification',
+				'type' => 'danger',
+				'htmlOptions' => array(
+            		'onclick' => "js:$.ajax({
+	               		url: '".Yii::app()->baseUrl."/rssNotification/getFeeds',
+	                	success: function(data) {
+							if(data!='') 
+								alert(data);
+							else 
+								alert('Message can not be empty!');
+	  					},
+           			});"
+        		)
+    		)
+    	);
 	?>
 	
 </center>

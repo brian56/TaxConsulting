@@ -10,7 +10,6 @@
  * @property string $last_post_pubDate
  * @property string $last_post_title
  * @property string $last_post_url
- * @property integer $last_post_author
  *
  * The followings are the available model relations:
  * @property Company $company
@@ -33,13 +32,13 @@ class RssNotification extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('company_id, last_post_pubDate, last_post_title, last_post_url, last_post_author', 'required'),
-			array('notify, last_post_author', 'numerical', 'integerOnly'=>true),
+			array('company_id, last_post_pubDate, last_post_title, last_post_url', 'required'),
+			array('notify', 'numerical', 'integerOnly'=>true),
 			array('company_id', 'length', 'max'=>11),
 			array('last_post_pubDate', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, company_id, notify, last_post_pubDate, last_post_title, last_post_url, last_post_author', 'safe', 'on'=>'search'),
+			array('id, company_id, notify, last_post_pubDate, last_post_title, last_post_url', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,7 +66,6 @@ class RssNotification extends CActiveRecord
 			'last_post_pubDate' => 'Last Post Pub Date',
 			'last_post_title' => 'Last Post Title',
 			'last_post_url' => 'Last Post Url',
-			'last_post_author' => 'Last Post Author',
 		);
 	}
 
@@ -95,7 +93,6 @@ class RssNotification extends CActiveRecord
 		$criteria->compare('last_post_pubDate',$this->last_post_pubDate,true);
 		$criteria->compare('last_post_title',$this->last_post_title,true);
 		$criteria->compare('last_post_url',$this->last_post_url,true);
-		$criteria->compare('last_post_author',$this->last_post_author);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

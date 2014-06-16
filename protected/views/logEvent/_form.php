@@ -20,21 +20,15 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'event_id'); ?>
-		<?php echo $form->textField($model,'event_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'event_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'user_id'); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'company_id'); ?>
+		<?php echo $form->labelEx($model,'event_id'); ?>
+		<?php echo $form->textField($model,'event_id'); ?>
+		<?php echo $form->error($model,'event_id'); ?>
 	</div>
 
 	<div class="row">

@@ -1,6 +1,7 @@
 <?php
 /* @var $this InfoController */
 /* @var $model Info */
+
 $this->breadcrumbs=array(
 	'Infos'=>array('index'),
 	$model->title=>array('view','id'=>$model->id),
@@ -15,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h4>Update Info <?php echo $model->id; ?></h4>
+<center><h4>Update Info <?php echo $model->id; ?></h4></center>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

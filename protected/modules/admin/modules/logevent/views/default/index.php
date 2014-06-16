@@ -14,7 +14,8 @@ $this->menu=array(
 
 <h1>Log Events</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php $this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
+	'htmlOptions'=>array('style'=>'cursor: pointer;'),
+	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

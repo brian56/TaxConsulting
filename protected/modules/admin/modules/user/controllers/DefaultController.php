@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller
 {
-	/**
+/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
@@ -36,7 +36,7 @@ class DefaultController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -61,7 +61,10 @@ class DefaultController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new User;
+	
+		$model =  new User;
+// 		var_dump($model);
+// 		die();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -121,16 +124,19 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		} else {
-			$dataProvider=new CActiveDataProvider('User');
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider,
-			));
-		}
+		$criteria = new CDbCriteria();
+		$criteria->order = 't.register_date DESC';
+		$dataProvider=new CActiveDataProvider(
+			'User',
+			array(
+				'criteria' => $criteria,
+				'pagination' => array(
+					'pageSize' => 20,
+				),
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**
@@ -175,4 +181,5 @@ class DefaultController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
 }

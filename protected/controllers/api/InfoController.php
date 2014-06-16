@@ -21,7 +21,7 @@ class InfoController extends Controller {
 	public function filters() {
 		return array ();
 	}
-	
+
 	// Actions
 	public function actionGetAll() {
 		// Get the respective model instance
@@ -30,12 +30,10 @@ class InfoController extends Controller {
 		if (isset ( $_GET [Params::param_Offset] )) {
 			$criteria->offset = $_GET [Params::param_Offset];
 		}
-		
 		if (isset ( $_GET [Params::param_Limit] )) {
 			$criteria->limit = $_GET [Params::param_Limit];
 		}
 		$criteria->order = 't.date_create DESC';
-		
 		$criteria->with = array('user', 'company', 'infoComments', 'infoType');
 		
 		$models = Info::model()->findAll($criteria);
@@ -74,9 +72,11 @@ class InfoController extends Controller {
 		$criteria->params = array_merge($criteria->params, array(':info_type_id' => $_GET[Params::param_Info_Type_Id]));
 		$conditions[] = 't.company_id=:company_id';
 		$criteria->params = array_merge($criteria->params, array(':company_id' => $_GET[Params::param_Company_Id]));
-
-		$criteria->condition=implode(' AND ',$conditions);
-
+		
+		if($conditions!=null) {
+			$criteria->condition=implode(' AND ',$conditions);
+		}
+		
 		$criteria->with = array('user', 'company', 'infoComments');
 		
 		$models = Info::model ()->findAll($criteria);
@@ -99,8 +99,8 @@ class InfoController extends Controller {
 		if(!isset($_GET[Params::param_Company_Id])) {
 			Response::MissingParam(Params::param_Company_Id);
 		}
-		if(!isset($_GET[Params::param_Token])) {
-			Response::MissingParam(Params::param_Token);
+		if(!isset($_GET[Params::param_User_Id])) {
+			Response::MissingParam(Params::param_User_Id);
 		}
 		if(!isset($_GET[Params::param_Info_Type_Id])) {
 			Response::MissingParam(Params::param_Info_Type_Id);
@@ -118,13 +118,7 @@ class InfoController extends Controller {
 		$criteria->params = array_merge($criteria->params, array(':company_id' => $_GET[Params::param_Company_Id]));
 
 		$conditions[] = 't.user_id=:user_id';
-		$user_id = Response::getUserIdFromToken($_GET[Params::param_Token]);
-		if(!is_null($user_id)) {
-			$criteria->params = array_merge($criteria->params, array(':user_id' => $user_id));
-		} else {
-			$message = "Authenticate failed. Token had been expired.";
-			Response::Failed($message);
-		}
+		$criteria->params = array(':user_id' => $_GET[Params::param_User_Id]);
 		
 		$conditions[] = 't.info_type_id=:info_type_id';
 		$criteria->params = array_merge($criteria->params, array(':info_type_id' => $_GET[Params::param_Info_Type_Id]));
@@ -154,9 +148,9 @@ class InfoController extends Controller {
 		} else {
 			$criteria = new CDbCriteria ();
 			$with[] = 'user';
+			$with[] = 'company';
 			$with[] = 'infoComments';
 			$criteria->with = $with;
-			
 			$model = Info::model()->findByPk($_GET[Params::param_Id],$criteria);
 			// Did we find the requested model? If not, raise an error
 			if(is_null($model)) {
@@ -179,9 +173,6 @@ class InfoController extends Controller {
 			Response::MissingParam(Params::param_Token);
 		}		
 		if(!isset($_POST[Params::param_Title])) {
-			Response::MissingParam(Params::param_Title);
-		}		
-		if(!isset($_POST[Params::param_Content])) {
 			Response::MissingParam(Params::param_Content);
 		}		
 		if(!isset($_POST[Params::param_Access_Level_Id])) {
@@ -199,8 +190,12 @@ class InfoController extends Controller {
 			Response::Failed($message);
 		}
 		$info->title = $_POST[Params::param_Title];
-		$info->content = $_POST[Params::param_Content];
 		$info->access_level_id = $_POST[Params::param_Access_Level_Id];
+		$info->content = $_POST[Params::param_Content];
+		if(isset($_POST[Params::param_Appointment_Date])) {
+			$info->appointment_date = date('Y-m-d H:i:s', $_POST[Params::param_Appointment_Date]);	
+			$info->appointment_status = 0;		//appointment is pending
+		}	
 		if ($info->insert ()) {
 			Response::SuccessNoData($this->modelName);
 		} else {

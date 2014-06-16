@@ -21,13 +21,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll('t.company_id=:company_id', array(':company_id'=>Yii::app()->user->getState('companyId'))), 'id', 'name'), array('empty'=>'-- Select an user --')); ?>
+		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll(), 'id', 'name'), array('empty'=>'-- Select an user --')); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'info_id'); ?>
-		<?php echo $form->dropDownList($model, 'info_id', CHtml::listData(Info::model()->findAll('t.company_id=:company_id', array(':company_id'=>Yii::app()->user->getState('companyId'))), 'id', 'title'), array('empty'=>'-- Select an info --')); ?>
+		<?php echo $form->dropDownList($model, 'info_id', CHtml::listData(Info::model()->findAll(), 'id', 'title'), array('empty'=>'-- Select an info --')); ?>
 		<?php echo $form->error($model,'info_id'); ?>
 	</div>
 

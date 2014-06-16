@@ -20,16 +20,15 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
 	<?php echo CHtml::encode($data->email); ?>
 	<br />
-
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('password')); ?>:</b>
 	<?php echo CHtml::encode($data->password); ?>
 	<br />
-
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_name')); ?>:</b>
-	<?php echo CHtml::encode($data->user_name); ?>
+	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('contact_phone')); ?>:</b>
 	<?php echo CHtml::encode($data->contact_phone); ?>
 	<br />
@@ -42,12 +41,13 @@
 	<?php echo CHtml::encode($data->device_os_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('device_id')); ?>:</b>
-	<?php echo CHtml::encode($data->device_id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('notify')); ?>:</b>
 	<?php echo CHtml::encode($data->notify); ?>
+	<br />
+	
+	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('device_id')); ?>:</b>
+	<?php echo CHtml::encode($data->device_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('token')); ?>:</b>

@@ -1,6 +1,7 @@
 <?php
 /* @var $this InfoController */
 /* @var $model Info */
+
 $this->breadcrumbs=array(
 	'Infos'=>array('index'),
 	'Manage',
@@ -25,20 +26,8 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h4>Manage Infos</h4>
-<script type="text/javascript">
-    timeout = 3000;
-    function refresh() {       
-        <?php
-        echo CHtml::ajax(array(
-                'url'=> Yii::app()->baseUrl."/manager/info/default/AjaxIndex",
-                'type'=>'post',
-                'update'=> '#info-grid',
-        ))
-        ?>
-    }
-    window.setInterval("refresh()", timeout);
-</script>
+<center><h4>Manage Infos</h4></center>
+
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
@@ -51,7 +40,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php
+$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'info-grid',
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
@@ -70,10 +60,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 				'name' => 'access_level_id',
 				'value' => '$data->infoAccessLevelName',
 		),
+		'date_create',
 		/*
 		'content',
 		'appointment_date',
-		'date_create',
 		'date_update',
 		*/
 		array(

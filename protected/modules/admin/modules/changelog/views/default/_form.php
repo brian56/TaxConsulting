@@ -21,13 +21,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textField($model,'company_id'); ?>
 		<?php echo $form->error($model,'company_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll(), 'id', 'user_name'), array('empty'=>'-- Select an user --')); ?>
+		<?php echo $form->textField($model,'user_id'); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
@@ -39,7 +39,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'change_type'); ?>
-		<?php echo $form->textArea($model,'change_type',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'change_type',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'change_type'); ?>
 	</div>
 

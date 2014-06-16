@@ -24,16 +24,16 @@
 		<?php echo $form->dropDownList($model, 'info_type_id', CHtml::listData(InfoType::model()->findAll(), 'id', 'name')); ?>
 		<?php echo $form->error($model,'info_type_id'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll('company_id=:company_id', array(':company_id'=>Yii::app()->user->getState('companyId'))), 'id', 'user_name'), array('empty'=>'-- Select an user --'));	?>
+		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll('company_id=:company_id', array(':company_id'=>Yii::app()->user->getState('companyId'))), 'id', 'user_name'), array('empty'=>'-- Select an user --')); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->textField($model,'title',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
@@ -42,13 +42,24 @@
 		<?php echo $form->textArea($model,'content',array('rows'=>3, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
-
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'appointment_status'); ?>
+		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>'Pending', '1'=>'Confirmed', '-1'=>'Reject'),array('empty'=>'-- Select appointment status --') ); ?>
+		<?php echo $form->error($model,'appointment_status'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'appointment_date'); ?>
+		<?php echo $form->textField($model,'appointment_date'); ?>
+		<?php echo $form->error($model,'appointment_date'); ?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'access_level_id'); ?>
 		<?php echo $form->dropDownList($model, 'access_level_id', CHtml::listData(AccessLevel::model()->findAll(), 'id', 'name')); ?>
 		<?php echo $form->error($model,'access_level_id'); ?>
 	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

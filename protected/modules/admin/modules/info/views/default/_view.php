@@ -21,6 +21,10 @@
 	<?php echo CHtml::encode($data->company_id); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('appointment_status')); ?>:</b>
+	<?php echo CHtml::encode($data->appointment_status); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
 	<?php echo CHtml::encode($data->title); ?>
 	<br />
@@ -28,8 +32,14 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('content')); ?>:</b>
 	<?php echo CHtml::encode($data->content); ?>
 	<br />
-
+<b><?php echo CHtml::encode($data->getAttributeLabel('appointment_date')); ?>:</b>
+	<?php echo CHtml::encode($data->appointment_date); ?>
+	<br />
 	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('appointment_date')); ?>:</b>
+	<?php echo CHtml::encode($data->appointment_date); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_create')); ?>:</b>
 	<?php echo CHtml::encode($data->date_create); ?>
 	<br />

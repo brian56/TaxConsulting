@@ -18,13 +18,16 @@ class InfoCommentController extends Controller {
 	public function filters() {
 		return array ();
 	}
-	// Actions
-	
+	//actions
 	public function actionGetByInfo() {
 		// Get the respective model instance
 		$criteria = new CDbCriteria ();
 		$conditions = array ();
 		
+		if (!isset ( $_GET [Params::param_Info_Id] )) {
+			Response::MissingParam(Params::param_Info_Id);
+		}
+
 		if (isset ( $_GET [Params::param_Offset] )) {
 			$criteria->offset = $_GET [Params::param_Offset];
 		}
@@ -34,15 +37,9 @@ class InfoCommentController extends Controller {
 		if (isset ( $_GET [Params::param_Order] )) {
 			$criteria->order = $_GET [Params::param_Order];
 		}
-		
-		if (!isset ( $_GET [Params::param_Info_Id] )) {
-			Response::MissingParam(Params::param_Info_Id);
-		}
-		
+		$criteria->order = 't.date_create ASC';
+		$criteria->params = array (':info_id' => $_GET [Params::param_Info_Id]);
 		$criteria->condition = 't.info_id=:info_id';
-		$criteria->params = array_merge ( $criteria->params, array (
-				':info_id' => $_GET [Params::param_Info_Id]
-		) );
 		$models = InfoComment::model ()->findAll ( $criteria );
 		
 		// Did we get some results?
@@ -54,7 +51,6 @@ class InfoCommentController extends Controller {
 			Response::Success($this->modelName, $models);
 		}
 	}
-	
 	public function actionView() {
 		// Check if id was submitted via GET
 		if (!isset ( $_GET [Params::param_Id] ))
@@ -95,7 +91,6 @@ class InfoCommentController extends Controller {
 			Response::Failed($message);
 		}
 	}
-	
 	public function actionUpdate() {
 	}
 	public function actionDelete() {

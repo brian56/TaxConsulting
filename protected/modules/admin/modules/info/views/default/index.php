@@ -12,9 +12,31 @@ $this->menu=array(
 );
 ?>
 
-<h1>Infos</h1>
+<h3>Infos</h3>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php $this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
+		'columns'=>array(
+				'id',
+				array(
+						'name' => 'info_type_id',
+						'value' => '$data->infoTypeName',
+				),
+				array(
+						'name' => 'company_id',
+						'value' => '$data->company->name',
+				),
+				array(
+						'name' => 'user_id',
+						'value' => '$data->infoUserName',
+				),
+				'title',
+				array(
+						'name' => 'access_level_id',
+						'value' => '$data->infoAccessLevelName',
+				),
+				'date_create',
+		),
+	'htmlOptions'=>array('style'=>'cursor: pointer;'),
+	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

@@ -3,8 +3,8 @@
 /* @var $model User */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
+	'Advance Manage'=> array('/manager/info/default/advancemanage'),
+	$model->user_name=>array('view','id'=>$model->id),
 	'Update',
 );
 
@@ -13,9 +13,10 @@ $this->menu=array(
 	array('label'=>'Create User', 'url'=>array('create')),
 	array('label'=>'View User', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage User', 'url'=>array('admin')),
+	array('label'=>'Tracking New User', 'url'=>array('trackingUser')),
 );
 ?>
 
-<h4>Update User <?php echo $model->id; ?></h4>
+<center><h3>Update User <?php echo $model->id; ?></h3></center>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

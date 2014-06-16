@@ -2,21 +2,12 @@
 
 class DefaultController extends Controller
 {
-	/**
+/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-	
-	public function beforeControllerAction(CAction $action)
-	{
-		if (Yii::app()->user->isGuest && ! ($action->controller->id == 'site' && $action->id == 'login')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		}
-		return true;
-	}
+
 	/**
 	 * @return array action filters
 	 */
@@ -40,12 +31,12 @@ class DefaultController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','ajaxLoadUser'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -78,6 +69,7 @@ class DefaultController extends Controller
 		if(isset($_POST['Info']))
 		{
 			$model->attributes=$_POST['Info'];
+			$model->date_create=new CDbExpression('now()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -102,6 +94,7 @@ class DefaultController extends Controller
 		if(isset($_POST['Info']))
 		{
 			$model->attributes=$_POST['Info'];
+			$model->date_update=new CDbExpression('now()');
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -130,16 +123,19 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		} else {
-			$dataProvider=new CActiveDataProvider('Info');
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider,
-			));
-		}
+		$criteria = new CDbCriteria();
+		$criteria->order = 't.date_create DESC';
+		$dataProvider=new CActiveDataProvider(
+			'Info',
+			array(
+				'criteria' => $criteria,
+				'pagination' => array(
+					'pageSize' => 20,
+				),
+		));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**
@@ -184,4 +180,20 @@ class DefaultController extends Controller
 			Yii::app()->end();
 		}
 	}
+	public function actionAjaxLoadUser() {
+		$data=User::model()->findAll('company_id=:company_id',
+				array(':company_id'=>$_POST['Info']['company_id']));
+		$data=CHtml::listData($data,'id','email');
+		if(count($data)==0) {
+			echo CHtml::tag('option',
+					array('value'=>''),'- No user was found -',true);
+		} else {
+			foreach($data as $value=>$name)
+			{
+				echo CHtml::tag('option',
+						array('value'=>$value),CHtml::encode($name),true);
+			}
+		}
+	}
 }
+	

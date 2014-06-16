@@ -13,22 +13,22 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textArea($model,'name',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'version'); ?>
-		<?php echo $form->textField($model,'version',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textArea($model,'version',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'device_type'); ?>
-		<?php echo $form->textField($model,'device_type',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textArea($model,'device_type',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row buttons">

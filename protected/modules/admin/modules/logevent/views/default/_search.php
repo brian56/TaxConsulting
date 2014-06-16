@@ -13,22 +13,17 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'event_id'); ?>
-		<?php echo $form->textField($model,'event_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'user_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'event_id'); ?>
+		<?php echo $form->textField($model,'event_id'); ?>
 	</div>
 
 	<div class="row">

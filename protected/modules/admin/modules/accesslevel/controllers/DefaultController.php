@@ -29,7 +29,7 @@ class DefaultController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
@@ -122,16 +122,10 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		} else {
-			$dataProvider=new CActiveDataProvider('AccessLevel');
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider,
-			));
-		}
+		$dataProvider=new CActiveDataProvider('AccessLevel');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**

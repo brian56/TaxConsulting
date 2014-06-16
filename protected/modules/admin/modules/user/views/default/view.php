@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Users'=>array('index'),
-	$model->id,
+	$model->user_name,
 );
 
 $this->menu=array(
@@ -16,23 +16,38 @@ $this->menu=array(
 );
 ?>
 
-<h1>View User #<?php echo $model->id; ?></h1>
+<h3>View User #<?php echo $model->id; ?></h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'company_id',
-		'user_level_id',
-		'is_actived',
+		array(
+			'name' =>'company_id',
+			'value' => $model->company->name
+		),
+		array(
+			'name' =>'user_level_id',
+			'value' => $model->userLevel->name
+		),
+		array(
+			'name' =>'is_actived',
+			'value' => $model->getIsActived()
+		),
 		'email',
 		'password',
 		'user_name',
 		'contact_phone',
 		'register_date',
-		'device_os_id',
+		array(
+			'name' =>'device_os_id',
+			'value' => $model->deviceOs->name
+		),
 		'device_id',
-		'notify',
+		array(
+			'name' =>'notify',
+			'value' => $model->notifyName
+		),
 		'token',
 		'token_expired_date',
 	),

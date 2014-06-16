@@ -11,7 +11,6 @@ class DefaultController extends Controller
 		}
 		return true;
 	}
-	
 	public function actionIndex()
 	{
 		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {

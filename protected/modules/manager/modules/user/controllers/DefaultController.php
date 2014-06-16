@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller
 {
-	/**
+/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
@@ -12,10 +12,12 @@ class DefaultController extends Controller
 	 * @return array action filters
 	 */
 	public function filters()
-    {
-        return array( 'accessControl' ); // perform access control for CRUD operations
-    }
-	
+	{
+		return array(
+				'accessControl',
+		);
+	}
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -29,7 +31,7 @@ class DefaultController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'trackingUser', 'ajaxUser'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -59,6 +61,7 @@ class DefaultController extends Controller
 	 */
 	public function actionCreate()
 	{
+	
 		$model=new User;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -120,13 +123,15 @@ class DefaultController extends Controller
 	public function actionIndex()
 	{
 		$criteria = new CDbCriteria();
-		$criteria->condition = 't.company_id=:company_id AND t.user_level_id=1';
+		$criteria->condition = 't.company_id=:company_id AND user_level_id=1';
 		$criteria->order = 'register_date DESC';
 		$criteria->params = array(':company_id'=>Yii::app()->user->getState('companyId'));
-		$dataProvider=new CActiveDataProvider(
-				'User',
-				array('criteria' => $criteria)
-			);
+		$dataProvider = new CActiveDataProvider ( 'User', array (
+				'criteria' => $criteria,
+				'pagination' => array (
+						'pageSize' => 20 
+				) 
+		) );
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -173,5 +178,25 @@ class DefaultController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionAjaxUser()
+	{
+		$model =new User();
+		$model->unsetAttributes();  // clear any default values
+	
+		//print_r($model);
+		$this->renderPartial('_ajaxUser', array('model'=>$model));
+	}
+	public function actionTrackingUser()
+	{
+		$model=new User('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['User']))
+			$model->attributes=$_GET['User'];
+	
+		$this->render('trackingUser',array(
+				'model'=>$model,
+		));
 	}
 }

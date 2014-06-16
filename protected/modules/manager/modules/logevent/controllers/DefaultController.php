@@ -12,10 +12,12 @@ class DefaultController extends Controller
 	 * @return array action filters
 	 */
 	public function filters()
-    {
-        return array( 'accessControl' ); // perform access control for CRUD operations
-    }
-	
+	{
+		return array(
+				'accessControl',
+		);
+	}
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -119,16 +121,13 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isManager')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		} else  {
-			$dataProvider=new CActiveDataProvider('LogEvent');
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider,
-			));
-		}
+		$criteria = new CDbCriteria();
+		$criteria->condition = 't.company_id=:company_id';
+		$criteria->params = array(':company_id'=>Yii::app()->user->getState('companyId'));
+		$dataProvider=new CActiveDataProvider('LogEvent', array('criteria'=>$criteria));
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**

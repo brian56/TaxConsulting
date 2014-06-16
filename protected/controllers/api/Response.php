@@ -20,22 +20,23 @@ class Response {
 		if(!is_null($user)) {
 			return $user->id;
 			/* $now = date('Y-m-d H:i:s');
-			if(strtotime($now) < strtotime($user->token_expired_date)) {
+			 if(strtotime($now) < strtotime($user->token_expired_date)) {
 				return $user->id;
 			} else 
 				return null; */
 		} else return null;
 	}
+	
 	/**
 	 * Response to user that a param is missed
 	 * @param string $param param's name
 	 */
 	public static function DeviceRegistered() {
-		$response ['status'] = Params::status_no_record;
-		$response ['message'] = "Device had been registered.";
-		$response ['data'] = '';
-		self::_sendResponse ( 200, CJSON::encode ( $response ) );
-	}
+    	$response ['status'] = Params::status_no_record;
+    	$response ['message'] = "Device had been registered.";
+    	$response ['data'] = '';
+    	self::_sendResponse ( 200, CJSON::encode ( $response ) );
+    }
 	/**
 	 * Response to user that a param is missed
 	 * @param string $param param's name
@@ -67,9 +68,9 @@ class Response {
      */
     public static function SuccessWithMessage($modelName='', $message='') {
     	$response ['status'] = Params::status_success;
-		$response ['message'] = Params::message_success . $modelName.". ". $message;
-		$response ['data'] = '';
-		self::_sendResponse ( 200, CJSON::encode ( $response ) );
+    	$response ['message'] = Params::message_success . $modelName.". ". $message;
+    	$response ['data'] = '';
+    	self::_sendResponse ( 200, CJSON::encode ( $response ) );
     }
     
     /**

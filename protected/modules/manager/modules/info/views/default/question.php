@@ -1,15 +1,6 @@
 <?php
 /* @var $this InfoController */
 /* @var $model Info */
-$this->breadcrumbs=array(
-	'Infos'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List Info', 'url'=>array('index')),
-	array('label'=>'Create Info', 'url'=>array('create')),
-);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -25,20 +16,22 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h4>Manage questions</h4>
-<script type="text/javascript">
-    timeout = 3000;
-    function refresh() {       
-        <?php
-        echo CHtml::ajax(array(
-                'url'=> Yii::app()->baseUrl."/manager/info/default/AjaxIndex",
-                'type'=>'post',
-                'update'=> '#info-grid',
-        ))
-        ?>
-    }
-    window.setInterval("refresh()", timeout);
-</script>
+<?php
+/* @var $this InfoController */
+/* @var $model Info */
+
+$this->breadcrumbs=array(
+		'Manager'=>array("/manager"),
+		'Question',
+);
+	$this->menu=array(
+			array('label'=>'Create Question', 'url'=>array('questionCreate')),
+			array('label'=>'Tracking new Question', 'url'=>array('trackingQuestion')),
+
+	);
+
+?>
+<center><h3>Manage questions</h3></center>
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
@@ -51,25 +44,26 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php 
+$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'info-grid',
-	'dataProvider'=>$model->search('info_type_id=3'),
+	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('companyId')),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
 		array(
-			'name' => 'user_id',
-			'value' => '$data->infoUserName',
+				'name' => 'user_id',
+				'value' => '$data->infoUserName',
 		),
 		'title',
 		array(
 				'name' => 'access_level_id',
 				'value' => '$data->infoAccessLevelName',
 		),
+		'date_create',
 		/*
 		'content',
 		'appointment_date',
-		'date_create',
 		'date_update',
 		*/
 		array(
@@ -77,5 +71,5 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('questionview').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

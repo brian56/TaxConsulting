@@ -3,16 +3,18 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Users',
+	'Advance Manage'=> array('/manager/info/default/advancemanage'),
+	'List Users',
 );
 
 $this->menu=array(
 	array('label'=>'Create User', 'url'=>array('create')),
 	array('label'=>'Manage User', 'url'=>array('admin')),
+	array('label'=>'Tracking New User', 'url'=>array('trackingUser')),
 );
 ?>
 
-<h4>Users</h4>
+<center><h3>Users</h3></center>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider'=>$dataProvider,
@@ -31,10 +33,10 @@ $this->menu=array(
 			'value' => '$data->notifyName',
 		),
 		'email',
-		'password',
 		'user_name',
-		/*'contact_phone',
 		'register_date',
+		/*'contact_phone',
+		'password',
 		'device_os_id',
 		'device_id',
 		'token',
@@ -45,5 +47,6 @@ $this->menu=array(
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'?id="+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>
+

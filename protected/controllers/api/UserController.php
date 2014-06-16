@@ -24,15 +24,13 @@ class UserController extends Controller {
 	public function actionGetAll() {
 		// Get the respective model instance
 		$criteria = new CDbCriteria ();
-		
+	
 		if (isset ( $_GET [Params::param_Offset] )) {
 			$criteria->offset = $_GET [Params::param_Offset];
 		}
-		
 		if (isset ( $_GET [Params::param_Limit] )) {
 			$criteria->limit = $_GET [Params::param_Limit];
 		}
-		
 		if (isset ( $_GET [Params::param_Order] )) {
 			$criteria->order = $_GET [Params::param_Order];
 		}
@@ -55,27 +53,26 @@ class UserController extends Controller {
 	
 	/**
 	 * get all user belong to any individual company
+	 * param: company_id
 	 */
 	public function actionGetByCompany() {
 		// Get the respective model instance
 		$criteria = new CDbCriteria ();
+
+		if (!isset ( $_GET [Params::param_Company_Id] )) {
+			Response::MissingParam(Params::param_Company_Id);
+		}
 		
 		if (isset ( $_GET [Params::param_Offset] )) {
 			$criteria->offset = $_GET [Params::param_Offset];
 		}
-		
 		if (isset ( $_GET [Params::param_Limit] )) {
 			$criteria->limit = $_GET [Params::param_Limit];
 		}
-		
 		if (isset ( $_GET [Params::param_Order] )) {
 			$criteria->order = $_GET [Params::param_Order];
 		}
-		
-		if (!isset ( $_GET [Params::param_Company_Id] )) {
-			Response::MissingParam(Params::param_Company_Id);
-		}
-		$criteria->condition = 'company_id=:company_id';
+		$criteria->condition = 't.company_id=:company_id';
 		$criteria->params = array (
 				':company_id' => $_GET [Params::param_Company_Id]
 		);
@@ -103,19 +100,20 @@ class UserController extends Controller {
 		// Check if id was submitted via GET
 		if (! isset ( $_GET [Params::param_Id] )) {
 			Response::MissingParam( Params::param_Id );
-		}
-		$criteria = new CDbCriteria ();
-		$criteria->with = array (
-				'company',
-				'userLevel',
-				'deviceOs' 
-		);
-		$model = User::model ()->findByPk ( $_GET [Params::param_Id], $criteria );
-		// Did we find the requested model? If not, raise an error
-		if (is_null ( $model )) {
-			Response::NoRecord( $this->modelName );
 		} else {
-			Response::Success( $this->modelName, $model );
+			$criteria = new CDbCriteria ();
+			$criteria->with = array (
+					'company',
+					'userLevel',
+					'deviceOs' 
+			);
+			$model = User::model ()->findByPk ( $_GET [Params::param_Id], $criteria );
+			// Did we find the requested model? If not, raise an error
+			if (is_null ( $model )) {
+				Response::NoRecord( $this->modelName );
+			} else {
+				Response::Success( $this->modelName, $model );
+			}
 		}
 	}
 	
@@ -134,7 +132,7 @@ class UserController extends Controller {
 		$user = $this->checkDeviceIdOnly($company_id, $device_id);
 		if (is_null($user)) {
 			$user = new User ();
-			$user->company_id = $_POST [Params::param_Company_Id];
+			$user->company_id =  $_POST [Params::param_Company_Id];
 			$user->user_level_id = 1;
 			$user->is_actived = 1;
 			$user->notify = 1;
@@ -173,60 +171,60 @@ class UserController extends Controller {
 		if (! isset ( $_POST [Params::param_Password] )) {
 			Response::MissingParam(Params::param_Password);
 		}
-		if (! isset ( $_POST [Params::param_User_Name] )) {
+		/* if (! isset ( $_POST [Params::param_User_Name] )) {
 			Response::MissingParam(Params::param_User_Name);
 		}
 		if (! isset ( $_POST [Params::param_Contact_Phone] )) {
 			Response::MissingParam(Params::param_Contact_Phone);
-		}
-		if (! isset ( $_POST [Params::param_Device_Os_Id] )) {
+		} */
+		/* if (! isset ( $_POST [Params::param_Device_Os_Id] )) {
 			Response::MissingParam(Params::param_Device_Os_Id);
-		}
+		} */
 		if (! isset ( $_POST [Params::param_Device_Id] )) {
 			Response::MissingParam(Params::param_Device_Id);
 		}
 		
 		//if email existed, let user chose another email or login with current email
-		if(!is_null($this->checkEmailExisted($_POST [Params::param_Company_Id], $_POST [Params::param_Email]))) {
+		if(!is_null($this->checkEmailExisted($_POST [Params::param_Email], $_POST [Params::param_Company_Id]))) {
 			$message = "Email existed. Please use another email or login with current email.";
 			Response::Failed($message);
 		}
 		$checking_user = new User();
 		$checking_user = $this->checkRegisterDevice($_POST[Params::param_Company_Id], $_POST [Params::param_Device_Id]);
-		if(is_null($checking_user)) {	//new device, create new user record
+		if(is_null($checking_user)) {
 			$user = new User ();
 			$user->company_id = $_POST [Params::param_Company_Id];
 			$user->user_level_id = 1;
 			$user->email = $_POST [Params::param_Email];
-			$user->password = md5($_POST [Params::param_Password]);
-			$user->user_name = $_POST [Params::param_User_Name];
-			$user->contact_phone = $_POST [Params::param_Contact_Phone];
-			$user->device_os_id = $_POST [Params::param_Device_Os_Id];
+			$user->password = $_POST [Params::param_Password];
+			if(isset($_POST [Params::param_User_Name]))
+				$user->user_name = $_POST [Params::param_User_Name];
+			else $user->user_name = "";
+			if(isset($_POST [Params::param_Contact_Phone]))
+				$user->contact_phone = $_POST [Params::param_Contact_Phone];
+			if(isset($_POST [Params::param_Device_Os_Id]))
+				$user->device_os_id = $_POST [Params::param_Device_Os_Id];
 			$user->device_id = $_POST [Params::param_Device_Id];
-			$user->token = $this->generateToken ( $_POST [Params::param_Email], $_POST [Params::param_Device_Id] );
-	
-			$now = date('Y-m-d H:i:s');
-			$tomorrow = strtotime("+1 day", strtotime($now));
-			$user->token_expired_date = date('Y-m-d H:i:s', $tomorrow);
+			
 			if ($user->insert ()) {
 				$data = array('token' => $user->token );
 				Response::SuccessWithSimpleArray($this->modelName, $data);
 			} else {
-				$message = 'Register failed.';
+				$message = 'Register failed.asdsd';
 				Response::Failed($message);
 			}
-		} else {	//device had been registered, update info instead of createing new record
+		} else {
 			$token = $this->generateToken ( $_POST [Params::param_Email], $_POST [Params::param_Device_Id] );
 			$now = date('Y-m-d H:i:s');
 			$tomorrow = strtotime("+1 day", strtotime($now));
 			$update = User::model ()->updateByPk ( $checking_user->id, array (
-				'email' => $_POST[Params::param_Email],
-				'password' => md5($_POST[Params::param_Password]),
-				'user_name' => $_POST [Params::param_User_Name],
-				'contact_phone' => $_POST [Params::param_Contact_Phone],
-				'device_os_id' => $_POST [Params::param_Device_Os_Id],
-				'token' => $token,
-				'token_expired_date' => date('Y-m-d H:i:s', $tomorrow)
+					'email' => $_POST[Params::param_Email],
+					'password' => md5($_POST[Params::param_Password]),
+					//'user_name' => $_POST [Params::param_User_Name],
+					//'contact_phone' => $_POST [Params::param_Contact_Phone],
+					//'device_os_id' => $_POST [Params::param_Device_Os_Id],
+					'token' => $token,
+					'token_expired_date' => date('Y-m-d H:i:s', $tomorrow)
 			) );
 			if($update>0) {
 				$data = array('token' => $token );
@@ -238,10 +236,11 @@ class UserController extends Controller {
 		}
 	}
 	
-	/**
+	/*
 	 * login user to server, maybe update device token id return a token to user for authenticating
 	 */
 	public function actionLogin() {
+		$missingParams = '';
 		if (! isset ( $_POST [Params::param_Company_Id] )) {
 			Response::MissingParam(Params::param_Company_Id);
 		}
@@ -261,15 +260,14 @@ class UserController extends Controller {
 		if (isset ( $_POST [Params::param_Device_Id] )) {
 			$device_id = $_POST [Params::param_Device_Id];
 		}
-		$user = new User();
-		$user = $this->checkEmailExisted ($company_id, $email);
+		$user = $this->checkEmailExisted ( $email, $company_id );
 		if (!is_null($user) && $user->is_actived == 1 && $password==$user->password) {
-			// email existed, password correct, login successfully
+			// email existed, login successfully
 			// check if device id is not existed, replace with the new
-			if ($device_id != '' && !$this->checkDeviceIdAndEmail( $email, $company_id, $device_id )) {
+			if ($device_id!=='' && ! $this->checkDeviceIdAndEmail( $email, $company_id, $device_id )) {
 				// new device id, replace current device id in database
 				User::model ()->updateByPk ( $user->id, array (
-						'device_id' => $device_id
+						'device_id' => $device_id 
 				) );
 			}
 			$now = date('Y-m-d H:i:s');
@@ -277,23 +275,18 @@ class UserController extends Controller {
 			$token_expired_date = date('Y-m-d H:i:s', $tomorrow);
 			
 			$token = $this->generateToken ( $user->email, $user->device_id );
-			$update = User::model ()->updateByPk ( $user->id, array (
+			User::model ()->updateByPk ( $user->id, array (
 					'token' => $token, 
 					'token_expired_date' =>$token_expired_date
 			) );
-			if($update>0) {
-				$data = array('token' => $token);
-				Response::SuccessWithSimpleArray($this->modelName, $data);
-			} else {
-				$message = 'Cannot login to system. Please try again later.';
-				Response::Failed($message);
-			}
+			
+			$data = array('token' => $token);
+			Response::SuccessWithSimpleArray($this->modelName, $data);
 		} else {
-			$message = 'Login failed, incorrect email-password or your account had been deactived by administrator.';
+			$message = 'Login failed, email not found or your account have been deactived by administrator.';
 			Response::Failed($message);
 		}
 	}
-	
 	
 	public function actionUpdateSetting() {
 		if (! isset ( $_POST [Params::param_Device_Id] )) {
@@ -305,27 +298,27 @@ class UserController extends Controller {
 		if (! isset ( $_POST [Params::param_Notify] )) {
 			Response::MissingParam(Params::param_Notify);
 		}
-		
+	
 		// check email and company id existed
 		$device_id = $_POST [Params::param_Device_Id];
 		$company_id = $_POST [Params::param_Company_Id];
 		$notify = $_POST [Params::param_Notify];
 		$user = new User();
 		$user = $this->checkDeviceIdOnly($company_id, $device_id);
-		if(!is_null($user) && $user->is_actived == 1 && $user->notify==$notify) { 	
+		if(!is_null($user) && $user->is_actived == 1 && $user->notify==$notify) {
 			//current notify is the same with new
 			$message = 'Save setting successfully. Notify='.$notify;
 			Response::SuccessWithMessage($this->modelName, $message);
 		}
 		if (!is_null($user) && $user->is_actived == 1) {
 			$update = User::model ()->updateByPk ( $user->id, array (
-			'notify' => $notify
+					'notify' => $notify
 			) );
 			if($update>0) {
-				$message = 'Save setting successfully. Notify='.$notify;
+				$message = 'Save setting successfully: Notify='.$notify;
 				Response::SuccessWithMessage($this->modelName, $message);
 			} else {
-				$message = 'Error occured while saving setting. Notify='.$notify;
+				$message = 'Error occured while saving setting: Notify='.$notify;
 				Response::Failed($message);
 			}
 		} else {
@@ -333,6 +326,7 @@ class UserController extends Controller {
 			Response::Failed($message);
 		}
 	}
+	
 	/**
 	 * get user's setting
 	 */
@@ -354,18 +348,18 @@ class UserController extends Controller {
 		$user = User::model ()->find ( $criteria );
 		// Did we find the requested model? If not, raise an error
 		if (is_null ( $user )) {
-			$message = 'Incorrect device id or hospital id.';
+			$message = 'Incorrect device id or company id.';
 			Response::Failed($message);
 		} else {
 			$notify = array('notify'=> $user->notify);
 			Response::SuccessWithSimpleArray( $this->modelName, $notify );
 		}
 	}
+	
 	public function actionUpdate() {
 	}
 	public function actionDelete() {
 	}
-	
 	/**
 	 * generate a token for authenticating between server and user
 	 * @param string $email user's email
@@ -378,11 +372,11 @@ class UserController extends Controller {
 	
 	/**
 	 * Check if email existed or not 
-	 * @param string $email user's email
-	 * @param int $company_id user's company id
+	 * @param unknown $email user's email
+	 * @param unknown $company_id user's company id
 	 * @return ActiveRecord an user object if existed, null if didn't existed
 	 */
-	public function checkEmailExisted($company_id=0, $email='') {
+	public function checkEmailExisted($email, $company_id) {
 		$criteria = new CDbCriteria ();
 		$criteria->condition = 't.email=:email AND t.company_id=:company_id';
 		$criteria->params = array (
@@ -417,8 +411,9 @@ class UserController extends Controller {
 	}
 	
 	/**
-	 * Check if device id existed or not 
+	 * Check if device id existed or not
 	 * @param string $device_id device id
+	 * @param int $company_id company id
 	 * @return ActiveRecord an user object if existed, null if didn't existed
 	 */
 	public function checkRegisterDevice($company_id =0, $device_id='') {
@@ -426,16 +421,16 @@ class UserController extends Controller {
 		$criteria->condition = 't.device_id=:device_id AND t.company_id=:company_id AND t.email=:email';
 		$criteria->params = array (
 				':device_id' => $device_id,
-				':company_id' => $company_id, 
-				':email' => '' 
+				':company_id' => $company_id,
+				':email' => ''
 		);
 		$result = User::model ()->find ( $criteria );
 		return $result;
 	}
-	
 	/**
-	 * Check if device id existed or not 
+	 * Check if device id existed or not
 	 * @param string $device_id device id
+	 * @param int $company_id company id
 	 * @return ActiveRecord an user object if existed, null if didn't existed
 	 */
 	public function checkDeviceIdOnly($company_id =0, $device_id='') {
@@ -443,11 +438,12 @@ class UserController extends Controller {
 		$criteria->condition = 't.device_id=:device_id AND t.company_id=:company_id';
 		$criteria->params = array (
 				':device_id' => $device_id,
-				':company_id' => $company_id, 
+				':company_id' => $company_id,
 		);
 		$result = User::model ()->find ( $criteria );
 		return $result;
 	}
-	
 }
+
 ?>
+	

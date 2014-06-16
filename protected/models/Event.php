@@ -4,7 +4,7 @@
  * This is the model class for table "event".
  *
  * The followings are the available columns in table 'event':
- * @property string $id
+ * @property integer $id
  * @property string $name
  * @property string $name_en
  *
@@ -78,12 +78,15 @@ class Event extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('name_en',$this->name_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => array(
+					'pageSize' => 20,
+			),
 		));
 	}
 

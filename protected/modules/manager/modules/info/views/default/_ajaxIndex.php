@@ -1,5 +1,5 @@
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'info-grid',
+	//'id'=>'info-grid',
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
@@ -17,10 +17,10 @@
 				'name' => 'access_level_id',
 				'value' => '$data->infoAccessLevelName',
 		),
+		'date_create',
 		/*
 		'content',
 		'appointment_date',
-		'date_create',
 		'date_update',
 		*/
 		array(

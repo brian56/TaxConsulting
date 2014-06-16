@@ -4,17 +4,17 @@
  * This is the model class for table "change_log".
  *
  * The followings are the available columns in table 'change_log':
- * @property string $id
- * @property string $company_id
- * @property string $user_id
+ * @property integer $id
+ * @property integer $company_id
+ * @property integer $user_id
  * @property string $table_name
  * @property string $change_type
  * @property string $description
  * @property string $date_create
  *
  * The followings are the available model relations:
- * @property Company $company
  * @property User $user
+ * @property Company $company
  */
 class ChangeLog extends CActiveRecord
 {
@@ -35,8 +35,8 @@ class ChangeLog extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('company_id, user_id, table_name, change_type, description, date_create', 'required'),
-			array('company_id', 'length', 'max'=>10),
-			array('user_id', 'length', 'max'=>20),
+			array('company_id, user_id', 'numerical', 'integerOnly'=>true),
+			array('change_type', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, company_id, user_id, table_name, change_type, description, date_create', 'safe', 'on'=>'search'),
@@ -51,8 +51,8 @@ class ChangeLog extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
 		);
 	}
 
@@ -90,9 +90,9 @@ class ChangeLog extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('company_id',$this->company_id,true);
-		$criteria->compare('user_id',$this->user_id,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('company_id',$this->company_id);
+		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('table_name',$this->table_name,true);
 		$criteria->compare('change_type',$this->change_type,true);
 		$criteria->compare('description',$this->description,true);
@@ -112,14 +112,5 @@ class ChangeLog extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-	
-	public function beforeSave()
-	{
-		if($this->isNewRecord)
-		{
-			$this->date_create= date('Y-m-d H:i:s');
-		}
-		return parent::beforeSave();
 	}
 }

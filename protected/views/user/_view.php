@@ -9,10 +9,6 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('company_id')); ?>:</b>
-	<?php echo CHtml::encode($data->company_id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_level_id')); ?>:</b>
 	<?php echo CHtml::encode($data->user_level_id); ?>
 	<br />
@@ -21,19 +17,10 @@
 	<?php echo CHtml::encode($data->is_actived); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
-	<?php echo CHtml::encode($data->email); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('password')); ?>:</b>
-	<?php echo CHtml::encode($data->password); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_name')); ?>:</b>
-	<?php echo CHtml::encode($data->user_name); ?>
-	<br />
-
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('contact_phone')); ?>:</b>
 	<?php echo CHtml::encode($data->contact_phone); ?>
 	<br />
@@ -46,12 +33,9 @@
 	<?php echo CHtml::encode($data->device_os_id); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('device_id')); ?>:</b>
 	<?php echo CHtml::encode($data->device_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('notify')); ?>:</b>
-	<?php echo CHtml::encode($data->notify); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('token')); ?>:</b>

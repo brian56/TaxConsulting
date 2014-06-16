@@ -5,85 +5,78 @@ if (Yii::app ()->user->getState ( 'isManager' ))
 else 
 	$this->pageTitle = Yii::app ()->name;
 
+
 ?>
 <center>
-	<h3>
+
+	<br>	
+	<br>
+	<br>	
+	<h2>
 		Welcome to <i>
 		<?php 
 			if (Yii::app()->user->getState('isManager')) {
-				echo CHtml::encode(Yii::app()->user->getState('companyName',''));
+				echo CHtml::encode(Yii::app()->user->getState('companyName'));
 			}
 			else {
 				echo CHtml::encode(Yii::app ()->name);
 			}
 		?>
 		</i>
-	</h3>
+	</h2>
 
-	<p>This page is for managing company's data.</p>
-	
-	
+	<h4>This page is for managing company's data.</h4>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h5>A company application developed by</h5>
 	<?php 
-	 ?>
-	<p></p>
-	<?php 
-		echo CHtml::textField('tripTotal','',array('size'=>60,'id' => 'push'));
-		echo "<p></p>";
-		$this->widget ( 'booster.widgets.TbButton', array (
-				'label' => 'Push Notification to one device',
-				'type' => 'info',
-				'htmlOptions' => array(
-            		'onclick' => "js:$.ajax({
-	               		url: '".Yii::app()->baseUrl."/site/push',
-	                	type: 'POST',
-	                	data: 'data='+$('#push').val(),
-	                	success: function(data) {
-							if(data!='') 
-								alert('Successfully');
-							else 
-								alert('Message can not be empty!');
-	  					},
-	           		});"
-	        	)
-	    	)
-	    );
-		echo "<p></p>";
-		$this->widget ( 'booster.widgets.TbButton', array (
-				'label' => 'Push Notification to many device',
-				'type' => 'danger',
-				'htmlOptions' => array(
-            		'onclick' => "js:$.ajax({
-	               		url: '".Yii::app()->baseUrl."/site/PushMultiDevice',
-	                	type: 'POST',
-	                	data: 'data='+$('#push').val(),
-	                	success: function(data) {
-							if(data!='') 
-								alert('Successfully');
-							else 
-								alert('Message can not be empty!');
-	  					},
-           			});"
-        		)
-    		)
-    	);
-		
-		echo "<p></p>";
-		$this->widget ( 'booster.widgets.TbButton', array (
-				'label' => 'Push RSS Notification',
-				'type' => 'danger',
-				'htmlOptions' => array(
-            		'onclick' => "js:$.ajax({
-	               		url: '".Yii::app()->baseUrl."/rssNotification/getFeeds',
-	                	success: function(data) {
-							if(data!='') 
-								alert(data);
-							else 
-								alert('Message can not be empty!');
-	  					},
-           			});"
-        		)
-    		)
-    	);
+	echo CHtml::image('http://appromobile.com/wp-content/uploads/2013/06/cropped-Logo.png');
+// 		echo CHtml::textField('tripTotal','',array('size'=>60,'id' => 'push'));
+// 		echo "<p></p>";
+// 		$this->widget ( 'booster.widgets.TbButton', array (
+// 				'label' => 'Push Notification to one device',
+// 				'type' => 'info',
+// 				'htmlOptions' => array(
+//             		'onclick' => "js:$.ajax({
+// 	               		url: '".Yii::app()->baseUrl."/site/push',
+// 	                	type: 'POST',
+// 	                	data: 'data='+$('#push').val(),
+// 	                	success: function(data) {
+// 							if(data!='') 
+// 								alert('Successfully');
+// 							else 
+// 								alert('Message can not be empty!');
+// 	  					},
+// 	           		});"
+// 	        	)
+// 	    	)
+// 	    );
+// 		echo "<p></p>";
+// 		$this->widget ( 'booster.widgets.TbButton', array (
+// 				'label' => 'Push Notification to many device',
+// 				'type' => 'danger',
+// 				'htmlOptions' => array(
+//             		'onclick' => "js:$.ajax({
+// 	               		url: '".Yii::app()->baseUrl."/site/PushMultiDevice',
+// 	                	type: 'POST',
+// 	                	data: 'data='+$('#push').val(),
+// 	                	success: function(data) {
+// 							if(data!='') 
+// 								alert('Successfully');
+// 							else 
+// 								alert('Message can not be empty!');
+// 	  					},
+//            			});"
+//         		)
+//     		)
+//     	);
 	?>
 	
 </center>

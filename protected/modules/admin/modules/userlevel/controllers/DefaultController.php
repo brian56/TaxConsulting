@@ -121,16 +121,10 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		} else {
-			$dataProvider=new CActiveDataProvider('UserLevel');
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider,
-			));
-		}
+		$dataProvider=new CActiveDataProvider('UserLevel');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**

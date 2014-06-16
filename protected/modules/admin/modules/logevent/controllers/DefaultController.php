@@ -17,6 +17,7 @@ class DefaultController extends Controller
 				'accessControl',
 		);
 	}
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -120,16 +121,10 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (Yii::app()->user->isGuest || !Yii::app()->user->getState('isAdmin')) {
-			$this->redirect ( array (
-					'/site/login'
-			) );
-		} else {
-			$dataProvider=new CActiveDataProvider('LogEvent');
-			$this->render('index',array(
-				'dataProvider'=>$dataProvider,
-			));
-		}
+		$dataProvider=new CActiveDataProvider('LogEvent');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Users'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
+	$model->user_name=>array('view','id'=>$model->id),
 	'Update',
 );
 
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update User <?php echo $model->id; ?></h1>
+<h3>Update User <?php echo $model->id; ?></h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

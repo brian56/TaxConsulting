@@ -9,7 +9,7 @@ class Params {
 	const status_params_missing = - 1;
 	const message_params_missing = 'Missing params: ';
 	const status_params_error = - 2;
-	const message_params_error = "Param's format error: ";
+	const message_params_error = 'Params format error: ';
 	const status_failed = - 3;
 	const message_failed = 'Can not excute request.';
 	
@@ -30,9 +30,10 @@ class Params {
 	const param_Notify = 'notify';
 	
 	// info, info's comment params
-	const param_Status = 'status';
+	const param_Appointment_Status = 'appointment_status';
 	const param_Title = 'title';
 	const param_Content = 'content';
+	const param_Appointment_Date = 'appointment_date';
 	
 	// foreign key params
 	const param_User_Id = 'user_id';

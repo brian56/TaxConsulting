@@ -16,19 +16,33 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Info #<?php echo $model->id; ?></h1>
+<h3>View Info #<?php echo $model->id; ?></h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'info_type_id',
-		'user_id',
-		'company_id',
+		array (
+				'name' => 'info_type_id',
+				'value' => $model->getInfoTypeName () 
+		),
+		array (
+				'name' => 'user_id',
+				'value' => $model->getInfoUserName()
+		),
+		array (
+				'name' => 'company_id',
+				'value' => $model->getInfoCompany()
+		),
+		'appointment_status',
+		'appointment_date',
 		'title',
 		'content',
 		'date_create',
 		'date_update',
-		'access_level_id',
+		array (
+				'name' => 'access_level_id',
+				'value' => $model->getInfoAccessLevelName()
+		),
 	),
 )); ?>

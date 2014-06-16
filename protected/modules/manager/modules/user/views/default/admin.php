@@ -2,14 +2,16 @@
 /* @var $this UserController */
 /* @var $model User */
 
+	
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
-	'Manage',
+	'Advance Manage'=> array('/manager/info/default/advancemanage'),
+	'Manage User',
 );
 
 $this->menu=array(
 	array('label'=>'List User', 'url'=>array('index')),
 	array('label'=>'Create User', 'url'=>array('create')),
+	array('label'=>'Tracking New User', 'url'=>array('trackingUser')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +28,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h4>Manage Users</h4>
+<center><h3>Manage Users</h3></center>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -39,10 +41,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'user-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->getCompanyUsers(),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -59,11 +60,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'value' => '$data->notifyName',
 		),
 		'email',
-		'password',
 		'user_name',
-		/*'contact_phone',
 		'register_date',
+		/*'contact_phone',
 		'device_os_id',
+		'password',
 		'device_id',
 		'token',
 		'token_expired_date',
@@ -73,5 +74,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'?id="+$.fn.yiiGridView.getSelection(id);}',
-)); ?>
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'?id="+$.fn.yiiGridView.getSelection(id);}',
+)); 
+?>
+

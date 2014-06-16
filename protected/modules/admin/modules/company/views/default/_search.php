@@ -12,33 +12,50 @@
 )); ?>
 
 	<div class="row">
+		<div class="span-10">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id',array('size'=>11,'maxlength'=>11)); ?>
-	</div>
+		<?php echo $form->textField($model,'id'); ?>
+		</div>
 
-	<div class="row">
+		<div class="span-10">
 		<?php echo $form->label($model,'is_actived'); ?>
-		<?php echo $form->textField($model,'is_actived'); ?>
+		<?php echo $form->dropDownList($model, 'is_actived', array('1'=>'Actived', '0'=>'Inactived')); ?>
+		</div>
 	</div>
 
 	<div class="row">
+		<div class="span-10">
 		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textArea($model,'name',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
+		<?php echo $form->textField($model,'name'); ?>
+		</div>
 
-	<div class="row">
+		<div class="span-10">
 		<?php echo $form->label($model,'name_en'); ?>
-		<?php echo $form->textArea($model,'name_en',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'name_en'); ?>
+		</div>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'rss_url'); ?>
-		<?php echo $form->textArea($model,'rss_url',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
+		<div class="span-10">
 		<?php echo $form->label($model,'introduction'); ?>
-		<?php echo $form->textArea($model,'introduction',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'introduction'); ?>
+		</div>
+
+		<div class="span-10">
+		<?php echo $form->label($model,'photos'); ?>
+		<?php echo $form->textField($model,'photos'); ?>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span-10">
+			<?php echo $form->label($model,'rss_url'); ?>
+			<?php echo $form->textField($model,'rss_url'); ?>
+		</div>
+		<div class="span-10">
+		<?php echo $form->label($model,'location'); ?>
+		<?php echo $form->textField($model,'location'); ?>
+		</div>
 	</div>
 
 	<div class="row buttons">

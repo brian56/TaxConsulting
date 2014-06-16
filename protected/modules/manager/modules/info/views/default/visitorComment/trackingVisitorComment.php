@@ -50,7 +50,7 @@ $this->breadcrumbs=array(
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	//'id'=>'info-grid',
-	'dataProvider'=>$model->searchVisitorComment(Yii::app()->user->getState('companyId')),
+	'dataProvider'=>$model->searchVisitorComment(Yii::app()->user->getState('hospitalId')),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',

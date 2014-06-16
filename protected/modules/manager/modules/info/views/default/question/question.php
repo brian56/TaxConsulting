@@ -22,15 +22,16 @@ $('.search-form form').submit(function(){
 
 $this->breadcrumbs=array(
 		'Manager'=>array("/manager"),
-		'Notice',
+		'Question',
 );
 	$this->menu=array(
-			array('label'=>'Create Notice', 'url'=>array('noticeCreate')),
+			array('label'=>'Create Question', 'url'=>array('questionCreate')),
+			array('label'=>'Tracking new Question', 'url'=>array('trackingQuestion')),
 
 	);
 
 ?>
-<center><h3>Manage notices</h3></center>
+<center><h3>Manage questions</h3></center>
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
@@ -46,7 +47,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'info-grid',
-	'dataProvider'=>$model->searchNotice(Yii::app()->user->getState('companyId')),
+	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('hospitalId')),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -62,6 +63,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'date_create',
 		/*
 		'content',
+		'appointment_date',
 		'date_update',
 		*/
 		array(
@@ -71,15 +73,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		(
 				'view' => array
 				(
-						'url'=> 'Yii::app()->createUrl("manager/info/default/noticeView", array("id"=>$data->id))',
+						'url'=> 'Yii::app()->createUrl("manager/info/default/questionView", array("id"=>$data->id))',
 				),
 				'update' => array
 				(
-						'url'=> 'Yii::app()->createUrl("manager/info/default/noticeUpdate", array("id"=>$data->id))',
+						'url'=> 'Yii::app()->createUrl("manager/info/default/questionUpdate", array("id"=>$data->id))',
 				),
 		),
 	),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('noticeview').'?id="+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('questionview').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

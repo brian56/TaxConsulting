@@ -1,7 +1,7 @@
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	//'id'=>'info-grid',
-	'dataProvider'=>$model->searchVisitorComment(Yii::app()->user->getState('companyId')),
+	'dataProvider'=>$model->searchVisitorComment(Yii::app()->user->getState('hospitalId')),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -24,7 +24,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}{update}{delete}',
 			'buttons'=>array
-				(
+			(
 					'view' => array
 					(
 							'url'=> 'Yii::app()->createUrl("manager/info/default/visitorCommentView", array("id"=>$data->id))',
@@ -33,7 +33,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 					(
 							'url'=> 'Yii::app()->createUrl("manager/info/default/visitorCommentUpdate", array("id"=>$data->id))',
 					),
-				),
+			),
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),

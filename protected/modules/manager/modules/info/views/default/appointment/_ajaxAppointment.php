@@ -1,7 +1,7 @@
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	//'id'=>'info-grid',
-	'dataProvider'=>$model->searchAppointment(Yii::app()->user->getState('companyId')),
+	'dataProvider'=>$model->searchAppointment(Yii::app()->user->getState('hospitalId')),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -28,7 +28,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}{update}{delete}',
 			'buttons'=>array
-				(
+			(
 					'view' => array
 					(
 							'url'=> 'Yii::app()->createUrl("manager/info/default/appointmentView", array("id"=>$data->id))',
@@ -37,7 +37,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 					(
 							'url'=> 'Yii::app()->createUrl("manager/info/default/appointmentUpdate", array("id"=>$data->id))',
 					),
-				),
+			),
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),

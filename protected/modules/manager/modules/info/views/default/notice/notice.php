@@ -19,17 +19,18 @@ $('.search-form form').submit(function(){
 <?php
 /* @var $this InfoController */
 /* @var $model Info */
+
 $this->breadcrumbs=array(
 		'Manager'=>array("/manager"),
-		'Event',
+		'Notice',
 );
 	$this->menu=array(
-			array('label'=>'Create Event', 'url'=>array('eventCreate')),
+			array('label'=>'Create Notice', 'url'=>array('noticeCreate')),
 
 	);
 
 ?>
-<center><h3>Manage events</h3></center>
+<center><h3>Manage notices</h3></center>
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
@@ -45,7 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'info-grid',
-	'dataProvider'=>$model->searchEvent(Yii::app()->user->getState('companyId')),
+	'dataProvider'=>$model->searchNotice(Yii::app()->user->getState('hospitalId')),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -60,26 +61,25 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 		'date_create',
 		/*
-		 'content',
-		'appointment_date',
+		'content',
 		'date_update',
 		*/
 		array(
-				'class'=>'CButtonColumn',
-				'template'=>'{view}{update}{delete}',
-				'buttons'=>array
+		'class'=>'CButtonColumn',
+		'template'=>'{view}{update}{delete}',
+		'buttons'=>array
+		(
+				'view' => array
 				(
-						'view' => array
-						(
-								'url'=> 'Yii::app()->createUrl("manager/info/default/eventView", array("id"=>$data->id))',
-						),
-						'update' => array
-						(
-								'url'=> 'Yii::app()->createUrl("manager/info/default/eventUpdate", array("id"=>$data->id))',
-						),
+						'url'=> 'Yii::app()->createUrl("manager/info/default/noticeView", array("id"=>$data->id))',
+				),
+				'update' => array
+				(
+						'url'=> 'Yii::app()->createUrl("manager/info/default/noticeUpdate", array("id"=>$data->id))',
 				),
 		),
+),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('eventview').'?id="+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('noticeview').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

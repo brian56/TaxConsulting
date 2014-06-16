@@ -51,7 +51,7 @@ $this->breadcrumbs=array(
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	//'id'=>'info-grid',
-	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('companyId')),
+	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('hospitalId')),
 	//'filter'=>$model,
 	'columns'=>array(
 		'id',
@@ -71,20 +71,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'date_update',
 		*/
 		array(
-			'class'=>'CButtonColumn',
-			'template'=>'{view}{update}{delete}',
-			'buttons'=>array
-			(
-					'view' => array
-					(
-							'url'=> 'Yii::app()->createUrl("manager/info/default/questionView", array("id"=>$data->id))',
-					),
-					'update' => array
-					(
-							'url'=> 'Yii::app()->createUrl("manager/info/default/questionUpdate", array("id"=>$data->id))',
-					),
-			),
+		'class'=>'CButtonColumn',
+		'template'=>'{view}{update}{delete}',
+		'buttons'=>array
+		(
+				'view' => array
+				(
+						'url'=> 'Yii::app()->createUrl("manager/info/default/questionView", array("id"=>$data->id))',
+				),
+				'update' => array
+				(
+						'url'=> 'Yii::app()->createUrl("manager/info/default/questionUpdate", array("id"=>$data->id))',
+				),
 		),
+	),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
 		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('questionview').'?id="+$.fn.yiiGridView.getSelection(id);}',

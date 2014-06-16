@@ -1,15 +1,15 @@
 <?php
-/* @var $this CompanyController */
-/* @var $model Company */
+/* @var $this RssNotificationController */
+/* @var $model RssNotification */
 
 $this->breadcrumbs=array(
-	'Companies'=>array('index'),
+	'Rss Notifications'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Company', 'url'=>array('index')),
-	array('label'=>'Create Company', 'url'=>array('create')),
+	array('label'=>'List RssNotification', 'url'=>array('index')),
+	array('label'=>'Create RssNotification', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#company-grid').yiiGridView('update', {
+	$('#rss-notification-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<center><h3>Manage Companies</h3></center>
+<h1>Manage Rss Notifications</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,20 +41,21 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'company-grid',
+	'id'=>'rss-notification-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'is_actived',
-		'name',
-		'name_en',
-		'rss_url',
-		'introduction',
+		'company_id',
+		'notify',
+		'last_post_pubDate',
+		'last_post_title',
+		'last_post_url',
+		/*
+		'last_post_author',
+		*/
 		array(
 			'class'=>'CButtonColumn',
 		),
 	),
-	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

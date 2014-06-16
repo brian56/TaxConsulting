@@ -1,6 +1,6 @@
 <?php
 
-class HospitalController extends Controller
+class RssNotificationController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -19,6 +19,18 @@ class HospitalController extends Controller
 		);
 	}
 
+	public function actionPushRSS() {
+		$content = '';
+		if(isset($_POST['company_id']) && $_POST['company_id']!=='')
+		{
+			$content = $_POST['data'];
+			$message = 'testing';
+			$push_tokens = array('APA91bF5RbiRiHEsVQv7Usj3LE82WQNULV2B6-Z36tYg8pR5zcZ7E5vUiKAC2iQaCJwT40s9ZyH8NNJ5HlG_XBvOPjohSRGTGIkz2b-XqwdmQWV1Cqy7GVZQZ4vWzT-4QnWbs0EmxObYoN4heIoMX2Mc9SG5z4ukWg','APA91bGtYCCfcNGvZb2uiabB5wOiy72TMIIjFSUOZJ8iJqDRHfj3n-426D2oGXqurTCvmGDFfrN-JFUVGYd31L6JJMRceD2SX4rrxoxnHaof6C55FAFHjfinVbagO4gpniMq1v7R72W2bwBt6rt-PpEbzu3cFfmhaQ');
+			$gcm = Yii::app()->gcm;
+			$gcm->sendMulti($push_tokens, $message, array('extra' => 'multi devices ', 'title'=> $content, 'value' =>''), array( 'delayWhileIdle' => true ));
+		}
+	}
+	
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -62,14 +74,14 @@ class HospitalController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Hospital;
+		$model=new RssNotification;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Hospital']))
+		if(isset($_POST['RssNotification']))
 		{
-			$model->attributes=$_POST['Hospital'];
+			$model->attributes=$_POST['RssNotification'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +103,9 @@ class HospitalController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Hospital']))
+		if(isset($_POST['RssNotification']))
 		{
-			$model->attributes=$_POST['Hospital'];
+			$model->attributes=$_POST['RssNotification'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +134,7 @@ class HospitalController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Hospital');
+		$dataProvider=new CActiveDataProvider('RssNotification');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +145,10 @@ class HospitalController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Hospital('search');
+		$model=new RssNotification('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Hospital']))
-			$model->attributes=$_GET['Hospital'];
+		if(isset($_GET['RssNotification']))
+			$model->attributes=$_GET['RssNotification'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +159,12 @@ class HospitalController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Hospital the loaded model
+	 * @return RssNotification the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Hospital::model()->findByPk($id);
+		$model=RssNotification::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,14 +172,81 @@ class HospitalController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Hospital $model the model to be validated
+	 * @param RssNotification $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='hospital-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='rss-notification-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function getFeeds()
+	{
+// 		$companies = Company::model()->getAllRssUrl();
+// 		if(!is_null($companies)) {
+// 			foreach ($companies as $company) {
+				//$rawFeed = file_get_contents($company->rss_url);
+				$rawFeed = file_get_contents(Yii::app()->user->getState('rss_url',''));
+				//if($rawFeed!='') {
+					// give an XML object to be iterate
+					$xml = new SimpleXMLElement($rawFeed);
+					$criteria = new CDbCriteria();
+					$criteria->condition = 't.company_id=:company_id';
+					$criteria->params = array(':company_id'=>Yii::app()->user->getState('company_id'));
+					$rss_notification = RssNotification::model()->find($criteria);
+					
+					$post_pubDate = "";
+					$post_url = "";
+					$post_title = "";
+					$data = '';
+					foreach($xml->channel->item as $item)
+					{
+						$post_pubDate = $item->pubDate;
+						$post_url = $item->link;
+						$post_title = $item->title;
+						if(strtotime($post_pubDate)>strtotime($rss_notification->last_post_pubDate)) {
+							$data.= $post_pubDate;
+							$data.= "\n";
+							
+							$info = new Info();
+							$info->user_id = Yii::app()->user->getState('user_id');
+							$info->company_id = Yii::app()->user->getState('company_id');
+							$info->access_level_id = 1;
+							//$info->title = 
+							//$userDeviceIds = User::model()->getCompanyUserDeviceIds($company->id);
+							//SendNotification::actionPushMultiDevice($userDeviceIds, $post_title, $post_url);
+						}
+					}
+					echo $data;
+				//}
+// 			}
+// 		}
+		
+	}
+	
+	public function run()
+	{
+		if($this->checkConnection())
+			echo $feeds = $this->getFeeds();
+	}
+	
+	/** check if the pc is connected to internet
+	 * @return TRUE if there is a connection
+	 */
+	private function checkConnection()
+	{
+		// Initiates a socket connection to www.google.com at port 80
+		$conn = @fsockopen("www.google.com", 80);
+		if($conn)
+		{
+			// there is a connection
+			fclose($conn);
+			return TRUE;
+		}
+	
+		return FALSE;
 	}
 }

@@ -135,4 +135,16 @@ class Company extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function afterSave() {
+		if($this->isNewRecord)
+		{
+			$rss_notification = new RssNotification();
+			$rss_notification->company_id = $this->id;
+			$rss_notification->notify = 1;
+			$rss_notification->last_post_pubDate = date('Y-m-d H:i:s');
+			$rss_notification->save();
+		}
+		return parent::afterSave();
+	}
 }

@@ -20,33 +20,44 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'is_actived'); ?>
-		<?php echo $form->textField($model,'is_actived'); ?>
-		<?php echo $form->error($model,'is_actived'); ?>
-	</div>
-
-	<div class="row">
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textArea($model,'name',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>60)); ?>
 		<?php echo $form->error($model,'name'); ?>
+		</div>
+		
+		<div class="span-10">
+		<?php echo $form->labelEx($model,'is_actived'); ?>
+		<?php echo $form->dropDownList($model, 'is_actived', array('1'=>'Actived', '0'=>'Inactived')); ?>
+		<?php echo $form->error($model,'is_actived'); ?>
+		</div>
 	</div>
 
 	<div class="row">
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'name_en'); ?>
-		<?php echo $form->textArea($model,'name_en',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'name_en',array('size'=>60,'maxlength'=>60)); ?>
 		<?php echo $form->error($model,'name_en'); ?>
+		</div>
+		
+		<div class="span-10">
+		<?php echo $form->labelEx($model,'location'); ?>
+		<?php echo $form->textField($model,'location',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->error($model,'location'); ?>
+		</div>
 	</div>
 
 	<div class="row">
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'rss_url'); ?>
-		<?php echo $form->textArea($model,'rss_url',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'rss_url',array('size'=>60,'maxlength'=>60)); ?>
 		<?php echo $form->error($model,'rss_url'); ?>
-	</div>
-
-	<div class="row">
+		</div>
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'introduction'); ?>
-		<?php echo $form->textArea($model,'introduction',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textField($model,'introduction',array('size'=>60,'maxlength'=>60)); ?>
 		<?php echo $form->error($model,'introduction'); ?>
+		</div>
 	</div>
 
 	<div class="row buttons">

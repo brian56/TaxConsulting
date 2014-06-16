@@ -28,6 +28,25 @@ else
 	<h4>This page is for managing company's data.</h4>
 	<br>
 	<br>
+	<?php 
+	echo "<p></p>";
+	$this->widget ( 'booster.widgets.TbButton', array (
+			'label' => 'Check for RSS new post',
+			'type' => 'danger',
+			'htmlOptions' => array(
+					'onclick' => "js:$.ajax({
+	               		url: '".Yii::app()->baseUrl."/rssNotification/getFeeds',
+	                	success: function(data) {
+							if(data!='')
+								alert(data);
+							else
+								alert('No RSS found!');
+	  					},
+           			});"
+			)
+	)
+	);
+	?>
 	<br>
 	<br>
 	<br>

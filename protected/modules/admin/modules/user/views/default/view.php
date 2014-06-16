@@ -41,7 +41,7 @@ $this->menu=array(
 		'register_date',
 		array(
 			'name' =>'device_os_id',
-			'value' => $model->deviceOs->name
+			'value' => $model->deviceOs->getNameAndOs()
 		),
 		'device_id',
 		array(

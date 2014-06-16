@@ -215,11 +215,19 @@ class RssNotificationController extends Controller
 							$info->user_id = Yii::app()->user->getState('user_id');
 							$info->company_id = Yii::app()->user->getState('company_id');
 							$info->access_level_id = 1;
-							//$info->title = 
+							$info->info_type_id = 1;
+							$info->title = $post_title; 
+							$info->content = $post_url;
+							$info->date_create = date('Y-m-d H:i:s', strtotime($post_pubDate));
+							$info->insert();
 							//$userDeviceIds = User::model()->getCompanyUserDeviceIds($company->id);
 							//SendNotification::actionPushMultiDevice($userDeviceIds, $post_title, $post_url);
 						}
 					}
+					//update the last post date time to now
+					RssNotification::model ()->updateByPk ( $rss_notification->id, array (
+						'last_post_pubDate' => date('Y-m-d H:i:s')
+					) );
 					echo $data;
 				//}
 // 			}

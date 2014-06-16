@@ -478,3 +478,75 @@ REQUEST_URI=/TaxConsulting/admin/userdefault/view?id=44
 in D:\xampp\htdocs\TaxConsulting\protected\modules\admin\modules\user\views\default\view.php (54)
 in D:\xampp\htdocs\TaxConsulting\protected\modules\admin\modules\user\controllers\DefaultController.php (55)
 in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/16 16:56:25 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:33)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(221): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(236): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (33)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (58)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (221)
+2014/06/16 17:04:55 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:33)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(221): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(238): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (33)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (58)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (221)
+2014/06/16 17:08:16 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:33)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(221): Info->save()
+#2 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(236): RssNotificationController->getFeeds()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (33)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (58)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (221)
+2014/06/16 17:09:36 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:33)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->save()
+#2 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(237): RssNotificationController->getFeeds()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (33)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (58)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/16 17:11:03 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:33)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->save()
+#2 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(237): RssNotificationController->getFeeds()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (33)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (58)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/16 17:11:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "addon.css".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('addon.css')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/addon.css
+HTTP_REFERER=http://localhost/TaxConsulting/
+---

@@ -308,7 +308,8 @@ class Info extends CActiveRecord
 	{
 		if($this->isNewRecord)
 		{
-			$this->date_create= date('Y-m-d H:i:s');
+			if(!isset($this->date_create))
+				$this->date_create= date('Y-m-d H:i:s');
 			if(Yii::app()->user->getState('isManager')) {
 				$this->company_id = Yii::app()->user->getState('companyId');
 			}

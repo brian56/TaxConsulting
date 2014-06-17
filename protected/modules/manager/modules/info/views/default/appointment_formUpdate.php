@@ -15,53 +15,53 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('strings','Fields with * are required');?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'info_type_id'); ?>
-		<?php echo $form->dropDownList($model, 'info_type_id', CHtml::listData(InfoType::model()->findAll(), 'id', 'name')); ?>
-		<?php echo $form->error($model,'info_type_id'); ?>
-	</div>
-	
-	<div class="row">
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model, 'user_id', CHtml::listData(User::model()->findAll('hospital_id=:hospital_id', array(':hospital_id'=>Yii::app()->user->getState('hospitalId'))), 'id', 'user_name'), array('empty'=>'-- Select an user --')); ?>
+		<?php echo $form->dropDownList($model, 'user_id',array($model->user_id=>$model->user->email)); ?>
 		<?php echo $form->error($model,'user_id'); ?>
-	</div>
-
-	<div class="row">
+		</div>
+	
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>60)); ?>
 		<?php echo $form->error($model,'title'); ?>
+		</div>
 	</div>
 
 	<div class="row">
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textArea($model,'content',array('rows'=>3, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'content',array('rows'=>3, 'cols'=>57)); ?>
 		<?php echo $form->error($model,'content'); ?>
-	</div>
+		</div>
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'appointment_status'); ?>
-		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>'Pending', '1'=>'Confirmed', '-1'=>'Reject'),array('empty'=>'-- Select appointment status --') ); ?>
-		<?php echo $form->error($model,'appointment_status'); ?>
-	</div>
-	
-	<div class="row">
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'appointment_date'); ?>
-		<?php echo $form->textField($model,'appointment_date'); ?>
+		<?php echo $form->textField($model,'appointment_date',array('size'=>60,'maxlength'=>60)); ?>
 		<?php echo $form->error($model,'appointment_date'); ?>
+		</div>
 	</div>
 	
 	<div class="row">
+		<div class="span-10">
+		<?php echo $form->labelEx($model,'appointment_status'); ?>
+		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>Yii::t('strings','Pending'), '1'=>Yii::t('strings','Confirmed'), '-1'=>Yii::t('strings','Rejected'))); ?>
+		<?php echo $form->error($model,'appointment_status'); ?>
+		</div>
+
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'access_level_id'); ?>
 		<?php echo $form->dropDownList($model, 'access_level_id', CHtml::listData(AccessLevel::model()->findAll(), 'id', 'name')); ?>
 		<?php echo $form->error($model,'access_level_id'); ?>
+		</div>
 	</div>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('strings','Create') : Yii::t('strings','Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

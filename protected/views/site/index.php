@@ -16,7 +16,7 @@ else
 		Welcome to <i>
 		<?php 
 			if (Yii::app()->user->getState('isManager')) {
-				echo CHtml::encode(Yii::app()->user->getState('companyName'));
+				echo CHtml::encode(Yii::app()->user->getState('globalName'));
 			}
 			else {
 				echo CHtml::encode(Yii::app ()->name);

@@ -41,8 +41,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('booster.widgets.TbGridView', array(
 	'id'=>'user-grid',
+	'type'=>'bordered condensed',
 	'dataProvider'=>$model->getCompanyUsers(),
 	//'filter'=>$model,
 	'columns'=>array(
@@ -70,7 +71,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'token_expired_date',
 		*/
 		array(
-			'class'=>'CButtonColumn',
+		'class'=>'booster.widgets.TbButtonColumn',
+		'template'=>'{view}{update}{delete}',
+		'buttons'=>array
+		(
+				'delete' => array
+				(
+					'label' => Yii::t('strings','Delete'),
+				),
+				'view' => array
+				(
+					'label' => Yii::t('strings','View'),
+				),
+				'update' => array
+				(
+					'label' => Yii::t('strings','Update'),
+				),
+			),
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),

@@ -42,8 +42,9 @@ $('.search-form form').submit(function(){
     window.setInterval("refresh()", timeout);
 </script>
 <div id='user-grid'>
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	//'id'=>'user-grid',
+<?php $this->widget('booster.widgets.TbGridView', array(
+// 	'id'=>'user-grid',
+	'type'=>'bordered condensed',
 	'dataProvider'=>$model->getCompanyUsers(),
 	//'filter'=>$model,
 	'columns'=>array(
@@ -71,7 +72,23 @@ $('.search-form form').submit(function(){
 		'token_expired_date',
 		*/
 		array(
-			'class'=>'CButtonColumn',
+		'class'=>'booster.widgets.TbButtonColumn',
+		'template'=>'{view}{update}{delete}',
+		'buttons'=>array
+		(
+				'delete' => array
+				(
+					'label' => Yii::t('strings','Delete'),
+				),
+				'view' => array
+				(
+					'label' => Yii::t('strings','View'),
+				),
+				'update' => array
+				(
+					'label' => Yii::t('strings','Update'),
+				),
+			),
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),

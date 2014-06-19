@@ -16,7 +16,8 @@ $this->menu=array(
 
 <center><h3>Users</h3></center>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('booster.widgets.TbGridView', array(
+	'type'=>'bordered condensed',
 	'dataProvider'=>$dataProvider,
 	'columns'=>array(
 		'id',
@@ -43,7 +44,23 @@ $this->menu=array(
 		'token_expired_date',
 		*/
 		array(
-				'class'=>'CButtonColumn',
+		'class'=>'booster.widgets.TbButtonColumn',
+		'template'=>'{view}{update}{delete}',
+		'buttons'=>array
+		(
+				'delete' => array
+				(
+					'label' => Yii::t('strings','Delete'),
+				),
+				'view' => array
+				(
+					'label' => Yii::t('strings','View'),
+				),
+				'update' => array
+				(
+					'label' => Yii::t('strings','Update'),
+				),
+			),
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),

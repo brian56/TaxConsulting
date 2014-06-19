@@ -1,6 +1,6 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="span-6 last">
+<div class="span-5 last">
 	<div id="sidebar">
 	<?php
 		$this->beginWidget('zii.widgets.CPortlet', array(
@@ -14,7 +14,7 @@
 	?>
 	</div><!-- sidebar -->
 </div>
-<div class="span-22">
+<div class="span-23">
 	<div id="content">
 	<?php $this->widget('ext.LangPick.ELangPick', array(
 	    //'excludeFromList' => array('pl', 'en'), // list of languages to exclude from list

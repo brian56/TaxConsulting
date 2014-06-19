@@ -33,7 +33,7 @@ else
 		echo "<p></p>";
 		$this->widget ( 'booster.widgets.TbButton', array (
 				'label' => 'Check for RSS new post',
-				'type' => 'danger',
+				'context' => 'danger',
 				'htmlOptions' => array(
 						'onclick' => "js:$.ajax({
 		               		url: '".Yii::app()->baseUrl."/rssNotification/getFeeds',

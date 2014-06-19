@@ -33,7 +33,8 @@ class Info extends CActiveRecord
 		return $this->infoType->name;
 	}
 	public function getInfoCompany() {
-		return $this->company->name;
+		if(isset($this->company))
+			return $this->company->name;
 	}
 	public function getInfoCommentsCount() {
 		return count($this->infoComments);
@@ -311,7 +312,7 @@ class Info extends CActiveRecord
 			if(!isset($this->date_create))
 				$this->date_create= date('Y-m-d H:i:s');
 			if(Yii::app()->user->getState('isManager')) {
-				$this->company_id = Yii::app()->user->getState('companyId');
+				$this->company_id = Yii::app()->user->getState('globalId');
 			}
 		}else{
 			$this->date_update = date('Y-m-d H:i:s');

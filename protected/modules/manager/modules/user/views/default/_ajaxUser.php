@@ -30,18 +30,22 @@
 		array(
 		'class'=>'booster.widgets.TbButtonColumn',
 		'template'=>'{view}{update}{delete}',
+		'htmlOptions'=>array('style'=>'width:60px;'),
 		'buttons'=>array
 		(
 				'delete' => array
 				(
+						'options' => array('style'=>'margin:2px;'),
 					'label' => Yii::t('strings','Delete'),
 				),
 				'view' => array
 				(
+						'options' => array('style'=>'margin:2px;'),
 					'label' => Yii::t('strings','View'),
 				),
 				'update' => array
 				(
+						'options' => array('style'=>'margin:2px;'),
 					'label' => Yii::t('strings','Update'),
 				),
 			),

@@ -209,7 +209,7 @@ class User extends CActiveRecord
 			$this->password = md5($this->password);
 			$this->register_date= date('Y-m-d H:i:s');
 			if(Yii::app()->user->getState('isManager')) {
-				$this->company_id = Yii::app()->user->getState('companyId');
+				$this->company_id = Yii::app()->user->getState('globalId');
 			}
 		} else {
 			if(isset($this->password) && $this->password!='') {

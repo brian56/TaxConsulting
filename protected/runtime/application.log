@@ -550,3 +550,225 @@ Stack trace:
 REQUEST_URI=/TaxConsulting/addon.css
 HTTP_REFERER=http://localhost/TaxConsulting/
 ---
+2014/06/19 10:52:12 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 10:52:30 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 10:52:49 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 10:54:06 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 10:57:27 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 11:00:59 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php:210)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (210)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (241)
+in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/19 11:01:28 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php:210)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (210)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (241)
+in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/19 11:02:33 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 11:04:01 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 11:04:59 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\Info.php:36)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): Info->insert()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (36)
+in D:\xampp\htdocs\TaxConsulting\protected\models\Info.php (62)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+2014/06/19 11:05:56 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company_id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `access_level_id`, `info_type_id`, `title`, `content`, `date_create`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6).
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (241)
+in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/19 11:05:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company_id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `access_level_id`, `info_type_id`, `title`, `content`, `date_create`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6)' in D:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): CActiveRecord->insert()
+#2 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run('getfeeds')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('rssNotification...')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+HTTP_REFERER=http://localhost/TaxConsulting/
+---
+2014/06/19 11:07:19 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `access_level_id`, `info_type_id`, `title`, `content`, `date_create`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6).
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (241)
+in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/19 11:07:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `access_level_id`, `info_type_id`, `title`, `content`, `date_create`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6)' in D:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): CActiveRecord->insert()
+#2 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run('getfeeds')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('rssNotification...')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+HTTP_REFERER=http://localhost/TaxConsulting/
+---
+2014/06/19 11:12:56 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `access_level_id`, `info_type_id`, `title`, `content`, `date_create`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6).
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (222)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php (241)
+in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/19 11:12:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `access_level_id`, `info_type_id`, `title`, `content`, `date_create`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6)' in D:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(222): CActiveRecord->insert()
+#2 D:\xampp\htdocs\TaxConsulting\protected\controllers\RssNotificationController.php(241): RssNotificationController->getFeeds()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): RssNotificationController->run('getfeeds')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('rssNotification...')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/TaxConsulting/rssNotification/getFeeds
+HTTP_REFERER=http://localhost/TaxConsulting/
+---
+2014/06/19 11:14:08 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company_id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `title`, `content`, `access_level_id`, `date_create`, `info_type_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, now(), :yp5).
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php (385)
+in D:\xampp\htdocs\TaxConsulting\index.php (13)
+2014/06/19 11:14:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`taxconsulting`.`info`, CONSTRAINT `FK_info_company_id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `info` (`appointment_status`, `user_id`, `title`, `content`, `access_level_id`, `date_create`, `info_type_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, now(), :yp5)' in D:\xampp\htdocs\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php(385): CActiveRecord->save()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionNoticeCreate()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('noticecreate')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('manager/info/de...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/TaxConsulting/manager/infodefault/noticeCreate
+HTTP_REFERER=http://localhost/TaxConsulting/manager/infodefault/noticeCreate
+---
+2014/06/19 11:24:34 [error] [exception.CException] exception 'CException' with message 'Property "TbButton.context" is not defined.' in D:\xampp\htdocs\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWidgetFactory.php(161): CComponent->__set('context', 'primary')
+#1 D:\xampp\htdocs\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(DefaultController), 'booster.widgets...', Array)
+#2 D:\xampp\htdocs\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('booster.widgets...', Array)
+#3 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\_search.php(74): CBaseController->widget('booster.widgets...', Array)
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\\xampp\\htdocs...')
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\xampp\\htdocs...', Array, true)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\\xampp\\htdocs...', Array, true)
+#7 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\notice.php(44): CController->renderPartial('_search', Array)
+#8 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\\xampp\\htdocs...')
+#9 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\xampp\\htdocs...', Array, true)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\\xampp\\htdocs...', Array, true)
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('notice', Array, true)
+#12 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php(371): CController->render('notice', Array)
+#13 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionNotice()
+#14 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('notice')
+#23 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('manager/info/de...')
+#24 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#25 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/TaxConsulting/manager/infodefault/notice
+HTTP_REFERER=http://localhost/TaxConsulting/site
+---

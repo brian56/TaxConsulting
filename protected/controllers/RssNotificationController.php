@@ -195,7 +195,7 @@ class RssNotificationController extends Controller
 					$xml = new SimpleXMLElement($rawFeed);
 					$criteria = new CDbCriteria();
 					$criteria->condition = 't.company_id=:company_id';
-					$criteria->params = array(':company_id'=>Yii::app()->user->getState('company_id'));
+					$criteria->params = array(':company_id'=>Yii::app()->user->getState('globalId'));
 					$rss_notification = RssNotification::model()->find($criteria);
 					
 					$post_pubDate = "";
@@ -212,8 +212,8 @@ class RssNotificationController extends Controller
 							$data.= "\n";
 							
 							$info = new Info();
-							$info->user_id = Yii::app()->user->getState('user_id');
-							$info->company_id = Yii::app()->user->getState('company_id');
+							$info->user_id = Yii::app()->user->getState('userId');
+							$info->company_id = Yii::app()->user->getState('globalId');
 							$info->access_level_id = 1;
 							$info->info_type_id = 1;
 							$info->title = $post_title; 

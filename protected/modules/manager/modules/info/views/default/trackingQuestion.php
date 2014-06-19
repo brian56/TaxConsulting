@@ -49,8 +49,9 @@ $this->breadcrumbs=array(
 
 <div id='info-grid'>
 <?php 
-$this->widget('zii.widgets.grid.CGridView', array(
-	//'id'=>'info-grid',
+$this->widget('booster.widgets.TbGridView', array(
+// 	'id'=>'info-grid',
+	'type'=>'bordered condensed',
 	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('globalId')),
 	//'filter'=>$model,
 'emptyText' => Yii::t('strings','No results found'),
@@ -73,21 +74,25 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'date_update',
 		*/
 		array(
-		'class'=>'CButtonColumn',
+		'class'=>'booster.widgets.TbButtonColumn',
 		'template'=>'{view}{update}{delete}',
+		'htmlOptions'=>array('style'=>'width:60px;'),
 		'buttons'=>array
 		(
 				'delete' => array
 				(
+					'options' => array('style'=>'margin:2px;'),
 						'label' => Yii::t('strings','Delete'),
 				),
 				'view' => array
 				(
+						'options' => array('style'=>'margin:2px;'),
 						'label' => Yii::t('strings','View'),
 						'url'=> 'Yii::app()->createUrl("manager/info/default/questionView", array("id"=>$data->id))',
 				),
 				'update' => array
 				(
+						'options' => array('style'=>'margin:2px;'),
 						'label' => Yii::t('strings','Update'),
 						'url'=> 'Yii::app()->createUrl("manager/info/default/questionUpdate", array("id"=>$data->id))',
 				),

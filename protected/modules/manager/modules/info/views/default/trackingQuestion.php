@@ -51,7 +51,7 @@ $this->breadcrumbs=array(
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	//'id'=>'info-grid',
-	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('hospitalId')),
+	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('globalId')),
 	//'filter'=>$model,
 'emptyText' => Yii::t('strings','No results found'),
 'summaryText' => Yii::t('strings','Displaying').' {start}-{end} '.Yii::t('strings','of').' {count} '.Yii::t('strings','result(s)'),

@@ -839,3 +839,72 @@ Stack trace:
 #17 {main}
 REQUEST_URI=/TaxConsulting/site
 ---
+2014/06/19 13:19:00 [error] [php] Undefined variable: activedAdminHospitals (D:\xampp\htdocs\TaxConsulting\protected\views\layouts\main.php:184)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\widgets\CContentDecorator.php(76): SiteController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate()
+#2 D:\xampp\htdocs\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(206): CContentDecorator->run()
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(300): SiteController->endWidget()
+#5 D:\xampp\htdocs\TaxConsulting\protected\views\layouts\column1.php(6): SiteController->endContent()
+#6 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#7 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(784): SiteController->renderFile()
+#9 D:\xampp\htdocs\TaxConsulting\protected\controllers\SiteController.php(33): SiteController->render()
+#10 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#12 D:\xampp\htdocs\yii\framework\web\CController.php(286): SiteController->runAction()
+#13 D:\xampp\htdocs\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#14 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#15 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/site
+in D:\xampp\htdocs\TaxConsulting\protected\views\layouts\main.php (184)
+in D:\xampp\htdocs\TaxConsulting\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\SiteController.php (33)
+2014/06/19 13:25:13 [error] [exception.CException] exception 'CException' with message 'User and its behaviors do not have a method or closure named "getHospitalUsers".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('getHospitalUser...', Array)
+#1 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\user\views\default\admin.php(49): CActiveRecord->__call('getHospitalUser...', Array)
+#2 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\user\views\default\admin.php(49): User->getHospitalUsers()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require('D:\\xampp\\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\xampp\\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\\xampp\\htdocs...', Array, true)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#7 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\user\controllers\DefaultController.php(152): CController->render('admin', Array)
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionAdmin()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('manager/user/de...')
+#19 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#20 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/TaxConsulting/manager/user/default/admin
+HTTP_REFERER=http://localhost/TaxConsulting/manager/infodefault/advanceManage
+---
+2014/06/19 13:41:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/hospital".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/hospital')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/admin/hospital
+HTTP_REFERER=http://localhost/TaxConsulting/admin/logevent
+---
+2014/06/19 13:41:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/hospital".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/hospital')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/admin/hospital
+HTTP_REFERER=http://localhost/TaxConsulting/admin/logevent
+---

@@ -8,12 +8,18 @@ else
 
 ?>
 <center>
-
+<?php $this->widget('ext.LangPick.ELangPick', array(
+	    //'excludeFromList' => array('pl', 'en'), // list of languages to exclude from list
+	    'pickerType' => 'dropdown',              // buttons, links, dropdown
+	    //'linksSeparator' => '<b> | </b>',   // if picker type is set to 'links'
+	    'buttonsSize' => 'small',                // mini, small, large
+	    'buttonsColor' => 'primary',            // primary, info, success, warning, danger, inverse
+	)); ?>
 	<br>	
 	<br>
 	<br>	
 	<h2>
-		Welcome to <i>
+		<?php echo Yii::t('strings','Welcome to');?> <i>
 		<?php 
 			if (Yii::app()->user->getState('isManager')) {
 				echo CHtml::encode(Yii::app()->user->getState('globalName'));
@@ -25,7 +31,7 @@ else
 		</i>
 	</h2>
 
-	<h4>This page is for managing company's data.</h4>
+	<h4><?php echo Yii::t('strings',"This page is for managing tax consulting company's data.");?></h4>
 	<br>
 	<br>
 	<?php 
@@ -56,7 +62,7 @@ else
 	<br>
 	<br>
 	<br>
-	<h5>A company application developed by</h5>
+	<h5><?php echo Yii::t('strings','A tax consulting company application developed by');?></h5>
 	<?php 
 	echo CHtml::image('http://appromobile.com/wp-content/uploads/2013/06/cropped-Logo.png');
 // 		echo CHtml::textField('tripTotal','',array('size'=>60,'id' => 'push'));

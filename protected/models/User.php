@@ -124,19 +124,19 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'company_id' => 'Company',
-			'user_level_id' => 'User Level',
-			'is_actived' => 'Actived',
+			'company_id' => Yii::t('strings','Company'),
+			'user_level_id' => Yii::t('strings','User Level'),
+			'is_actived' => Yii::t('strings','Active Status'),
 			'email' => 'Email',
-			'password' => 'Password',
-			'user_name' => 'User Name',
-			'contact_phone' => 'Contact Phone',
-			'register_date' => 'Register Date',
-			'device_os_id' => 'Device Os',
-			'device_id' => 'Device Id',
-			'notify' => 'Notify',
+			'password' => Yii::t('strings','Password'),
+			'user_name' => Yii::t('strings','User Name'),
+			'contact_phone' => Yii::t('strings','Contact Phone'),
+			'register_date' => Yii::t('strings','Register Date'),
+			'device_os_id' => Yii::t('strings','Device Os'),
+			'device_id' => Yii::t('strings','Device Id'),
+			'notify' => Yii::t('strings','Notify'),
 			'token' => 'Token',
-			'token_expired_date' => 'Token Expired Date',
+			'token_expired_date' => Yii::t('strings','Token Expired Date'),
 		);
 	}
 
@@ -172,7 +172,8 @@ class User extends CActiveRecord
 		$criteria->compare('notify',$this->notify);
 		$criteria->compare('token',$this->token,true);
 		$criteria->compare('token_expired_date',$this->token_expired_date,true);
-		$criteria->order = 't.register_date DESC';
+		if(!isset($_GET['User_sort']))
+			$criteria->order = 't.register_date DESC';
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination' => array(
@@ -234,7 +235,7 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 		
 		$criteria->compare('id',$this->id);
-		$criteria->compare('company_id',Yii::app()->user->getState('companyId'));
+		$criteria->compare('company_id',Yii::app()->user->getState('globalId'));
 		$criteria->compare('user_level_id',1);
 		$criteria->compare('is_actived',$this->is_actived);
 		$criteria->compare('email',$this->email,true);
@@ -247,7 +248,8 @@ class User extends CActiveRecord
 		$criteria->compare('notify',$this->notify);
 		$criteria->compare('token',$this->token,true);
 		$criteria->compare('token_expired_date',$this->token_expired_date,true);
-		$criteria->order = 't.register_date DESC';
+		if(!isset($_GET['User_sort']))
+			$criteria->order = 't.register_date DESC';
 		return new CActiveDataProvider($this, array(
 				'criteria'=>$criteria,
 				'pagination' => array(

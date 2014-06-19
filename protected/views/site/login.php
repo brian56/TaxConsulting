@@ -7,8 +7,13 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 $this->breadcrumbs=array(
 	'Login',
 );
-?>
-
+$this->widget('ext.LangPick.ELangPick', array(
+		//'excludeFromList' => array('pl', 'en'), // list of languages to exclude from list
+		'pickerType' => 'dropdown',              // buttons, links, dropdown
+		//'linksSeparator' => '<b> | </b>',   // if picker type is set to 'links'
+		'buttonsSize' => 'small',                // mini, small, large
+		'buttonsColor' => 'primary',            // primary, info, success, warning, danger, inverse
+	)); ?>
 <h1>Login</h1>
 
 <p>Please fill out the following form with your login credentials:</p>
@@ -44,7 +49,15 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+		<?php 
+		$this->widget(
+				'booster.widgets.TbButton',
+				array(
+						'label' => Yii::t('strings','Login'),
+						'context' => 'primary',
+						'buttonType' => 'submit',
+				)
+		);?>
 	</div>
 
 <?php $this->endWidget(); ?>

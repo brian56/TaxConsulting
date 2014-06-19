@@ -123,16 +123,16 @@ class Info extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'info_type_id' => 'Info Type',
-			'user_id' => 'User',
-			'company_id' => 'Company',
-			'appointment_status' => 'Appointment Status',
-			'title' => 'Title',
-			'content' => 'Content',
-			'appointment_date' => 'Appointment Date',
-			'date_create' => 'Date Create',
-			'date_update' => 'Date Update',
-			'access_level_id' => 'Access Level',
+			'info_type_id' => Yii::t('strings','Info Type'),
+			'user_id' => Yii::t('strings','Author'),
+			'hospital_id' => Yii::t('strings','Hospital'),
+			'appointment_status' => Yii::t('strings','Appointment Status'),
+			'title' => Yii::t('strings','Title'),
+			'content' => Yii::t('strings','Content'),
+			'appointment_date' => Yii::t('strings','Appointment Date'),
+			'date_create' => Yii::t('strings','Date Create'),
+			'date_update' => Yii::t('strings','Date Update'),
+			'access_level_id' => Yii::t('strings','Access Level'),
 		);
 	}
 
@@ -165,7 +165,9 @@ class Info extends CActiveRecord
 		$criteria->compare('date_create',$this->date_create,true);
 		$criteria->compare('date_update',$this->date_update,true);
 		$criteria->compare('access_level_id',$this->access_level_id);
-
+		if(!isset($_GET['Info_sort']))
+			$criteria->order = 'date_create DESC';
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination' => array(
@@ -188,7 +190,8 @@ class Info extends CActiveRecord
 		$criteria->compare ( 't.date_create', $this->date_create, true );
 		$criteria->compare ( 't.date_update', $this->date_update, true );
 		$criteria->compare ( 't.access_level_id', $this->access_level_id );
-		$criteria->order = 'date_create DESC';
+		if(!isset($_GET['Info_sort']))
+			$criteria->order = 'date_create DESC';
 		//$criteria->with = array('company', 'user', 'infoType', 'accessLevel', 'infoComments');
 	
 		return new CActiveDataProvider ( $this, array (
@@ -212,7 +215,8 @@ class Info extends CActiveRecord
 		$criteria->compare ( 't.date_create', $this->date_create, true );
 		$criteria->compare ( 't.date_update', $this->date_update, true );
 		$criteria->compare ( 't.access_level_id', $this->access_level_id );
-		$criteria->order = 'date_create DESC';
+		if(!isset($_GET['Info_sort']))
+			$criteria->order = 'date_create DESC';
 		//$criteria->with = array('company', 'user', 'infoType', 'accessLevel', 'infoComments');
 	
 		return new CActiveDataProvider ( $this, array (
@@ -235,7 +239,8 @@ class Info extends CActiveRecord
 		$criteria->compare ( 't.date_create', $this->date_create, true );
 		$criteria->compare ( 't.date_update', $this->date_update, true );
 		$criteria->compare ( 't.access_level_id', $this->access_level_id );
-		$criteria->order = 'date_create DESC';
+		if(!isset($_GET['Info_sort']))
+			$criteria->order = 'date_create DESC';
 		//$criteria->with = array('company', 'user', 'infoType', 'accessLevel', 'infoComments');
 	
 		return new CActiveDataProvider ( $this, array (
@@ -258,7 +263,8 @@ class Info extends CActiveRecord
 		$criteria->compare ( 't.date_create', $this->date_create, true );
 		$criteria->compare ( 't.date_update', $this->date_update, true );
 		$criteria->compare ( 't.access_level_id', $this->access_level_id );
-		$criteria->order = 'date_create DESC';
+		if(!isset($_GET['Info_sort']))
+			$criteria->order = 'date_create DESC';
 		//$criteria->with = array('company', 'user', 'infoType', 'accessLevel', 'infoComments');
 	
 		return new CActiveDataProvider ( $this, array (
@@ -282,7 +288,8 @@ class Info extends CActiveRecord
 		$criteria->compare ( 't.date_create', $this->date_create, true );
 		$criteria->compare ( 't.date_update', $this->date_update, true );
 		$criteria->compare ( 't.access_level_id', $this->access_level_id );
-		$criteria->order = 'date_create DESC';
+		if(!isset($_GET['Info_sort']))
+			$criteria->order = 'date_create DESC';
 		//$criteria->with = array('company', 'user', 'infoType', 'accessLevel', 'infoComments');
 	
 		return new CActiveDataProvider ( $this, array (

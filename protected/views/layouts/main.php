@@ -29,7 +29,7 @@
 		<?php 
 		if(Yii::app()->user->getState('isManager')) {
 			//echo CHtml::encode(Yii::app()->name); 
-			echo Yii::app()->user->getState('companyName', '');
+			echo Yii::app()->user->getState('globalName', '');
 		} else {
 			echo Yii::app()->name;
 		}
@@ -99,9 +99,9 @@
 	if(isset(Yii::app()->controller->module) && checkController(Yii::app()->controller->module->id,'info')) {
 		$activedAdminInfos = true;
 	}
-	$activedAdminCompanys = false;
+	$activedAdminCompanies = false;
 	if(isset(Yii::app()->controller->module) && checkController(Yii::app()->controller->module->id,'company')) {
-		$activedAdminCompanys = true;
+		$activedAdminCompanies = true;
 	}
 	$activedAdminUsers = false;
 	if(isset(Yii::app()->controller->module) && checkController(Yii::app()->controller->module->id,'user')) {
@@ -125,45 +125,45 @@
 // 	if(isset(Yii::app()->controller->module->parentModule->id) && (Yii::app()->controller->module->parentModule->id=='admin')) {
 // 		$activedAdminItem = true;
 // 	}
-		$this->widget('application.extensions.eflatmenu.EFlatMenu', array(
+			$this->widget('application.extensions.eflatmenu.EFlatMenu', array(
 			'items' => array(
 				array(
-					'label'=>'Home', 
+					'label'=>Yii::t('strings','Home'), 
 					'url'=>array('/site'),
 					'visible' => TRUE, 
 					'active'=>(Yii::app()->controller->action->id=='index' && Yii::app()->controller->id=='site')),
 				array(
-					'label'=>'Notices', 
+					'label'=>Yii::t('strings','Notices'), 
 					'url'=>array('/manager/info/default/notice'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
 					'active'=>$activedNoticeItem
 				),
 				array(
-					'label'=>'Events', 
+					'label'=>Yii::t('strings','Events'), 
 					'url'=>array('/manager/info/default/event'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
 					'active'=>$activedEventItem
 				),
 				array(
-					'label'=>'Appointments', 
+					'label'=>Yii::t('strings','Appointments'), 
 					'url'=>array('/manager/info/default/appointment'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
 					'active'=>$activedAppointmentItem
 				),
 				array(
-					'label'=>'Questions', 
+					'label'=>Yii::t('strings','Questions'), 
 					'url'=>array('/manager/info/default/question'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
 					'active'=>$activedQuestionItem
 				),
 				array(
-					'label'=>'Visitor Comments', 
+					'label'=>Yii::t('strings','Visitor Comments'), 
 					'url'=>array('/manager/info/default/visitorComment'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
 					'active'=>$activedVisitorCommentItem
 				),
 				array(
-					'label'=>'Advance manage', 
+					'label'=>Yii::t('strings','Advance Manage'), 
 					'url'=>array('/manager/info/default/advanceManage'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
 					'active'=>$activedAdvanceManageItem
@@ -171,25 +171,25 @@
 				
 				
 				array(
-					'label'=>'Infos', 
+					'label'=>Yii::t('strings','Infos'), 
 					'url'=>array('/admin/info'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isAdmin")), 
 					'active'=>$activedAdminInfos
 				),
 				array(
-					'label'=>'Companys', 
+					'label'=>Yii::t('strings','Companies'), 
 					'url'=>array('/admin/company'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isAdmin")), 
-					'active'=>$activedAdminCompanys
+					'active'=>$activedAdminCompanies
 				),
 				array(
-					'label'=>'Users', 
+					'label'=>Yii::t('strings','Users'), 
 					'url'=>array('/admin/user'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isAdmin")), 
 					'active'=>$activedAdminUsers
 				),
 				array(
-					'label'=>'Log Events', 
+					'label'=>Yii::t('strings','Log Events'), 
 					'url'=>array('/admin/logevent'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isAdmin")), 
 					'active'=>$activedAdminLogEvents
@@ -201,12 +201,12 @@
 // 					'active'=>$activedAdminItem
 // 				),
 				array(
-					'label' => 'Login', 
+					'label' => Yii::t('strings','Login'), 
 					'url' => array('site/login'), 
 					'visible' => Yii::app()->user->isGuest, 
 					'active'=>(Yii::app()->controller->id=='site' && Yii::app()->controller->action->id=='login')),
 				array(
-					'label' => 'Logout (' . Yii::app()->user->name . ')', 
+					'label' => Yii::t('strings','Logout'). ' (' . Yii::app()->user->name . ')', 
 					'url' => array('/site/logout'), 
 					'visible' => !Yii::app()->user->isGuest)
 			)

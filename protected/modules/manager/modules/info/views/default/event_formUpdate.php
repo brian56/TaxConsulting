@@ -27,14 +27,6 @@
 		</div>
 
 		<div class="span-10">
-		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>60)); ?>
-		<?php echo $form->error($model,'title'); ?>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="span-10">
 		<?php echo $form->labelEx($model,'access_level_id'); ?>
 		<?php 
 			$listData = CHtml::listData(AccessLevel::model()->findAll(),'id','name');
@@ -50,15 +42,22 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'title'); ?>
+		<?php echo $form->textField($model,'title',array('size'=>125)); ?>
+		<?php echo $form->error($model,'title'); ?>
+		
+	</div>
+
+	<div class="row">
 		<div class="span-18">
 		<?php echo $form->labelEx($model,'content'); ?>
 		<?php $this->widget('ext.kindeditor.KindEditorWidget',array(
 				'id'=>'Info_content',   //Textarea id
-				'language' => 'en',
+				'language' =>  Yii::app()->language,
 				// Additional Parameters (Check http://www.kindsoft.net/docs/option.html)
 				'items' => array(
 						'options' => array('action' => $this->action->id, 'id' => $this->id,'PHPSESSID'=>session_id()),
-						'langType'=>'en',
+						'langType'=> Yii::app()->language,
 						'width'=>'800px',
 						'height'=>'600px',
 						'themeType'=>'simple',

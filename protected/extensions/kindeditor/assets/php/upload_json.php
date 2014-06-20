@@ -32,29 +32,29 @@ $save_path = realpath($save_path) . '/';
 if (!empty($_FILES['imgFile']['error'])) {
 	switch($_FILES['imgFile']['error']){
 		case '1':
-			$error = '超过php.ini允许的大小。';
+			$error = Yii::t('strings', 'Over php.ini allowable size.');
 			break;
 		case '2':
-			$error = '超过表单允许的大小。';
+			$error = Yii::t('strings','Exceed the allowable size of the form.');
 			break;
 		case '3':
-			$error = '图片只有部分被上传。';
+			$error = Yii::t('strings','Picture was only partially uploaded.');
 			break;
 		case '4':
-			$error = '请选择图片。';
+			$error = Yii::t('strings','Please select a picture.');
 			break;
 		case '6':
-			$error = '找不到临时目录。';
+			$error = Yii::t('strings','Can not find a temporary directory.');
 			break;
 		case '7':
-			$error = '写文件到硬盘出错。';
+			$error = Yii::t('strings','Error writing file to your hard disk.' );
 			break;
 		case '8':
-			$error = 'File upload stopped by extension。';
+			$error = Yii::t('strings','File upload stopped by extension.');
 			break;
 		case '999':
 		default:
-			$error = '未知错误。';
+			$error = Yii::t('strings','Unknown error.');
 	}
 	alert($error);
 }
@@ -69,28 +69,28 @@ if (empty($_FILES) === false) {
 	$file_size = $_FILES['imgFile']['size'];
 	//检查文件名
 	if (!$file_name) {
-		alert("请选择文件。");
+		alert(Yii::t('strings','Please select a file.'));
 	}
 	//检查目录
 	if (@is_dir($save_path) === false) {
-		alert("上传目录不存在。");
+		alert(Yii::t('strings','Upload directory does not exist.'));
 	}
 	//检查目录写权限
 	if (@is_writable($save_path) === false) {
-		alert("上传目录没有写权限。");
+		alert(Yii::t('strings','Upload directory is not writable.'));
 	}
 	//检查是否已上传
 	if (@is_uploaded_file($tmp_name) === false) {
-		alert("上传失败。");
+		alert(Yii::t('strings','Upload failed.'));
 	}
 	//检查文件大小
 	if ($file_size > $max_size) {
-		alert("上传文件大小超过限制。");
+		alert(Yii::t('strings','Upload file size exceeds the limit.'));
 	}
 	//检查目录名
 	$dir_name = empty($_GET['dir']) ? 'image' : trim($_GET['dir']);
 	if (empty($ext_arr[$dir_name])) {
-		alert("目录名不正确。");
+		alert(Yii::t('strings','Directory name is incorrect.'));
 	}
 	//获得文件扩展名
 	$temp_arr = explode(".", $file_name);
@@ -99,7 +99,7 @@ if (empty($_FILES) === false) {
 	$file_ext = strtolower($file_ext);
 	//检查扩展名
 	if (in_array($file_ext, $ext_arr[$dir_name]) === false) {
-		alert("上传文件扩展名是不允许的扩展名。\n只允许" . implode(",", $ext_arr[$dir_name]) . "格式。");
+		alert(Yii::t('strings','Upload the file extension is not allowed extension. \nOnly allow ') . implode(",", $ext_arr[$dir_name]));
 	}
 	//创建文件夹
 	if ($dir_name !== '') {
@@ -120,7 +120,7 @@ if (empty($_FILES) === false) {
 	//移动文件
 	$file_path = $save_path . $new_file_name;
 	if (move_uploaded_file($tmp_name, $file_path) === false) {
-		alert("上传文件失败。");
+		alert(Yii::t('strings','Upload file failed.'));
 	}
 	@chmod($file_path, 0644);
 	$file_url = $save_url . $new_file_name;

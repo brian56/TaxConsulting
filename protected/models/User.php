@@ -48,7 +48,8 @@ class User extends CActiveRecord
 	}
 	
 	public function getCompanyName(){
-		return $this->company->name;
+		if(isset($this->company->name))
+			return $this->company->name;
 	}
 	
 	public function getNotifyName(){

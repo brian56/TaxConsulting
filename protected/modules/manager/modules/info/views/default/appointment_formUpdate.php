@@ -21,15 +21,15 @@
 
 	<div class="row">
 		<div class="span-10">
+		<?php echo $form->labelEx($model,'title'); ?>
+		<?php echo $form->textField($model,'title',array('size'=>60)); ?>
+		<?php echo $form->error($model,'title'); ?>
+		</div>
+		
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'user_id'); ?>
 		<?php echo $form->dropDownList($model, 'user_id',array($model->user_id=>$model->user->email)); ?>
 		<?php echo $form->error($model,'user_id'); ?>
-		</div>
-	
-		<div class="span-10">
-		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>60)); ?>
-		<?php echo $form->error($model,'title'); ?>
 		</div>
 	</div>
 
@@ -49,12 +49,6 @@
 	
 	<div class="row">
 		<div class="span-10">
-		<?php echo $form->labelEx($model,'appointment_status'); ?>
-		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>Yii::t('strings','Pending'), '1'=>Yii::t('strings','Confirmed'), '-1'=>Yii::t('strings','Rejected'))); ?>
-		<?php echo $form->error($model,'appointment_status'); ?>
-		</div>
-
-		<div class="span-10">
 		<?php echo $form->labelEx($model,'access_level_id'); ?>
 		<?php 
 			$listData = CHtml::listData(AccessLevel::model()->findAll(),'id','name');
@@ -66,6 +60,12 @@
 			echo $form->dropDownList($model, 'access_level_id', $t_listData); 
 		?>
 		<?php echo $form->error($model,'access_level_id'); ?>
+		</div>
+		
+		<div class="span-10">
+		<?php echo $form->labelEx($model,'appointment_status'); ?>
+		<?php echo $form->dropDownList($model,'appointment_status',array('0'=>Yii::t('strings','Pending'), '1'=>Yii::t('strings','Confirmed'), '-1'=>Yii::t('strings','Rejected'))); ?>
+		<?php echo $form->error($model,'appointment_status'); ?>
 		</div>
 	</div>
 	<div class="row buttons">

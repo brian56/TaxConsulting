@@ -41,8 +41,8 @@ class UserIdentity extends CUserIdentity {
             $this->_id = $record->id;
             $this->username = $record->email;
             $this->errorCode = self::ERROR_NONE;
-            $this->setState('userId', $record->id);
-            $this->setState('userName', $record->user_name);
+            Yii::app()->user->setState('userName', $record->user_name);
+            Yii::app()->user->setState('userId', $record->id);
             if($record->user_level_id ==3) {
             	Yii::app()->user->setState("isAdmin", true);
             } else if($record->user_level_id ==2) {

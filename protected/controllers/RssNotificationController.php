@@ -217,9 +217,11 @@ class RssNotificationController extends Controller
 							$info->access_level_id = 1;
 							$info->info_type_id = 1;
 							$info->title = $post_title; 
+							echo $post_title;
+							die();
 							$info->content = $post_url;
 							$info->date_create = date('Y-m-d H:i:s', strtotime($post_pubDate));
-							$info->insert();
+							$info->save();
 						}
 					}
 					//update the last post date time to now

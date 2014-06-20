@@ -27,14 +27,6 @@
 		</div>
 
 		<div class="span-10">
-		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>60)); ?>
-		<?php echo $form->error($model,'title'); ?>
-		</div>
-	</div>
-
-		<div class="row">
-		<div class="span-10">
 		<?php echo $form->labelEx($model,'access_level_id'); ?>
 		<?php 
 			$listData = CHtml::listData(AccessLevel::model()->findAll(),'id','name');
@@ -47,6 +39,13 @@
 		?>
 		<?php echo $form->error($model,'access_level_id'); ?>
 		</div>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'title'); ?>
+		<?php echo $form->textField($model,'title',array('size'=>125)); ?>
+		<?php echo $form->error($model,'title'); ?>
+		
 	</div>
 
 	<div class="row">

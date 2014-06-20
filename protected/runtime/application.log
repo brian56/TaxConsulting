@@ -908,3 +908,147 @@ Stack trace:
 REQUEST_URI=/TaxConsulting/admin/hospital
 HTTP_REFERER=http://localhost/TaxConsulting/admin/logevent
 ---
+2014/06/20 11:29:13 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\TaxConsulting\protected\models\User.php:51)
+Stack trace:
+#0 D:\xampp\htdocs\TaxConsulting\protected\controllers\api\UserController.php(209): User->insert()
+#1 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UserController->actionRegisterUser()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(286): UserController->runAction()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(265): UserController->runActionWithFilters()
+#5 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UserController->run()
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/api/user/registeruser
+in D:\xampp\htdocs\TaxConsulting\protected\models\User.php (51)
+in D:\xampp\htdocs\TaxConsulting\protected\models\User.php (70)
+in D:\xampp\htdocs\TaxConsulting\protected\controllers\api\UserController.php (209)
+2014/06/20 11:49:15 [error] [php] Object of class User could not be converted to string (D:\xampp\htdocs\yii\framework\web\helpers\CHtml.php:2019)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#1 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): DefaultController->renderInternal()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(869): DefaultController->renderFile()
+#3 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_create.php(19): DefaultController->renderPartial()
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): DefaultController->renderInternal()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): DefaultController->renderFile()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(782): DefaultController->renderPartial()
+#8 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php(483): DefaultController->render()
+#9 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionAppointmentCreate()
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): DefaultController->runAction()
+#12 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): DefaultController->filterAccessControl()
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(265): DefaultController->runActionWithFilters()
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): DefaultController->run()
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/manager/infodefault/appointmentCreate
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_form.php (20)
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_create.php (19)
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php (483)
+2014/06/20 11:49:36 [error] [php] Object of class User could not be converted to string (D:\xampp\htdocs\yii\framework\web\helpers\CHtml.php:2019)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#1 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): DefaultController->renderInternal()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(869): DefaultController->renderFile()
+#3 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_create.php(19): DefaultController->renderPartial()
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): DefaultController->renderInternal()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): DefaultController->renderFile()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(782): DefaultController->renderPartial()
+#8 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php(483): DefaultController->render()
+#9 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionAppointmentCreate()
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): DefaultController->runAction()
+#12 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): DefaultController->filterAccessControl()
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(265): DefaultController->runActionWithFilters()
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): DefaultController->run()
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/manager/infodefault/appointmentCreate
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_form.php (20)
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_create.php (19)
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php (483)
+2014/06/20 11:56:48 [error] [php] Object of class User could not be converted to string (D:\xampp\htdocs\yii\framework\web\helpers\CHtml.php:2019)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#1 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): DefaultController->renderInternal()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(869): DefaultController->renderFile()
+#3 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_create.php(19): DefaultController->renderPartial()
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(126): require()
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(95): DefaultController->renderInternal()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(869): DefaultController->renderFile()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(782): DefaultController->renderPartial()
+#8 D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php(483): DefaultController->render()
+#9 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): DefaultController->actionAppointmentCreate()
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): DefaultController->runAction()
+#12 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 D:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): DefaultController->filterAccessControl()
+#15 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(265): DefaultController->runActionWithFilters()
+#18 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): DefaultController->run()
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\TaxConsulting\index.php(13): CWebApplication->run()
+REQUEST_URI=/TaxConsulting/manager/infodefault/appointmentcreate
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_form.php (20)
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\views\default\appointment_create.php (19)
+in D:\xampp\htdocs\TaxConsulting\protected\modules\manager\modules\info\controllers\DefaultController.php (483)
+2014/06/20 11:59:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "manager/infodefault/addon.css".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('manager/infodef...')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/manager/infodefault/addon.css
+HTTP_REFERER=http://localhost/TaxConsulting/manager/infodefault/appointmentcreate
+---
+2014/06/20 13:21:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/bb220d82/lang/ko.js".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/bb220d82...')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/assets/bb220d82/lang/ko.js
+HTTP_REFERER=http://localhost/TaxConsulting/manager/infodefault/noticeCreate
+---
+2014/06/20 13:21:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/bb220d82/lang/ko.js".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/bb220d82...')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/assets/bb220d82/lang/ko.js?ver=4.1.2%20(2012-07-21)
+HTTP_REFERER=http://localhost/TaxConsulting/manager/infodefault/noticeCreate
+---
+2014/06/20 13:22:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/bb220d82/lang/ko.js".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/bb220d82...')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/assets/bb220d82/lang/ko.js
+HTTP_REFERER=http://localhost/TaxConsulting/manager/infodefault/noticeCreate
+---
+2014/06/20 13:22:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/bb220d82/lang/ko.js".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/bb220d82...')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\TaxConsulting\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/TaxConsulting/assets/bb220d82/lang/ko.js?ver=4.1.2%20(2012-07-21)
+HTTP_REFERER=http://localhost/TaxConsulting/manager/infodefault/noticeCreate
+---

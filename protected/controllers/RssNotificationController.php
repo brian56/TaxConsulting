@@ -182,7 +182,10 @@ class RssNotificationController extends Controller
 			Yii::app()->end();
 		}
 	}
-	
+	function strip_cdata($string)
+	{    preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $string, $matches);
+		  return str_replace($matches[0], $matches[1], $string);
+	}
 	public function getFeeds()
 	{
 // 		$companies = Company::model()->getAllRssUrl();
@@ -205,8 +208,8 @@ class RssNotificationController extends Controller
 					foreach($xml->channel->item as $item)
 					{
 						$post_pubDate = $item->pubDate;
-						$post_url = $item->link;
-						$post_title = $item->title;
+						$post_url = self::strip_cdata($item->link);
+						$post_title = self::strip_cdata($item->title);
 						if(strtotime($post_pubDate)>strtotime($rss_notification->last_post_pubDate)) {
 							$data.= $post_pubDate;
 							$data.= "\n";

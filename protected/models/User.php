@@ -226,7 +226,7 @@ class User extends CActiveRecord
 	
 	public function getCompanyUserDeviceIds($company_id=1){
 		$criteria = new CDbCriteria();
-		$criteria->select = array('device_id, notify');
+		$criteria->select = array('device_id');
 		$criteria->condition = 't.company_id=:company_id AND t.is_actived=:is_actived AND t.notify=:notify';
 		$criteria->params = array(':company_id'=>$company_id, ':is_actived'=>1, ':notify'=>1);
 		return $this->findAll($criteria);

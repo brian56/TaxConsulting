@@ -220,8 +220,6 @@ class RssNotificationController extends Controller
 							$info->content = $post_url;
 							$info->date_create = date('Y-m-d H:i:s', strtotime($post_pubDate));
 							$info->insert();
-							$userDeviceIds = User::model()->getCompanyUserDeviceIds(Yii::app()->user->getState('globalId'));
-							SendNotification::actionPushMultiDevice($userDeviceIds, $post_title, $post_url);
 						}
 					}
 					//update the last post date time to now

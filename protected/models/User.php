@@ -232,6 +232,13 @@ class User extends CActiveRecord
 		return $this->findAll($criteria);
 	}
 	
+	public function getCompanyUser($company_id=1){
+		$criteria = new CDbCriteria();
+		$criteria->condition = 't.company_id=:company_id AND t.is_actived=:is_actived';
+		$criteria->params = array(':company_id'=>$company_id, ':is_actived'=>1);
+		return $this->findAll($criteria);
+	}
+	
 	public function getCompanyUsers(){
 		$criteria=new CDbCriteria;
 		

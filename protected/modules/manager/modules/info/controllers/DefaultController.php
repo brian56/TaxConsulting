@@ -43,6 +43,10 @@ class DefaultController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('answerCreate', 'trackingMyPage', 'myPage', 'myPageCreate', 'myPageUpdate', 'myPageView', 'AjaxMyPage'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('event', 'eventCreate', 'eventView', 'eventUpdate'),
 				'users'=>array('@'),
 			),
@@ -497,12 +501,12 @@ class DefaultController extends Controller
 				if($model->appointment_status==1) {
 					$userDeviceId = $model->user->device_id;
 					$title = 'Your appointment has been confirmed.';
-					SendNotification::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
+					SendMyPage::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
 				}
 				if($model->appointment_status==-1) {
 					$userDeviceId = $model->user->device_id;
 					$title = 'Your appointment has been rejected.';
-					SendNotification::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
+					SendMyPage::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
 				}
 				$this->redirect(array('appointmentView','id'=>$model->id));
 			}
@@ -597,6 +601,101 @@ class DefaultController extends Controller
 	}
 	
 	
+	//------------------myPage actions--------------------------------//
+	public function actionAjaxMyPage()
+	{
+		$model =new Info();
+		$model->unsetAttributes();  // clear any default values
+	
+		//print_r($model);
+		$this->renderPartial('_ajaxMyPage', array('model'=>$model));
+	}
+	public function actionMyPage()
+	{
+		$model=new Info('myPage');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Info']))
+			$model->attributes=$_GET['Info'];
+	
+		$this->render('myPage',array(
+				'model'=>$model,
+		));
+	}
+	public function actionTrackingMyPage()
+	{
+		$model=new Info('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Info']))
+			$model->attributes=$_GET['Info'];
+	
+		$this->render('trackingMyPage',array(
+				'model'=>$model,
+		));
+	}
+	public function actionMyPageCreate()
+	{
+		$model=new Info;
+	
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+	
+		if(isset($_POST['Info']))
+		{
+			$model->attributes=$_POST['Info'];
+			$model->date_create=new CDbExpression('now()');
+			$model->info_type_id = 3;
+			if($model->save())
+				$this->redirect(array('myPageView','id'=>$model->id));
+		}
+	
+		$this->render('myPage_create',array(
+				'model'=>$model,
+		));
+	}
+	
+	
+	//=================controller tao cau tra loi ========================//
+// 	public function actionAnswerCreate()
+// 	{
+	
+// 		$model=new InfoComment;
+	
+// 		// Uncomment the following line if AJAX validation is needed
+// 		// $this->performAjaxValidation($model);
+	
+// 		if(isset($_POST['InfoComment']))
+// 		{
+// 			$model->attributes=$_POST['InfoComment'];
+// 			if($model->save())
+// 				$this->redirect(array('myPageView','id'=>$model->info_id));
+// 		}
+// 	}
+	
+	public function actionMyPageUpdate($id)
+	{
+		$model=$this->loadModel($id);
+	
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+	
+		if(isset($_POST['Info']))
+		{
+			$model->attributes=$_POST['Info'];
+			$model->date_update=new CDbExpression('now()');
+			if($model->save())
+				$this->redirect(array('myPageView','id'=>$model->id));
+		}
+	
+		$this->render('myPage_update',array(
+				'model'=>$model,
+		));
+	}
+	public function actionMyPageView($id)
+	{
+		$this->render('myPage_view',array(
+				'model'=>$this->loadModel($id),
+		));
+	}
 	
 	
 	public function actionAdvanceManage()

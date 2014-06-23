@@ -15,6 +15,7 @@
  * @property string $date_create
  * @property string $date_update
  * @property integer $access_level_id
+ * @property integer $receiver_id
  *
  * The followings are the available model relations:
  * @property Company $company
@@ -91,12 +92,12 @@ class Info extends CActiveRecord
 						'integerOnly' => true 
 				),
 				array (
-						'title, content, date_create, date_update, userName, appointment_date',
+						'title, receiver_id, content, date_create, date_update, userName, appointment_date',
 						'safe' 
 				),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, info_type_id, user_id, company_id, appointment_status, title, content, appointment_date, date_create, date_update, access_level_id', 'safe', 'on'=>'search'),
+			array('id, info_type_id, receiver_id, user_id, company_id, appointment_status, title, content, appointment_date, date_create, date_update, access_level_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -129,6 +130,7 @@ class Info extends CActiveRecord
 			'appointment_status' => Yii::t('strings','Appointment Status'),
 			'title' => Yii::t('strings','Title'),
 			'content' => Yii::t('strings','Content'),
+			'receiver_id' => Yii::t('strings','Send notification to'),
 			'appointment_date' => Yii::t('strings','Appointment Date'),
 			'date_create' => Yii::t('strings','Date Create'),
 			'date_update' => Yii::t('strings','Date Update'),

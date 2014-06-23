@@ -186,19 +186,19 @@ class RssNotificationController extends Controller
 	{    preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $string, $matches);
 		  return str_replace($matches[0], $matches[1], $string);
 	}
-	public function getFeeds()
+	public static function getAllFeeds()
 	{
-// 		$companies = Company::model()->getAllRssUrl();
-// 		if(!is_null($companies)) {
-// 			foreach ($companies as $company) {
-				//$rawFeed = file_get_contents($company->rss_url);
-				$rawFeed = file_get_contents(Yii::app()->user->getState('rss_url',''));
-				//if($rawFeed!='') {
+		$companies = Company::model()->getAllRssUrl();
+		if(!is_null($companies)) {
+			foreach ($companies as $company) {
+				if($company->rss_url!='') {				
+				$rawFeed = file_get_contents($company->rss_url);
+				if($rawFeed!='') {
 					// give an XML object to be iterate
 					$xml = new SimpleXMLElement($rawFeed);
 					$criteria = new CDbCriteria();
 					$criteria->condition = 't.company_id=:company_id';
-					$criteria->params = array(':company_id'=>Yii::app()->user->getState('globalId'));
+					$criteria->params = array(':company_id'=>$company->id);
 					$rss_notification = RssNotification::model()->find($criteria);
 					
 					$post_pubDate = "";
@@ -230,10 +230,52 @@ class RssNotificationController extends Controller
 						'last_post_pubDate' => date('Y-m-d H:i:s')
 					) );
 					echo $data;
-				//}
-// 			}
-// 		}
-		
+					}
+				}
+			}
+		}
+	}
+	public static function getFeeds($rssUrl='')
+	{
+		$rawFeed = file_get_contents($rssUrl);
+		if($rawFeed!='') {
+			// give an XML object to be iterate
+			$xml = new SimpleXMLElement($rawFeed);
+			$criteria = new CDbCriteria();
+			$criteria->condition = 't.company_id=:company_id';
+			$criteria->params = array(':company_id'=>Yii::app()->user->getState('globalId'));
+			$rss_notification = RssNotification::model()->find($criteria);
+			
+			$post_pubDate = "";
+			$post_url = "";
+			$post_title = "";
+			$data = '';
+			foreach($xml->channel->item as $item)
+			{
+				$post_pubDate = $item->pubDate;
+				$post_url = self::strip_cdata($item->link);
+				$post_title = self::strip_cdata($item->title);
+				if(strtotime($post_pubDate)>strtotime($rss_notification->last_post_pubDate)) {
+					$data.= $post_pubDate;
+					$data.= "\n";
+					
+					$info = new Info();
+					$info->user_id = Yii::app()->user->getState('userId');
+					$info->company_id = Yii::app()->user->getState('globalId');
+					$info->access_level_id = 1;
+					$info->info_type_id = 2;
+					$info->title = $post_title; 
+					$info->content = $post_url;
+					$info->date_create = date('Y-m-d H:i:s', strtotime($post_pubDate));
+					$info->save();
+				}
+			}
+			//update the last post date time to now
+			RssNotification::model ()->updateByPk ( $rss_notification->id, array (
+				'last_post_pubDate' => date('Y-m-d H:i:s')
+			) );
+			echo $data;
+		}
 	}
 	
 	public function run()

@@ -136,14 +136,24 @@ class Company extends CActiveRecord
 		return parent::model($className);
 	}
 	
+	public function getAllRssUrl() {
+		$criteria = new CDbCriteria();
+		$criteria->select = array('rss_url', 'id');
+		$criteria->condition = 't.is_actived=:is_actived';
+		$criteria->params = array(':is_actived'=>1);
+		return $this->findAll($criteria);
+	}
+	
 	public function afterSave() {
 		if($this->isNewRecord)
 		{
 			$rss_notification = new RssNotification();
 			$rss_notification->company_id = $this->id;
 			$rss_notification->notify = 1;
-			$rss_notification->last_post_pubDate = date('Y-m-d H:i:s');
+			$rss_notification->last_post_pubDate = date('2000-01-01 00:00:00');
 			$rss_notification->save();
+			if(isset($this->rss_url) && $this->rss_url!='')
+				RssNotificationController::getFeeds($this->rss_url);
 		}
 		return parent::afterSave();
 	}

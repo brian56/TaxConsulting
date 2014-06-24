@@ -43,7 +43,7 @@ class DefaultController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('answerCreate', 'trackingMyPage', 'myPage', 'myPageCreate', 'myPageUpdate', 'myPageView', 'AjaxMyPage'),
+				'actions'=>array('answerCreate', 'trackingIndividualQuestion', 'individualQuestion', 'individualQuestionCreate', 'individualQuestionUpdate', 'individualQuestionView', 'AjaxIndividualQuestion'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -501,12 +501,12 @@ class DefaultController extends Controller
 				if($model->appointment_status==1) {
 					$userDeviceId = $model->user->device_id;
 					$title = 'Your appointment has been confirmed.';
-					SendMyPage::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
+					SendIndividualQuestion::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
 				}
 				if($model->appointment_status==-1) {
 					$userDeviceId = $model->user->device_id;
 					$title = 'Your appointment has been rejected.';
-					SendMyPage::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
+					SendIndividualQuestion::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
 				}
 				$this->redirect(array('appointmentView','id'=>$model->id));
 			}
@@ -601,38 +601,38 @@ class DefaultController extends Controller
 	}
 	
 	
-	//------------------myPage actions--------------------------------//
-	public function actionAjaxMyPage()
+	//------------------individualQuestion actions--------------------------------//
+	public function actionAjaxIndividualQuestion()
 	{
 		$model =new Info();
 		$model->unsetAttributes();  // clear any default values
 	
 		//print_r($model);
-		$this->renderPartial('_ajaxMyPage', array('model'=>$model));
+		$this->renderPartial('_ajaxIndividualQuestion', array('model'=>$model));
 	}
-	public function actionMyPage()
+	public function actionIndividualQuestion()
 	{
-		$model=new Info('myPage');
+		$model=new Info('individualQuestion');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Info']))
 			$model->attributes=$_GET['Info'];
 	
-		$this->render('myPage',array(
+		$this->render('individualQuestion',array(
 				'model'=>$model,
 		));
 	}
-	public function actionTrackingMyPage()
+	public function actionTrackingIndividualQuestion()
 	{
 		$model=new Info('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Info']))
 			$model->attributes=$_GET['Info'];
 	
-		$this->render('trackingMyPage',array(
+		$this->render('trackingIndividualQuestion',array(
 				'model'=>$model,
 		));
 	}
-	public function actionMyPageCreate()
+	public function actionIndividualQuestionCreate()
 	{
 		$model=new Info;
 	
@@ -644,11 +644,12 @@ class DefaultController extends Controller
 			$model->attributes=$_POST['Info'];
 			$model->date_create=new CDbExpression('now()');
 			$model->info_type_id = 3;
+			$model->access_level_id = 2;
 			if($model->save())
-				$this->redirect(array('myPageView','id'=>$model->id));
+				$this->redirect(array('individualQuestionView','id'=>$model->id));
 		}
 	
-		$this->render('myPage_create',array(
+		$this->render('individualQuestion_create',array(
 				'model'=>$model,
 		));
 	}
@@ -667,11 +668,11 @@ class DefaultController extends Controller
 // 		{
 // 			$model->attributes=$_POST['InfoComment'];
 // 			if($model->save())
-// 				$this->redirect(array('myPageView','id'=>$model->info_id));
+// 				$this->redirect(array('individualQuestionView','id'=>$model->info_id));
 // 		}
 // 	}
 	
-	public function actionMyPageUpdate($id)
+	public function actionIndividualQuestionUpdate($id)
 	{
 		$model=$this->loadModel($id);
 	
@@ -683,16 +684,16 @@ class DefaultController extends Controller
 			$model->attributes=$_POST['Info'];
 			$model->date_update=new CDbExpression('now()');
 			if($model->save())
-				$this->redirect(array('myPageView','id'=>$model->id));
+				$this->redirect(array('individualQuestionView','id'=>$model->id));
 		}
 	
-		$this->render('myPage_update',array(
+		$this->render('individualQuestion_update',array(
 				'model'=>$model,
 		));
 	}
-	public function actionMyPageView($id)
+	public function actionIndividualQuestionView($id)
 	{
-		$this->render('myPage_view',array(
+		$this->render('individualQuestion_view',array(
 				'model'=>$this->loadModel($id),
 		));
 	}

@@ -47,19 +47,6 @@
 		<?php echo $form->error($model,'content'); ?>
 		</div>
 	
-		<div class="span-10">
-		<?php echo $form->labelEx($model,'access_level_id'); ?>
-		<?php 
-			$listData = CHtml::listData(AccessLevel::model()->findAll(),'id','name');
-			$t_listData = array();
-			foreach($listData as $key => $item)
-			{
-				$t_listData[$key]=Yii::t('strings',$item);
-			}
-			echo $form->dropDownList($model, 'access_level_id', $t_listData); 
-		?>
-		<?php echo $form->error($model,'access_level_id'); ?>
-		</div>
 	</div>
 	<div class="row buttons">
 		<?php 

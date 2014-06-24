@@ -22,16 +22,16 @@ $('.search-form form').submit(function(){
 
 $this->breadcrumbs=array(
 // 		Yii::t('strings','Manager')=>array("/manager"),
-		Yii::t('strings','Question'),
+		Yii::t('strings','Individual Question'),
 );
 	$this->menu=array(
-			array('label'=>Yii::t('strings','Create Question'), 'url'=>array('questionCreate')),
-			array('label'=>Yii::t('strings','Tracking new Question'), 'url'=>array('trackingQuestion')),
+			array('label'=>Yii::t('strings','Create Individual Question'), 'url'=>array('individualQuestionCreate')),
+			array('label'=>Yii::t('strings','Tracking new Individual Question'), 'url'=>array('trackingIndividualQuestion')),
 
 	);
 
 ?>
-<center><h3><?php echo Yii::t('strings','Manage Question');?></h3></center>
+<center><h3><?php echo Yii::t('strings','Manage Individual Question');?></h3></center>
 <p>
 <?php 
 echo Yii::t('strings', 'You may optionally enter a comparison operator (<, <=, >, >=, <> or =) at the beginning of each of your search values to specify how the comparison should be done.');
@@ -40,7 +40,7 @@ echo Yii::t('strings', 'You may optionally enter a comparison operator (<, <=, >
 
 <?php echo CHtml::link(Yii::t('strings','Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
+<?php $this->renderPartial('_searchIndividualQuestion',array(
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
@@ -49,7 +49,7 @@ echo Yii::t('strings', 'You may optionally enter a comparison operator (<, <=, >
 $this->widget('booster.widgets.TbGridView', array(
 	'id'=>'info-grid',
 	'type'=>'bordered condensed',
-	'dataProvider'=>$model->searchQuestion(Yii::app()->user->getState('globalId')),
+	'dataProvider'=>$model->searchIndividualQuestion(Yii::app()->user->getState('globalId')),
 // 	'filter'=>$model,
 'emptyText' => Yii::t('strings','No results found'),
 'summaryText' => Yii::t('strings','Displaying').' {start}-{end} '.Yii::t('strings','of').' {count} '.Yii::t('strings','result(s)'),
@@ -59,11 +59,11 @@ $this->widget('booster.widgets.TbGridView', array(
 				'name' => 'user_id',
 				'value' => '$data->infoUserName',
 		),
-		'title',
 		array(
-				'name' => 'access_level_id',
-				'value' => '$data->infoAccessLevelName',
+				'name' => 'receiver_id',
+				'value' => '$data->receiverName',
 		),
+		'title',
 		'date_create',
 		/*
 		'content',
@@ -85,17 +85,17 @@ $this->widget('booster.widgets.TbGridView', array(
 				(
 						'options' => array('style'=>'margin:2px;'),
 					'label' => Yii::t('strings','View'),
-						'url'=> 'Yii::app()->createUrl("manager/info/default/questionView", array("id"=>$data->id))',
+						'url'=> 'Yii::app()->createUrl("manager/info/default/individualQuestionView", array("id"=>$data->id))',
 				),
 				'update' => array
 				(
 						'options' => array('style'=>'margin:2px;'),
 					'label'=> Yii::t('strings','Update'),
-						'url'=> 'Yii::app()->createUrl("manager/info/default/questionUpdate", array("id"=>$data->id))',
+						'url'=> 'Yii::app()->createUrl("manager/info/default/individualQuestionUpdate", array("id"=>$data->id))',
 				),
 		),
 	),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('questionview').'?id="+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('individualQuestionview').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

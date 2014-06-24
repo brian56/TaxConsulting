@@ -3,21 +3,21 @@
 /* @var $model Info */
 $this->breadcrumbs=array(
 // 		Yii::t('strings','Manager')=>array("/manager"),
-	Yii::t('strings','Question')=>array('question'),
+	Yii::t('strings','Individual Question')=>array('myPage'),
 	$model->title,
 );
 
 	$this->menu=array(
-			array('label'=>Yii::t('strings','Create Question'), 'url'=>array('questioncreate')),
-			array('label'=>Yii::t('strings','Update Question'), 'url'=>array('questionupdate', 'id'=>$model->id)),
-			array('label'=>Yii::t('strings','Delete Question'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id), 'params' => array('returnUrl'=>'question'),'confirm'=>'Are you sure you want to delete this item?')),
-			array('label'=>Yii::t('strings','Manage Question'), 'url'=>array('question')),
-			array('label'=>Yii::t('strings','Tracking new Question'), 'url'=>array('trackingQuestion')),
+			array('label'=>Yii::t('strings','Create Individual Question'), 'url'=>array('individualQuestioncreate')),
+			array('label'=>Yii::t('strings','Update Individual Question'), 'url'=>array('individualQuestionupdate', 'id'=>$model->id)),
+			array('label'=>Yii::t('strings','Delete Individual Question'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id), 'params' => array('returnUrl'=>'question'),'confirm'=>'Are you sure you want to delete this item?')),
+			array('label'=>Yii::t('strings','Manage Individual Question'), 'url'=>array('myPage')),
+			array('label'=>Yii::t('strings','Tracking new Individual Question'), 'url'=>array('trackingIndividualQuestion')),
 	);
 
 ?>
 
-<center><h3><?php echo Yii::t('strings','View Question').' #'; echo $model->id; ?></h3></center>
+<center><h3><?php echo Yii::t('strings','View Individual Question').' #'; echo $model->id; ?></h3></center>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -27,15 +27,14 @@ $this->breadcrumbs=array(
 				'name' => 'user_id',
 				'value' => $model->getInfoUserName(),
 		),
+		array(
+			'name' => 'receiver_id',
+			'value' => $model->getReceiverName(),
+		),
 		'title',
 		'content',
-		'receiver_id',
 		'date_create',
 		'date_update',
-		array(
-				'name' => 'access_level_id',
-				'value' => $model->getInfoAccessLevelName(),
-		),
 	),
 )); 
 

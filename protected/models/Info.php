@@ -18,6 +18,7 @@
  * @property integer $receiver_id
  *
  * The followings are the available model relations:
+ * @property User $receiver
  * @property Company $company
  * @property AccessLevel $accessLevel
  * @property InfoType $infoType
@@ -54,6 +55,11 @@ class Info extends CActiveRecord
 		return strtotime($this->date_create)*1000;
 	}
 	
+	public function getReceiverName() {
+		if(isset($this->receiver)) {
+			return $this->receiver->email;
+		}
+	}
 	public function getAttributes($names = true) {
 		$attrs = parent::getAttributes($names);
 		$attrs['infoUserName'] = $this->getInfoUserName();
@@ -62,6 +68,7 @@ class Info extends CActiveRecord
 		$attrs['infoAccessLevelName'] = $this->getInfoAccessLevelName();
 		$attrs['infoTimeCreate'] = $this->getInfoTimeCreate();
 		$attrs['infoCompany'] = $this->getInfoCompany();
+		$attrs['receiverName'] = $this->getReceiverName();
 		$attrs['appointmentStatusName'] = $this->getAppointmentStatusName();
 	
 		return $attrs;
@@ -109,6 +116,7 @@ class Info extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'receiver' => array(self::BELONGS_TO, 'User', 'receiver_id'),
 			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
 			'accessLevel' => array(self::BELONGS_TO, 'AccessLevel', 'access_level_id'),
 			'infoType' => array(self::BELONGS_TO, 'InfoType', 'info_type_id'),
@@ -130,7 +138,7 @@ class Info extends CActiveRecord
 			'appointment_status' => Yii::t('strings','Appointment Status'),
 			'title' => Yii::t('strings','Title'),
 			'content' => Yii::t('strings','Content'),
-			'receiver_id' => Yii::t('strings','Send notification to'),
+			'receiver_id' => Yii::t('strings','Receiver'),
 			'appointment_date' => Yii::t('strings','Appointment Date'),
 			'date_create' => Yii::t('strings','Date Create'),
 			'date_update' => Yii::t('strings','Date Update'),
@@ -179,6 +187,32 @@ class Info extends CActiveRecord
 	}
 	
 	public function searchQuestion($company_id) {
+	
+		$criteria = new CDbCriteria ();
+		$criteria->compare ( 't.id', $this->id );
+		$criteria->compare ( 't.info_type_id', 3 );
+		$criteria->compare ( 't.user_id', $this->user_id );
+		$criteria->compare ( 't.company_id', $company_id );
+		$criteria->compare ( 't.appointment_status', $this->appointment_status );
+		$criteria->compare ( 't.title', $this->title, true );
+		$criteria->compare ( 't.content', $this->content, true );
+		$criteria->compare ( 't.appointment_date', $this->appointment_date, true );
+		$criteria->compare ( 't.date_create', $this->date_create, true );
+		$criteria->compare ( 't.date_update', $this->date_update, true );
+		$criteria->compare ( 't.access_level_id', $this->access_level_id );
+		if(!isset($_GET['Info_sort']))
+			$criteria->order = 'date_create DESC';
+		//$criteria->with = array('company', 'user', 'infoType', 'accessLevel', 'infoComments');
+	
+		return new CActiveDataProvider ( $this, array (
+				'criteria' => $criteria,
+				'pagination' => array(
+						'pageSize' => 20,
+				),
+		) );
+	}
+	
+	public function searchIndividualQuestion($company_id) {
 	
 		$criteria = new CDbCriteria ();
 		$criteria->compare ( 't.id', $this->id );
@@ -345,6 +379,10 @@ class Info extends CActiveRecord
 				}
 				SendNotification::actionPushMultiDevice($userDeviceIds, $this->title, $this->content, $this->info_type_id, $this->id);
 			}
+		}
+		if(isset($this->receiver) && $this->receiver->device_id!='') {
+			$userDevice = $this->receiver->device_id;
+			SendNotification::actionPushOneDevice($userDevice, $this->title, $this->content, $this->info_type_id, $this->id);
 		}
 		return parent::afterSave();
 	}

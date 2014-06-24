@@ -158,12 +158,20 @@ class InfoComment extends CActiveRecord {
 	
 	public function afterSave(){
 		//send notification to author only
+		if($this->user->id!=$this->info->user->id) {
 			$userDeviceId = $this->info->user->device_id;
 			if(!is_null($userDeviceId) && $userDeviceId!='') {
 				$message = "You have new reply.";
 				SendNotification::actionPushOneDevice($userDeviceId, $message, $this->content, $this->info->info_type_id, $this->id);
 			}
-		//}
+		}
+		if(isset($this->info->receiver)) {
+			$userDeviceId = $this->info->receiver->device_id;
+			if(!is_null($userDeviceId) && $userDeviceId!='') {
+				$message = "You have new reply.";
+				SendNotification::actionPushOneDevice($userDeviceId, $message, $this->content, $this->info->info_type_id, $this->id);
+			}
+		}
 		return parent::afterSave();
 	}
 }

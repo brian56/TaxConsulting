@@ -235,8 +235,10 @@ class RssNotificationController extends Controller
 			}
 		}
 	}
-	public static function getFeeds($rssUrl='')
+// 	public static function getFeeds($rssUrl='')
+	public static function getFeeds()
 	{
+		$rssUrl = Yii::app()->user->getState('rss_url');
 		$rawFeed = file_get_contents($rssUrl);
 		if($rawFeed!='') {
 			// give an XML object to be iterate

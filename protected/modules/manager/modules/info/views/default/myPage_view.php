@@ -29,6 +29,7 @@ $this->breadcrumbs=array(
 		),
 		'title',
 		'content',
+		'receiver_id',
 		'date_create',
 		'date_update',
 		array(

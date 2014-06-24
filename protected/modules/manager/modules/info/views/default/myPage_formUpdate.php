@@ -21,6 +21,13 @@
 
 	<div class="row">
 		<div class="span-10">
+		<?php echo $form->labelEx($model,'receiver_id'); ?>
+		<?php echo $form->dropDownList($model, 'receiver_id', CHtml::listData(User::model()->getCompanyUser(Yii::app()->user->getState('globalId')),'id','email')); ?>
+		<?php echo $form->error($model,'receiver_id'); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'title'); ?>
 		<?php echo $form->textField($model,'title',array('size'=>60)); ?>
 		<?php echo $form->error($model,'title'); ?>

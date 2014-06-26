@@ -4,11 +4,11 @@
 
 $this->breadcrumbs = array (
 		// Yii::t('strings','Manager')=>array("/manager"),
-		Yii::t ( 'strings', 'Event' ) => array (
-				'event' 
+		Yii::t ( 'strings', 'Tax Info' ) => array (
+				'taxInfo' 
 		),
 		$model->title => array (
-				'eventView',
+				'taxInfoView',
 				'id' => $model->id 
 		),
 		Yii::t ( 'strings', 'Update' ) 
@@ -16,20 +16,20 @@ $this->breadcrumbs = array (
 
 $this->menu = array (
 		array (
-				'label' => Yii::t ( 'strings', 'Create Event' ),
+				'label' => Yii::t ( 'strings', 'Create Tax Info' ),
 				'url' => array (
-						'eventcreate' 
+						'taxInfocreate' 
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'View Event' ),
+				'label' => Yii::t ( 'strings', 'View Tax Info' ),
 				'url' => array (
-						'eventview',
+						'taxInfoview',
 						'id' => $model->id 
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'Delete Event' ),
+				'label' => Yii::t ( 'strings', 'Delete Tax Info' ),
 				'url' => '#',
 				'linkOptions' => array (
 						'submit' => array (
@@ -37,22 +37,22 @@ $this->menu = array (
 								'id' => $model->id 
 						),
 						'params' => array (
-								'returnUrl' => 'event' 
+								'returnUrl' => 'taxInfo' 
 						),
 						'confirm' => 'Are you sure you want to delete this item?' 
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'Manage Event' ),
+				'label' => Yii::t ( 'strings', 'Manage Tax Info' ),
 				'url' => array (
-						'event' 
+						'taxInfo' 
 				) 
 		) 
 );
 ?>
 
 <center>
-	<h3><?php echo Yii::t('strings','Update Event').' #'; echo $model->id; ?></h3>
+	<h3><?php echo Yii::t('strings','Update Tax Info').' #'; echo $model->id; ?></h3>
 </center>
 
-<?php $this->renderPartial('event_formUpdate', array('model'=>$model)); ?>
+<?php $this->renderPartial('taxInfo_formUpdate', array('model'=>$model)); ?>

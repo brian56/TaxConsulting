@@ -35,7 +35,7 @@ class DefaultController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'AjaxIndex', 'question', 'event', 'notice', 'AjaxQuestion'),
+				'actions'=>array('admin','delete', 'AjaxIndex', 'question', 'taxInfo', 'notice', 'AjaxQuestion'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -47,7 +47,7 @@ class DefaultController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('event', 'eventCreate', 'eventView', 'eventUpdate'),
+				'actions'=>array('taxInfo', 'taxInfoCreate', 'taxInfoView', 'taxInfoUpdate'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -305,19 +305,19 @@ class DefaultController extends Controller
 		));
 	}
 	
-	//-----------------------event actions---------------------//
-	public function actionEvent()
+	//-----------------------taxInfo actions---------------------//
+	public function actionTaxInfo()
 	{
 		$model=new Info('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Info']))
 			$model->attributes=$_GET['Info'];
 	
-		$this->render('event',array(
+		$this->render('taxInfo',array(
 				'model'=>$model,
 		));
 	}
-	public function actionEventCreate()
+	public function actionTaxInfoCreate()
 	{
 		$model=new Info;
 	
@@ -330,14 +330,14 @@ class DefaultController extends Controller
 			$model->date_create=new CDbExpression('now()');
 			$model->info_type_id = 2;
 			if($model->save())
-				$this->redirect(array('eventView','id'=>$model->id));
+				$this->redirect(array('taxInfoView','id'=>$model->id));
 		}
 	
-		$this->render('event_create',array(
+		$this->render('taxInfo_create',array(
 				'model'=>$model,
 		));
 	}
-	public function actionEventUpdate($id)
+	public function actionTaxInfoUpdate($id)
 	{
 		$model=$this->loadModel($id);
 	
@@ -349,16 +349,16 @@ class DefaultController extends Controller
 			$model->attributes=$_POST['Info'];
 			$model->date_update=new CDbExpression('now()');
 			if($model->save())
-				$this->redirect(array('eventView','id'=>$model->id));
+				$this->redirect(array('taxInfoView','id'=>$model->id));
 		}
 	
-		$this->render('event_update',array(
+		$this->render('taxInfo_update',array(
 				'model'=>$model,
 		));
 	}
-	public function actionEventView($id)
+	public function actionTaxInfoView($id)
 	{
-		$this->render('event_view',array(
+		$this->render('taxInfo_view',array(
 				'model'=>$this->loadModel($id),
 		));
 	}

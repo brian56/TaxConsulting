@@ -21,13 +21,13 @@ $('.search-form form').submit(function(){
 /* @var $model Info */
 $this->breadcrumbs = array (
 		// Yii::t('strings','Manager')=>array("/manager"),
-		Yii::t ( 'strings', 'Event' ) 
+		Yii::t ( 'strings', 'Tax Info' ) 
 );
 $this->menu = array (
 		array (
-				'label' => Yii::t ( 'strings', 'Create Event' ),
+				'label' => Yii::t ( 'strings', 'Create Tax Info' ),
 				'url' => array (
-						'eventCreate' 
+						'taxInfoCreate' 
 				) 
 		) 
 )
@@ -35,7 +35,7 @@ $this->menu = array (
 
 ?>
 <center>
-	<h3><?php echo Yii::t('strings','Manage Event');?></h3>
+	<h3><?php echo Yii::t('strings','Manage Tax Info');?></h3>
 </center>
 <p>
 <?php
@@ -58,7 +58,7 @@ $this->renderPartial ( '_search', array (
 $this->widget ( 'booster.widgets.TbGridView', array (
 		'id' => 'info-grid',
 		'type' => 'bordered condensed',
-		'dataProvider' => $model->searchEvent ( Yii::app ()->user->getState ( 'globalId' ) ),
+		'dataProvider' => $model->searchTaxInfo ( Yii::app ()->user->getState ( 'globalId' ) ),
 		// 'filter'=>$model,
 		'emptyText' => Yii::t ( 'strings', 'No results found' ),
 		'summaryText' => Yii::t ( 'strings', 'Displaying' ) . ' {start}-{end} ' . Yii::t ( 'strings', 'of' ) . ' {count} ' . Yii::t ( 'strings', 'result(s)' ),
@@ -97,14 +97,14 @@ $this->widget ( 'booster.widgets.TbGridView', array (
 												'style' => 'margin:2px;' 
 										),
 										'label' => Yii::t ( 'strings', 'View' ),
-										'url' => 'Yii::app()->createUrl("manager/info/default/eventView", array("id"=>$data->id))' 
+										'url' => 'Yii::app()->createUrl("manager/info/default/taxInfoView", array("id"=>$data->id))' 
 								),
 								'update' => array (
 										'options' => array (
 												'style' => 'margin:2px;' 
 										),
 										'label' => Yii::t ( 'strings', 'Update' ),
-										'url' => 'Yii::app()->createUrl("manager/info/default/eventUpdate", array("id"=>$data->id))' 
+										'url' => 'Yii::app()->createUrl("manager/info/default/taxInfoUpdate", array("id"=>$data->id))' 
 								) 
 						) 
 				) 
@@ -112,5 +112,5 @@ $this->widget ( 'booster.widgets.TbGridView', array (
 		'htmlOptions' => array (
 				'style' => 'cursor: pointer;' 
 		),
-		'selectionChanged' => 'function(id){ location.href = "' . $this->createUrl ( 'eventview' ) . '?id="+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged' => 'function(id){ location.href = "' . $this->createUrl ( 'taxInfoview' ) . '?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>

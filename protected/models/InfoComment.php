@@ -145,6 +145,7 @@ class InfoComment extends CActiveRecord {
 		return parent::model ( $className );
 	}
 	public function beforeSave() {
+		
 		if ($this->isNewRecord) {
 			$this->date_create = date ( 'Y-m-d H:i:s' );
 		} else {
@@ -168,6 +169,28 @@ class InfoComment extends CActiveRecord {
 				SendNotification::actionPushOneDevice ( $userDeviceId, $message, $this->content, $this->info->info_type_id, $this->id );
 			}
 		}
+		$log = new LogEvent();
+		$log->company_id = $this->info->company_id;
+		$log->info_id= $this->info_id;
+		$log->user_id= $this->user_id;
+		$log->description = 'Info comment';
+		$log->date_create = date ( 'Y-m-d H:i:s' );
+		if($this->isNewRecord)
+			$log->event_id = 3;
+		else 
+			$log->event_id = 4;
+		$log->insert();
 		return parent::afterSave ();
+	}
+	public function beforeDelete() {
+		$log = new LogEvent();
+		$log->company_id = $this->info->company_id;
+		$log->info_id= $this->info_id;
+		$log->user_id= $this->user_id;
+		$log->date_create = date ( 'Y-m-d H:i:s' );
+		$log->description = 'Info comment';
+		$log->event_id = 5;
+		$log->insert();
+		return parent::beforeDelete ();
 	}
 }

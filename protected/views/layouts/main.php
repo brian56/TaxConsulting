@@ -73,9 +73,9 @@
 	if (isset ( Yii::app ()->controller->id ) && checkController ( Yii::app ()->controller->action->id, 'notice' )) {
 		$activedNoticeItem = true;
 	}
-	$activedEventItem = false;
-	if (isset ( Yii::app ()->controller->id ) && checkController ( Yii::app ()->controller->action->id, 'event' )) {
-		$activedEventItem = true;
+	$activedTaxInfoItem = false;
+	if (isset ( Yii::app ()->controller->id ) && checkController ( Yii::app ()->controller->action->id, 'taxInfo' )) {
+		$activedTaxInfoItem = true;
 	}
 	$activedQuestionItem = false;
 	if (isset ( Yii::app ()->controller->id ) && checkController ( Yii::app ()->controller->action->id, 'question' )) {
@@ -97,7 +97,7 @@
 	if (isset ( Yii::app ()->controller->module )) {
 		if (endsWith ( Yii::app ()->controller->module->id, 'user' ))
 			$activedAdvanceManageItem = true;
-		if (endsWith ( Yii::app ()->controller->module->id, 'logevent' ))
+		if (endsWith ( Yii::app ()->controller->module->id, 'logtaxInfo' ))
 			$activedAdvanceManageItem = true;
 		if (Yii::app ()->controller->action->id == 'advancemanage')
 			$activedAdvanceManageItem = true;
@@ -115,9 +115,9 @@
 	if (isset ( Yii::app ()->controller->module ) && checkController ( Yii::app ()->controller->module->id, 'user' )) {
 		$activedAdminUsers = true;
 	}
-	$activedAdminLogEvents = false;
-	if (isset ( Yii::app ()->controller->module ) && checkController ( Yii::app ()->controller->module->id, 'logevent' )) {
-		$activedAdminLogEvents = true;
+	$activedAdminLogTaxInfos = false;
+	if (isset ( Yii::app ()->controller->module ) && checkController ( Yii::app ()->controller->module->id, 'logtaxInfo' )) {
+		$activedAdminLogTaxInfos = true;
 	}
 	
 	// if(isset(Yii::app()->controller->module->id) && (Yii::app()->controller->module->id=='manager')) {
@@ -152,21 +152,21 @@
 							'active' => $activedNoticeItem 
 					),
 					array (
-							'label' => Yii::t ( 'strings', 'Events' ),
+							'label' => Yii::t ( 'strings', 'Tax Info' ),
 							'url' => array (
-									'/manager/info/default/event' 
+									'/manager/info/default/taxInfo' 
 							),
 							'visible' => (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( "isManager" )),
-							'active' => $activedEventItem 
+							'active' => $activedTaxInfoItem 
 					),
-					array (
-							'label' => Yii::t ( 'strings', 'Appointments' ),
-							'url' => array (
-									'/manager/info/default/appointment' 
-							),
-							'visible' => (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( "isManager" )),
-							'active' => $activedAppointmentItem 
-					),
+// 					array (
+// 							'label' => Yii::t ( 'strings', 'Appointments' ),
+// 							'url' => array (
+// 									'/manager/info/default/appointment' 
+// 							),
+// 							'visible' => (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( "isManager" )),
+// 							'active' => $activedAppointmentItem 
+// 					),
 					array (
 							'label' => Yii::t ( 'strings', 'Individual Page' ),
 							'url' => array (
@@ -175,14 +175,14 @@
 							'visible' => (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( "isManager" )),
 							'active' => $activedIndividualPageItem 
 					),
-					array (
-							'label' => Yii::t ( 'strings', 'Visitor Comments' ),
-							'url' => array (
-									'/manager/info/default/visitorComment' 
-							),
-							'visible' => (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( "isManager" )),
-							'active' => $activedVisitorCommentItem 
-					),
+// 					array (
+// 							'label' => Yii::t ( 'strings', 'Visitor Comments' ),
+// 							'url' => array (
+// 									'/manager/info/default/visitorComment' 
+// 							),
+// 							'visible' => (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( "isManager" )),
+// 							'active' => $activedVisitorCommentItem 
+// 					),
 					array (
 							'label' => Yii::t ( 'strings', 'Advance Manage' ),
 							'url' => array (
@@ -217,12 +217,12 @@
 							'active' => $activedAdminUsers 
 					),
 					array (
-							'label' => Yii::t ( 'strings', 'Log Events' ),
+							'label' => Yii::t ( 'strings', 'Log TaxInfos' ),
 							'url' => array (
-									'/admin/logevent' 
+									'/admin/logtaxInfo' 
 							),
 							'visible' => (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( "isAdmin" )),
-							'active' => $activedAdminLogEvents 
+							'active' => $activedAdminLogTaxInfos 
 					),
 					// array(
 					// 'label'=>'Administrator',
@@ -252,7 +252,7 @@
 	<?php
 	
 	/*
-	 * $this->widget('bootstrap.widgets.TbNavbar', array( 'type' => 'inverse', // null or 'inverse' 'brand' => Yii::app()->name, //'brandUrl' => Yii::app()->homeUrl, 'collapse' => true, // requires bootstrap-responsive.css 'items' => array( array( 'class' => 'bootstrap.widgets.TbMenu', 'items' => array( array('label' => 'Manage', 'url' => '#', 'items' => array( array('label' => 'Product Category', 'url' => array('/productTemplates')), array('label' => 'User', 'url' => array('/users')), array('label' => 'Product', 'url' => array('/products')), array('label' => 'Order', 'url' => array('/orders')), array('label' => 'RFQ', 'url' => array('/rfq')), array('label' => 'Quote', 'url' => array('/quotes')), array('label' => 'Member', 'url' => array('/members')), )), array('label' => 'Companies', 'url' => array('/companies')), array('label' => 'Articles', 'url' =>'#', 'items' => array( array('label' => 'Article', 'url' => array('/articles')), array('label' => 'Footer', 'url' => array('/footer')), array('label' => 'News and Events', 'url' => array('/events')), )), array('label' => 'Global', 'url' => '#', 'items' => array( array('label' => 'Home Setting', 'url' => array('/globalsetting/home/setting?c=c_default&a=a_index')), array('label' => 'Member Setting', 'url' => array('/globalsetting/default/memberSetting')), array('label' => 'Account Setting', 'url' => array('/rights')), )), array('label' => 'Slider', 'url' => array('/slider')), array('label' => 'Promotion', 'url' => array('/promotions')), ), ), array( 'class' => 'bootstrap.widgets.TbMenu', 'htmlOptions' => array('class' => 'pull-right'), 'items' => (Yii::app()->user->isGuest) ? array( array('label' => 'Login', 'url' => '/back/userProfile/default/login'),) : array( '---', array('label' => "Welcome " . Yii::app()->user->name,'icon'=>'home', 'url' => (yii::app()->homeUrl) . 'userProfile/default/index', 'items' => array( array('label' => 'Profile', 'url' => (yii::app()->homeUrl) . 'userProfile/default/index'), array('label' => 'Change password', 'url' => (yii::app()->homeUrl) . 'userProfile/default/changePass'), '---', array('label' => 'Logout', 'url' => array('/vietrade/default/logout')), )), ), ), ), ));
+	 * $this->widget('bootstrap.widgets.TbNavbar', array( 'type' => 'inverse', // null or 'inverse' 'brand' => Yii::app()->name, //'brandUrl' => Yii::app()->homeUrl, 'collapse' => true, // requires bootstrap-responsive.css 'items' => array( array( 'class' => 'bootstrap.widgets.TbMenu', 'items' => array( array('label' => 'Manage', 'url' => '#', 'items' => array( array('label' => 'Product Category', 'url' => array('/productTemplates')), array('label' => 'User', 'url' => array('/users')), array('label' => 'Product', 'url' => array('/products')), array('label' => 'Order', 'url' => array('/orders')), array('label' => 'RFQ', 'url' => array('/rfq')), array('label' => 'Quote', 'url' => array('/quotes')), array('label' => 'Member', 'url' => array('/members')), )), array('label' => 'Companies', 'url' => array('/companies')), array('label' => 'Articles', 'url' =>'#', 'items' => array( array('label' => 'Article', 'url' => array('/articles')), array('label' => 'Footer', 'url' => array('/footer')), array('label' => 'News and TaxInfos', 'url' => array('/taxInfos')), )), array('label' => 'Global', 'url' => '#', 'items' => array( array('label' => 'Home Setting', 'url' => array('/globalsetting/home/setting?c=c_default&a=a_index')), array('label' => 'Member Setting', 'url' => array('/globalsetting/default/memberSetting')), array('label' => 'Account Setting', 'url' => array('/rights')), )), array('label' => 'Slider', 'url' => array('/slider')), array('label' => 'Promotion', 'url' => array('/promotions')), ), ), array( 'class' => 'bootstrap.widgets.TbMenu', 'htmlOptions' => array('class' => 'pull-right'), 'items' => (Yii::app()->user->isGuest) ? array( array('label' => 'Login', 'url' => '/back/userProfile/default/login'),) : array( '---', array('label' => "Welcome " . Yii::app()->user->name,'icon'=>'home', 'url' => (yii::app()->homeUrl) . 'userProfile/default/index', 'items' => array( array('label' => 'Profile', 'url' => (yii::app()->homeUrl) . 'userProfile/default/index'), array('label' => 'Change password', 'url' => (yii::app()->homeUrl) . 'userProfile/default/changePass'), '---', array('label' => 'Logout', 'url' => array('/vietrade/default/logout')), )), ), ), ), ));
 	 */
 	?> 
 	</div>

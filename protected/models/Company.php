@@ -184,4 +184,14 @@ class Company extends CActiveRecord {
 		}
 		return parent::afterSave ();
 	}
+	
+	public function beforeDelete() {
+		$log = new LogEvent();
+		$log->company_id = $this->company_id;
+		$log->date_create = date ( 'Y-m-d H:i:s' );
+		$log->event_id = 5;
+		$log->description = $this->name;
+		$log->insert();
+		return parent::beforeDelete();
+	}
 }

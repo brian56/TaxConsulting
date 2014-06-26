@@ -282,7 +282,7 @@ class Info extends CActiveRecord {
 				) 
 		) );
 	}
-	public function searchEvent($company_id) {
+	public function searchTaxInfo($company_id) {
 		$criteria = new CDbCriteria ();
 		$criteria->compare ( 't.id', $this->id );
 		$criteria->compare ( 't.info_type_id', 2 );
@@ -367,6 +367,7 @@ class Info extends CActiveRecord {
 		return parent::model ( $className );
 	}
 	public function beforeSave() {
+		
 		if ($this->isNewRecord) {
 			if (! isset ( $this->date_create ))
 				$this->date_create = date ( 'Y-m-d H:i:s' );
@@ -395,9 +396,27 @@ class Info extends CActiveRecord {
 			$userDevice = $this->receiver->device_id;
 			SendNotification::actionPushOneDevice ( $userDevice, $this->title, $this->content, $this->info_type_id, $this->id );
 		}
+		$log = new LogEvent();
+		$log->company_id = $this->company_id;
+		$log->info_id= $this->id;
+		$log->user_id= $this->user_id;
+		$log->date_create = date ( 'Y-m-d H:i:s' );
+		if($this->isNewRecord)
+			$log->event_id = 3;
+		else 
+			$log->event_id = 4;
+		$log->insert();
 		return parent::afterSave ();
 	}
 	public function beforeDelete() {
+		$log = new LogEvent();
+		$log->company_id = $this->company_id;
+		$log->info_id= $this->id;
+		$log->user_id= $this->user_id;
+		$log->date_create = date ( 'Y-m-d H:i:s' );
+		$log->event_id = 5;
+		$log->description = $this->title;
+		$log->insert();
 		foreach ( $this->infoComments as $infoComment ) {
 			$infoComment->delete ();
 		}

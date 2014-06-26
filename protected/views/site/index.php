@@ -34,7 +34,7 @@ $this->widget ( 'ext.LangPick.ELangPick', array (
 	<h4><?php echo Yii::t('strings',"This page is for managing tax consulting company's data.");?></h4>
 	<br> <br>
 	<?php
-	if (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( 'isManager' )) {
+	/* if (! Yii::app ()->user->isGuest && Yii::app ()->user->getState ( 'isManager' )) {
 		echo "<p></p>";
 		$this->widget ( 'booster.widgets.TbButton', array (
 				'label' => 'Check for RSS new post',
@@ -94,13 +94,9 @@ $this->widget ( 'ext.LangPick.ELangPick', array (
                        	window.location.href = "manager/reminder/default/create?day="+dayInSecond
                     }' 
 			) 
-	) );
+	) ); */
 	?>
 	<br> <br> <br> <br>
-	<iframe
-		src="https://www.google.com/calendar/embed?src=duongqhuynh%40gmail.com&ctz=Asia/Saigon"
-		style="border: 0" width="800" height="600" frameborder="0"
-		scrolling="no"></iframe>
 	<br> <br>
 	<h5><?php echo Yii::t('strings','A tax consulting company application developed by');?></h5>
 	<?php

@@ -228,6 +228,7 @@ class User extends CActiveRecord {
 		return parent::model ( $className );
 	}
 	public function beforeSave() {
+		
 		if (! isset ( $this->user_name ))
 			$this->user_name = "";
 		if ($this->isNewRecord) {
@@ -257,6 +258,18 @@ class User extends CActiveRecord {
 			}
 		}
 		return parent::beforeSave ();
+	}
+	public function afterSave() {
+		$log = new LogEvent();
+		$log->company_id = $this->info->company_id;
+		$log->user_id= $this->id;
+		$log->date_create = date ( 'Y-m-d H:i:s' );
+		if($this->isNewRecord)
+			$log->event_id = 3;
+		else 
+			$log->event_id = 4;
+		$log->insert();
+		return parent::afterSave ();
 	}
 	public function getCompanyUserDeviceIds($company_id = 1) {
 		$criteria = new CDbCriteria ();
@@ -331,6 +344,13 @@ class User extends CActiveRecord {
 		foreach ( $this->infos as $info ) {
 			$info->delete ();
 		}
+		$log = new LogEvent();
+		$log->company_id = $this->company_id;
+		$log->user_id= $this->id;
+		$log->date_create = date ( 'Y-m-d H:i:s' );
+		$log->event_id = 5;
+		$log->description = $this->email;
+		$log->insert();
 		return parent::beforeDelete ();
 	}
 	

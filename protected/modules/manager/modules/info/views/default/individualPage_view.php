@@ -104,7 +104,7 @@ $form = $this->beginWidget ( 'CActiveForm', array (
 ) );
 ?>
 	<br>
-	<h3><?php echo Yii::t('strings','Create answer for this question');?></h3>
+	<h3><?php echo Yii::t('strings','Create answer for this');?></h3>
 	<h6>
 		<i><?php echo Yii::t('strings','Fields with * are required');?></i>
 	</h6>

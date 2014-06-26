@@ -212,7 +212,7 @@ class Info extends CActiveRecord
 		) );
 	}
 	
-	public function searchIndividualQuestion($company_id) {
+	public function searchIndividualPage($company_id) {
 	
 		$criteria = new CDbCriteria ();
 		$criteria->compare ( 't.id', $this->id );

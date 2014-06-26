@@ -36,6 +36,7 @@ return array(
                 'infocomment',
                 'logevent',
                 'user',
+                'reminder',
             ),
         ),
         'admin' => array(
@@ -86,6 +87,7 @@ return array(
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 'manager/info<controller:\w+>/<action:\w+>' => 'manager/info/<controller>/<action>',
                 'manager/user<controller:\w+>/<action:\w+>' => 'manager/user/<controller>/<action>',
+                'manager/reminder<controller:\w+>/<action:\w+>' => 'manager/reminder/<controller>/<action>',
                 'admin/user<controller:\w+>/<action:\w+>' => 'admin/user/<controller>/<action>',
                 'admin/info<controller:\w+>/<action:\w+>' => 'admin/info/<controller>/<action>',
                 'admin/company<controller:\w+>/<action:\w+>' => 'admin/company/<controller>/<action>',

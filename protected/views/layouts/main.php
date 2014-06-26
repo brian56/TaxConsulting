@@ -77,9 +77,9 @@
 	if(isset(Yii::app()->controller->id) && checkController(Yii::app()->controller->action->id,'question')) {
 		$activedQuestionItem = true;
 	}
-	$activedIndividualQuestionItem = false;
+	$activedIndividualPageItem = false;
 	if(isset(Yii::app()->controller->id) && checkController(Yii::app()->controller->action->id,'individualquestion')) {
-		$activedIndividualQuestionItem = true;
+		$activedIndividualPageItem = true;
 	}
 	$activedAppointmentItem = false;
 	if(isset(Yii::app()->controller->id) && checkController(Yii::app()->controller->action->id,'appointment')) {
@@ -155,10 +155,10 @@
 					'active'=>$activedAppointmentItem
 				),
 				array(
-					'label'=>Yii::t('strings','Individual Questions'), 
-					'url'=>array('/manager/info/default/individualQuestion'), 
+					'label'=>Yii::t('strings','Individual Page'), 
+					'url'=>array('/manager/info/default/individualPage'), 
 					'visible' => (!Yii::app()->user->isGuest && Yii::app()->user->getState("isManager")), 
-					'active'=>$activedIndividualQuestionItem
+					'active'=>$activedIndividualPageItem
 				),
 				array(
 					'label'=>Yii::t('strings','Visitor Comments'), 

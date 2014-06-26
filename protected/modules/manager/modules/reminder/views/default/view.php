@@ -25,6 +25,7 @@ $this->menu=array(
 		'company_id',
 		'user_id',
 		'date',
+		'time',
 		'title',
 		'content',
 		'user_receive',

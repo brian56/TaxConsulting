@@ -3,21 +3,21 @@
 /* @var $model Info */
 $this->breadcrumbs=array(
 // 		Yii::t('strings','Manager')=>array("/manager"),
-	Yii::t('strings','Individual Question')=>array('myPage'),
+	Yii::t('strings','Individual Page')=>array('myPage'),
 	$model->title,
 );
 
 	$this->menu=array(
-			array('label'=>Yii::t('strings','Create Individual Question'), 'url'=>array('individualQuestioncreate')),
-			array('label'=>Yii::t('strings','Update Individual Question'), 'url'=>array('individualQuestionupdate', 'id'=>$model->id)),
-			array('label'=>Yii::t('strings','Delete Individual Question'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id), 'params' => array('returnUrl'=>'question'),'confirm'=>'Are you sure you want to delete this item?')),
-			array('label'=>Yii::t('strings','Manage Individual Question'), 'url'=>array('myPage')),
-			array('label'=>Yii::t('strings','Tracking new Individual Question'), 'url'=>array('trackingIndividualQuestion')),
+			array('label'=>Yii::t('strings','Create Individual Page'), 'url'=>array('individualPagecreate')),
+			array('label'=>Yii::t('strings','Update Individual Page'), 'url'=>array('individualPageupdate', 'id'=>$model->id)),
+			array('label'=>Yii::t('strings','Delete Individual Page'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id), 'params' => array('returnUrl'=>'question'),'confirm'=>'Are you sure you want to delete this item?')),
+			array('label'=>Yii::t('strings','Manage Individual Page'), 'url'=>array('myPage')),
+			array('label'=>Yii::t('strings','Tracking new Individual Page'), 'url'=>array('trackingIndividualPage')),
 	);
 
 ?>
 
-<center><h3><?php echo Yii::t('strings','View Individual Question').' #'; echo $model->id; ?></h3></center>
+<center><h3><?php echo Yii::t('strings','View Individual Page').' #'; echo $model->id; ?></h3></center>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

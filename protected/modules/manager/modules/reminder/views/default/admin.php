@@ -49,9 +49,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'company_id',
 		'user_id',
 		'date',
+		'time',
 		'title',
-		'content',
 		/*
+		'content',
 		'user_receive',
 		'alarm_setting',
 		'alarm_time',

@@ -1,6 +1,6 @@
 <?php
 
-class DefaultController extends Controller 
+class ReminderController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -37,7 +37,7 @@ class DefaultController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('@'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -63,10 +63,7 @@ class DefaultController extends Controller
 	public function actionCreate()
 	{
 		$model=new Reminder;
-		if(isset($_GET['day'])) {
-			$model->date = date('Y-m-d', $_GET['day']);
-		}
-		$model->company_id = Yii::app()->user->getState('globalId');
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

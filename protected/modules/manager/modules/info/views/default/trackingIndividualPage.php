@@ -22,35 +22,38 @@ $('.search-form form').submit(function(){
 
 $this->breadcrumbs=array(
 // 		Yii::t('strings','Manager')=>array("/manager"),
-		Yii::t('strings','Individual Question'),
+		Yii::t('strings','Tracking new Individual Page'),
 );
 	$this->menu=array(
-			array('label'=>Yii::t('strings','Create Individual Question'), 'url'=>array('individualQuestionCreate')),
-			array('label'=>Yii::t('strings','Tracking new Individual Question'), 'url'=>array('trackingIndividualQuestion')),
+			array('label'=>Yii::t('strings','Create Individual Page'), 'url'=>array('individualPageCreate')),
+			array('label'=>Yii::t('strings','Manage Individual Page'), 'url'=>array('individualPage')),
 
 	);
 
 ?>
-<center><h3><?php echo Yii::t('strings','Manage Individual Question');?></h3></center>
-<p>
-<?php 
-echo Yii::t('strings', 'You may optionally enter a comparison operator (<, <=, >, >=, <> or =) at the beginning of each of your search values to specify how the comparison should be done.');
-?>
-</p>
+<center><h3><?php echo Yii::t('strings','Tracking new Question');?></h3></center>
+<script type="text/javascript">
+    timeout = 3000;
+    function refresh() {       
+        <?php
+        echo CHtml::ajax(array(
+                'url'=> Yii::app()->baseUrl."/manager/info/default/AjaxIndividualPage",
+                'type'=>'post',
+                'update'=> '#info-grid',
+        ))
+        ?>
+    }
+    window.setInterval("refresh()", timeout);
+</script>
 
-<?php echo CHtml::link(Yii::t('strings','Advanced Search'),'#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_searchIndividualQuestion',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
+<div id='info-grid'>
 <?php 
 $this->widget('booster.widgets.TbGridView', array(
-	'id'=>'info-grid',
+// 	'id'=>'info-grid',
 	'type'=>'bordered condensed',
-	'dataProvider'=>$model->searchIndividualQuestion(Yii::app()->user->getState('globalId')),
-// 	'filter'=>$model,
+	'dataProvider'=>$model->searchIndividualPage(Yii::app()->user->getState('globalId')),
+	//'filter'=>$model,
 'emptyText' => Yii::t('strings','No results found'),
 'summaryText' => Yii::t('strings','Displaying').' {start}-{end} '.Yii::t('strings','of').' {count} '.Yii::t('strings','result(s)'),
 	'columns'=>array(
@@ -79,23 +82,24 @@ $this->widget('booster.widgets.TbGridView', array(
 				'delete' => array
 				(
 					'options' => array('style'=>'margin:2px;'),
-					'label' => Yii::t('strings','Delete'),
+						'label' => Yii::t('strings','Delete'),
 				),
 				'view' => array
 				(
 						'options' => array('style'=>'margin:2px;'),
-					'label' => Yii::t('strings','View'),
-						'url'=> 'Yii::app()->createUrl("manager/info/default/individualQuestionView", array("id"=>$data->id))',
+						'label' => Yii::t('strings','View'),
+						'url'=> 'Yii::app()->createUrl("manager/info/default/individualPageView", array("id"=>$data->id))',
 				),
 				'update' => array
 				(
 						'options' => array('style'=>'margin:2px;'),
-					'label'=> Yii::t('strings','Update'),
-						'url'=> 'Yii::app()->createUrl("manager/info/default/individualQuestionUpdate", array("id"=>$data->id))',
+						'label' => Yii::t('strings','Update'),
+						'url'=> 'Yii::app()->createUrl("manager/info/default/individualPageUpdate", array("id"=>$data->id))',
 				),
 		),
 	),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('individualQuestionview').'?id="+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('individualPageview').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>
+</div>

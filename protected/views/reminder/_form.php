@@ -38,20 +38,26 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'time'); ?>
+		<?php echo $form->textField($model,'time'); ?>
+		<?php echo $form->error($model,'time'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title'); ?>
+		<?php echo $form->textArea($model,'title',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textField($model,'content'); ?>
+		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_receive'); ?>
-		<?php echo $form->textField($model,'user_receive',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'user_receive'); ?>
 		<?php echo $form->error($model,'user_receive'); ?>
 	</div>
 

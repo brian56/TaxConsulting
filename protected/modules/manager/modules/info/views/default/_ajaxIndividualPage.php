@@ -2,7 +2,7 @@
 $this->widget('booster.widgets.TbGridView', array(
 // 	'id'=>'info-grid',
 	'type'=>'bordered condensed',
-	'dataProvider'=>$model->searchIndividualQuestion(Yii::app()->user->getState('globalId')),
+	'dataProvider'=>$model->searchIndividualPage(Yii::app()->user->getState('globalId')),
 	//'filter'=>$model,
 	'emptyText' => Yii::t('strings','No results found'),
 	'summaryText' => Yii::t('strings','Displaying').' {start}-{end} '.Yii::t('strings','of').' {count} '.Yii::t('strings','result(s)'),
@@ -38,17 +38,17 @@ $this->widget('booster.widgets.TbGridView', array(
 					(
 						'options' => array('style'=>'margin:2px;'),
 							'label' => Yii::t('strings','View'),
-							'url'=> 'Yii::app()->createUrl("manager/info/default/individualQuestionView", array("id"=>$data->id))',
+							'url'=> 'Yii::app()->createUrl("manager/info/default/individualPageView", array("id"=>$data->id))',
 					),
 					'update' => array
 					(
 						'options' => array('style'=>'margin:2px;'),
-							'url'=> 'Yii::app()->createUrl("manager/info/default/individualQuestionUpdate", array("id"=>$data->id))',
+							'url'=> 'Yii::app()->createUrl("manager/info/default/individualPageUpdate", array("id"=>$data->id))',
 					),
 			),
 		),
 	),
 	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('individualQuestionView').'?id="+$.fn.yiiGridView.getSelection(id);}',
+		'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('individualPageView').'?id="+$.fn.yiiGridView.getSelection(id);}',
 )); ?>
 		

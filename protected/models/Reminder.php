@@ -8,9 +8,10 @@
  * @property integer $company_id
  * @property integer $user_id
  * @property string $date
- * @property integer $title
- * @property integer $content
- * @property string $user_receive
+ * @property string $time
+ * @property string $title
+ * @property string $content
+ * @property integer $user_receive
  * @property integer $alarm_setting
  * @property integer $alarm_time
  *
@@ -36,12 +37,11 @@ class Reminder extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('company_id, user_id, date, title, content, user_receive, alarm_setting, alarm_time', 'required'),
-			array('company_id, user_id, title, content, alarm_setting, alarm_time', 'numerical', 'integerOnly'=>true),
-			array('user_receive', 'length', 'max'=>100),
+			array('company_id, user_id, date, time, title, content, user_receive, alarm_setting, alarm_time', 'required'),
+			array('company_id, user_id, user_receive, alarm_setting, alarm_time', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, company_id, user_id, date, title, content, user_receive, alarm_setting, alarm_time', 'safe', 'on'=>'search'),
+			array('id, company_id, user_id, date, time, title, content, user_receive, alarm_setting, alarm_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,13 +66,14 @@ class Reminder extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'company_id' => 'Company',
-			'user_id' => 'User',
+			'user_id' => 'Author',
 			'date' => 'Date',
+			'time' => 'Time',
 			'title' => 'Title',
 			'content' => 'Content',
-			'user_receive' => 'User Receive',
+			'user_receive' => 'Push notification to',
 			'alarm_setting' => 'Alarm Setting',
-			'alarm_time' => 'Alarm Time',
+			'alarm_time' => 'Time before to push notification',
 		);
 	}
 
@@ -98,9 +99,10 @@ class Reminder extends CActiveRecord
 		$criteria->compare('company_id',$this->company_id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('date',$this->date,true);
-		$criteria->compare('title',$this->title);
-		$criteria->compare('content',$this->content);
-		$criteria->compare('user_receive',$this->user_receive,true);
+		$criteria->compare('time',$this->time,true);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('content',$this->content,true);
+		$criteria->compare('user_receive',$this->user_receive);
 		$criteria->compare('alarm_setting',$this->alarm_setting);
 		$criteria->compare('alarm_time',$this->alarm_time);
 
@@ -118,5 +120,22 @@ class Reminder extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+	
+	public function getCompanyRemindersForDisplaying($companyId=1) {
+		$criteria=new CDbCriteria;
+	
+		$criteria->compare('company_id',$companyId);
+		$reminders = $this->findAll($criteria);
+		$arr = array();
+		foreach($reminders as $t)
+		{
+			$arr[] = array(
+					'title' => $t->title,
+					'start' => $t->date,
+					'url' => Yii::app()->createUrl("manager/reminder/default/view", array("id"=>$t->id)),
+			);
+		}
+		return $arr;
 	}
 }

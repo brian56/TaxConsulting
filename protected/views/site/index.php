@@ -54,12 +54,52 @@ else
 		)
 		);
 	}
+	echo "<br>";
+	echo "<br>";
+	$this->widget('ext.EFullCalendar.EFullCalendar', array(
+			// polish version available, uncomment to use it
+			'lang'=>'en',
+			// you can create your own translation by copying locale/pl.php
+			// and customizing it
+	
+			// remove to use without theme
+			// this is relative path to:
+			// themes/<path>
+			'themeCssFile'=>'cupertino/theme.css',
+	
+			// raw html tags
+			'htmlOptions'=>array(
+					// you can scale it down as well, try 80%
+					'style'=>'width:70%'
+			),
+			// FullCalendar's options.
+			// Documentation available at
+			// http://arshaw.com/fullcalendar/docs/
+			'options'=>array(
+					'header'=>array(
+							'left'=>'prev,next',
+							'center'=>'title',
+							'right'=>'today'
+					),
+					'lazyFetching'=>true,
+					//'events'=>$calendarEventsUrl, // action URL for dynamic events, or
+					'events'=>Reminder::model()->getCompanyRemindersForDisplaying(Yii::app()->user->getState('globalId')), // pass array of events directly
+	
+					// event handling
+					// mouseover for example
+					//'eventMouseover'=>new CJavaScriptExpression("js_function_callback"),
+					'dayClick'=>'js:function(dayClick){
+						var dayInSecond = (dayClick.getTime()/1000);
+                       	window.location.href = "manager/reminder/default/create?day="+dayInSecond
+                    }',
+			)
+	));
 	?>
 	<br>
 	<br>
 	<br>
 	<br>
-	<br>
+	<iframe src="https://www.google.com/calendar/embed?src=duongqhuynh%40gmail.com&ctz=Asia/Saigon" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 	<br>
 	<br>
 	<h5><?php echo Yii::t('strings','A tax consulting company application developed by');?></h5>
@@ -100,7 +140,7 @@ else
 // 							else 
 // 								alert('Message can not be empty!');
 // 	  					},
-//            			});"
+//            		});"
 //         		)
 //     		)
 //     	);

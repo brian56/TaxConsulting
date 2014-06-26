@@ -43,7 +43,7 @@ class DefaultController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('answerCreate', 'trackingIndividualQuestion', 'individualQuestion', 'individualQuestionCreate', 'individualQuestionUpdate', 'individualQuestionView', 'AjaxIndividualQuestion'),
+				'actions'=>array('answerCreate', 'trackingIndividualPage', 'individualPage', 'individualPageCreate', 'individualPageUpdate', 'individualPageView', 'AjaxIndividualPage'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -501,12 +501,12 @@ class DefaultController extends Controller
 				if($model->appointment_status==1) {
 					$userDeviceId = $model->user->device_id;
 					$title = 'Your appointment has been confirmed.';
-					SendIndividualQuestion::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
+					SendIndividualPage::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
 				}
 				if($model->appointment_status==-1) {
 					$userDeviceId = $model->user->device_id;
 					$title = 'Your appointment has been rejected.';
-					SendIndividualQuestion::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
+					SendIndividualPage::actionPushOneDevice($userDeviceId,$title, $model->title, $model->info_type_id, $model->id);
 				}
 				$this->redirect(array('appointmentView','id'=>$model->id));
 			}
@@ -601,38 +601,38 @@ class DefaultController extends Controller
 	}
 	
 	
-	//------------------individualQuestion actions--------------------------------//
-	public function actionAjaxIndividualQuestion()
+	//------------------individualPage actions--------------------------------//
+	public function actionAjaxIndividualPage()
 	{
 		$model =new Info();
 		$model->unsetAttributes();  // clear any default values
 	
 		//print_r($model);
-		$this->renderPartial('_ajaxIndividualQuestion', array('model'=>$model));
+		$this->renderPartial('_ajaxIndividualPage', array('model'=>$model));
 	}
-	public function actionIndividualQuestion()
+	public function actionIndividualPage()
 	{
-		$model=new Info('individualQuestion');
+		$model=new Info('individualPage');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Info']))
 			$model->attributes=$_GET['Info'];
 	
-		$this->render('individualQuestion',array(
+		$this->render('individualPage',array(
 				'model'=>$model,
 		));
 	}
-	public function actionTrackingIndividualQuestion()
+	public function actionTrackingIndividualPage()
 	{
 		$model=new Info('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Info']))
 			$model->attributes=$_GET['Info'];
 	
-		$this->render('trackingIndividualQuestion',array(
+		$this->render('trackingIndividualPage',array(
 				'model'=>$model,
 		));
 	}
-	public function actionIndividualQuestionCreate()
+	public function actionIndividualPageCreate()
 	{
 		$model=new Info;
 	
@@ -646,10 +646,10 @@ class DefaultController extends Controller
 			$model->info_type_id = 3;
 			$model->access_level_id = 2;
 			if($model->save())
-				$this->redirect(array('individualQuestionView','id'=>$model->id));
+				$this->redirect(array('individualPageView','id'=>$model->id));
 		}
 	
-		$this->render('individualQuestion_create',array(
+		$this->render('individualPage_create',array(
 				'model'=>$model,
 		));
 	}
@@ -668,11 +668,11 @@ class DefaultController extends Controller
 // 		{
 // 			$model->attributes=$_POST['InfoComment'];
 // 			if($model->save())
-// 				$this->redirect(array('individualQuestionView','id'=>$model->info_id));
+// 				$this->redirect(array('individualPageView','id'=>$model->info_id));
 // 		}
 // 	}
 	
-	public function actionIndividualQuestionUpdate($id)
+	public function actionIndividualPageUpdate($id)
 	{
 		$model=$this->loadModel($id);
 	
@@ -684,16 +684,16 @@ class DefaultController extends Controller
 			$model->attributes=$_POST['Info'];
 			$model->date_update=new CDbExpression('now()');
 			if($model->save())
-				$this->redirect(array('individualQuestionView','id'=>$model->id));
+				$this->redirect(array('individualPageView','id'=>$model->id));
 		}
 	
-		$this->render('individualQuestion_update',array(
+		$this->render('individualPage_update',array(
 				'model'=>$model,
 		));
 	}
-	public function actionIndividualQuestionView($id)
+	public function actionIndividualPageView($id)
 	{
-		$this->render('individualQuestion_view',array(
+		$this->render('individualPage_view',array(
 				'model'=>$this->loadModel($id),
 		));
 	}

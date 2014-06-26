@@ -265,6 +265,21 @@ class User extends CActiveRecord
 				),
 		));
 	}
+	public function getArrayCompanyUsers(){
+		$criteria=new CDbCriteria;
+		
+		$criteria->compare('company_id',Yii::app()->user->getState('globalId'));
+		$users = $this->findAll($criteria);
+		$arr = array();
+		$arr['0'] = '- All users -';
+		$arr['-1'] = '- Managers only -';
+		$arr['-2'] = '- Users only -';
+		foreach($users as $user)
+		{
+			$arr[$user->id] =  $user->email;
+		}
+		return $arr;
+	}
 	public function beforeDelete() {
 // 		$criteria = new CDbCriteria();
 // 		$criteria->condition = 't.user_id=:user_id';

@@ -32,18 +32,23 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'time'); ?>
+		<?php echo $form->textField($model,'time'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'title'); ?>
-		<?php echo $form->textField($model,'title'); ?>
+		<?php echo $form->textArea($model,'title',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'content'); ?>
-		<?php echo $form->textField($model,'content'); ?>
+		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'user_receive'); ?>
-		<?php echo $form->textField($model,'user_receive',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'user_receive'); ?>
 	</div>
 
 	<div class="row">

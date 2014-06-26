@@ -3,31 +3,38 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
+$this->pageTitle = Yii::app ()->name . ' - Login';
+$this->breadcrumbs = array (
+		'Login' 
 );
-$this->widget('ext.LangPick.ELangPick', array(
-		//'excludeFromList' => array('pl', 'en'), // list of languages to exclude from list
-		'pickerType' => 'dropdown',              // buttons, links, dropdown
-		//'linksSeparator' => '<b> | </b>',   // if picker type is set to 'links'
-		'buttonsSize' => 'small',                // mini, small, large
-		'buttonsColor' => 'primary',            // primary, info, success, warning, danger, inverse
-	)); ?>
+$this->widget ( 'ext.LangPick.ELangPick', array (
+		// 'excludeFromList' => array('pl', 'en'), // list of languages to exclude from list
+		'pickerType' => 'dropdown', // buttons, links, dropdown
+		                            // 'linksSeparator' => '<b> | </b>', // if picker type is set to 'links'
+		'buttonsSize' => 'small', // mini, small, large
+		'buttonsColor' => 'primary'  // primary, info, success, warning, danger, inverse
+	)// primary, info, success, warning, danger, inverse
+);
+?>
 <h1>Login</h1>
 
 <p>Please fill out the following form with your login credentials:</p>
 
 <div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'login-form',
-	'enableClientValidation'=>true,
-	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
-	),
-)); ?>
+<?php
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+$form = $this->beginWidget ( 'CActiveForm', array (
+		'id' => 'login-form',
+		'enableClientValidation' => true,
+		'clientOptions' => array (
+				'validateOnSubmit' => true 
+		) 
+) );
+?>
+
+	<p class="note">
+		Fields with <span class="required">*</span> are required.
+	</p>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
@@ -49,16 +56,15 @@ $this->widget('ext.LangPick.ELangPick', array(
 	</div>
 
 	<div class="row buttons">
-		<?php 
-		$this->widget(
-				'booster.widgets.TbButton',
-				array(
-						'label' => Yii::t('strings','Login'),
-						'context' => 'primary',
-						'buttonType' => 'submit',
-				)
-		);?>
+		<?php
+		$this->widget ( 'booster.widgets.TbButton', array (
+				'label' => Yii::t ( 'strings', 'Login' ),
+				'context' => 'primary',
+				'buttonType' => 'submit' 
+		) );
+		?>
 	</div>
 
 <?php $this->endWidget(); ?>
-</div><!-- form -->
+</div>
+<!-- form -->

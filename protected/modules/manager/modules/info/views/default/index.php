@@ -2,38 +2,53 @@
 /* @var $this InfoController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Infos',
+$this->breadcrumbs = array (
+		'Infos' 
 );
 
-$this->menu=array(
-	array('label'=>'Create Info', 'url'=>array('create')),
-	array('label'=>'Manage Info', 'url'=>array('admin')),
+$this->menu = array (
+		array (
+				'label' => 'Create Info',
+				'url' => array (
+						'create' 
+				) 
+		),
+		array (
+				'label' => 'Manage Info',
+				'url' => array (
+						'admin' 
+				) 
+		) 
 );
 ?>
 <center>
-<h4>Infos</h4>
+	<h4>Infos</h4>
 </center>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'dataProvider'=>$dataProvider,
-	'columns'=>array(
+<?php
+
+$this->widget ( 'zii.widgets.grid.CGridView', array (
+		'dataProvider' => $dataProvider,
+		'columns' => array (
 				'id',
-				array(
+				array (
 						'name' => 'info_type_id',
-						'value' => '$data->infoTypeName',
+						'value' => '$data->infoTypeName' 
 				),
-				array(
+				array (
 						'name' => 'user_id',
-						'value' => '$data->infoUserName',
+						'value' => '$data->infoUserName' 
 				),
 				'title',
-				array(
+				array (
 						'name' => 'access_level_id',
-						'value' => '$data->infoAccessLevelName',
+						'value' => '$data->infoAccessLevelName' 
 				),
-				'date_create',
-	),
-	'htmlOptions'=>array('style'=>'cursor: pointer;'),
-	'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'?id="+$.fn.yiiGridView.getSelection(id);}',
-)); ?>
+				'date_create' 
+		),
+		'htmlOptions' => array (
+				'style' => 'cursor: pointer;' 
+		),
+		'selectionChanged' => 'function(id){ location.href = "' . $this->createUrl ( 'view' ) . '?id="+$.fn.yiiGridView.getSelection(id);}' 
+) );
+?>

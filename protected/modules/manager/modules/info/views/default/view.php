@@ -2,68 +2,101 @@
 /* @var $this InfoController */
 /* @var $model Info */
 
-$this->breadcrumbs=array(
-	'Infos'=>array('index'),
-	$model->title,
+$this->breadcrumbs = array (
+		'Infos' => array (
+				'index' 
+		),
+		$model->title 
 );
 
-	$this->menu=array(
-			array('label'=>'Create Question', 'url'=>array('create')),
-			array('label'=>'Update Question', 'url'=>array('update', 'id'=>$model->id)),
-			array('label'=>'Delete Question', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-			array('label'=>'Manage Question', 'url'=>array('admin')),
-	);
+$this->menu = array (
+		array (
+				'label' => 'Create Question',
+				'url' => array (
+						'create' 
+				) 
+		),
+		array (
+				'label' => 'Update Question',
+				'url' => array (
+						'update',
+						'id' => $model->id 
+				) 
+		),
+		array (
+				'label' => 'Delete Question',
+				'url' => '#',
+				'linkOptions' => array (
+						'submit' => array (
+								'delete',
+								'id' => $model->id 
+						),
+						'confirm' => 'Are you sure you want to delete this item?' 
+				) 
+		),
+		array (
+				'label' => 'Manage Question',
+				'url' => array (
+						'admin' 
+				) 
+		) 
+);
 
 ?>
 
-<center><h4>View Info #<?php echo $model->id; ?></h4></center>
+<center>
+	<h4>View Info #<?php echo $model->id; ?></h4>
+</center>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		array(
-				'name' => 'info_type_id',
-				'value' => $model->getInfoTypeName(),
-		),
-		array(
-				'name' => 'user_id',
-				'value' => $model->getInfoUserName(),
-		),
-		'appointment_status',
-		'appointment_date',
-		'title',
-		'content',
-		'date_create',
-		'date_update',
-		array(
-				'name' => 'access_level_id',
-				'value' => $model->getInfoAccessLevelName(),
-		),
-	),
-)); ?>
+<?php
 
-<?php 
-if($model->info_type_id==3) {
-	echo "<center><h5>Answers</h5></center>";
-	$this->widget('zii.widgets.grid.CGridView', array(
-			'id' => 'gridComments',
-			'dataProvider' => new CActiveDataProvider('InfoComment', array(
-					'data'=>$model->infoComments,
-			)),
-			'columns'=>array(
+$this->widget ( 'zii.widgets.CDetailView', array (
+		'data' => $model,
+		'attributes' => array (
 				'id',
-				array(
-						'name' => 'user_id',
-						'value' => '$data->userName',
+				array (
+						'name' => 'info_type_id',
+						'value' => $model->getInfoTypeName () 
 				),
+				array (
+						'name' => 'user_id',
+						'value' => $model->getInfoUserName () 
+				),
+				'appointment_status',
+				'appointment_date',
+				'title',
 				'content',
 				'date_create',
 				'date_update',
-				array(
-					'class'=>'CButtonColumn',
-				),
-			),
-	));
+				array (
+						'name' => 'access_level_id',
+						'value' => $model->getInfoAccessLevelName () 
+				) 
+		) 
+) );
+?>
+
+<?php
+if ($model->info_type_id == 3) {
+	echo "<center><h5>Answers</h5></center>";
+	$this->widget ( 'zii.widgets.grid.CGridView', array (
+			'id' => 'gridComments',
+			'dataProvider' => new CActiveDataProvider ( 'InfoComment', array (
+					'data' => $model->infoComments 
+			) ),
+			'columns' => array (
+					'id',
+					array (
+							'name' => 'user_id',
+							'value' => '$data->userName' 
+					),
+					'content',
+					'date_create',
+					'date_update',
+					array (
+							'class' => 'CButtonColumn' 
+					) 
+			) 
+	) );
 }
 ?>

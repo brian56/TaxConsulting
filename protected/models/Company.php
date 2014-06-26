@@ -19,77 +19,103 @@
  * @property LogEvent[] $logEvents
  * @property User[] $users
  */
-class Company extends CActiveRecord
-{
-	//add new attributes to model
+class Company extends CActiveRecord {
+	// add new attributes to model
 	public function getActivedName() {
-		if($this->is_actived==1) {
+		if ($this->is_actived == 1) {
 			return 'Yes';
-		} else return 'No';
+		} else
+			return 'No';
 	}
-	
 	public function getAttributes($names = true) {
-		$attrs = parent::getAttributes($names);
-		$attrs['activedName'] = $this->getActivedName();
+		$attrs = parent::getAttributes ( $names );
+		$attrs ['activedName'] = $this->getActivedName ();
 		return $attrs;
 	}
 	
 	/**
+	 *
 	 * @return string the associated database table name
 	 */
-	public function tableName()
-	{
+	public function tableName() {
 		return 'company';
 	}
-
+	
 	/**
+	 *
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
-	{
+	public function rules() {
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('is_actived, name, name_en, rss_url', 'required'),
-			array('is_actived', 'numerical', 'integerOnly'=>true),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, is_actived, name, name_en, rss_url, introduction, photos, location', 'safe', 'on'=>'search'),
+		return array (
+				array (
+						'is_actived, name, name_en, rss_url',
+						'required' 
+				),
+				array (
+						'is_actived',
+						'numerical',
+						'integerOnly' => true 
+				),
+				// The following rule is used by search().
+				// @todo Please remove those attributes that should not be searched.
+				array (
+						'id, is_actived, name, name_en, rss_url, introduction, photos, location',
+						'safe',
+						'on' => 'search' 
+				) 
 		);
 	}
-
+	
 	/**
+	 *
 	 * @return array relational rules.
 	 */
-	public function relations()
-	{
+	public function relations() {
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-			'changeLogs' => array(self::HAS_MANY, 'ChangeLog', 'company_id'),
-			'infos' => array(self::HAS_MANY, 'Info', 'company_id'),
-			'logEvents' => array(self::HAS_MANY, 'LogEvent', 'company_id'),
-			'users' => array(self::HAS_MANY, 'User', 'company_id'),
+		return array (
+				'changeLogs' => array (
+						self::HAS_MANY,
+						'ChangeLog',
+						'company_id' 
+				),
+				'infos' => array (
+						self::HAS_MANY,
+						'Info',
+						'company_id' 
+				),
+				'logEvents' => array (
+						self::HAS_MANY,
+						'LogEvent',
+						'company_id' 
+				),
+				'users' => array (
+						self::HAS_MANY,
+						'User',
+						'company_id' 
+				) 
 		);
 	}
-
+	
 	/**
+	 *
 	 * @return array customized attribute labels (name=>label)
 	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'is_actived' => 'Is Actived',
-			'name' => 'Name',
-			'name_en' => 'Name En',
-			'rss_url' => 'Rss Url',
-			'introduction' => 'Introduction',
-			'photos' => 'Photos',
-			'location' => 'Location',
+	public function attributeLabels() {
+		return array (
+				'id' => 'ID',
+				'is_actived' => 'Is Actived',
+				'name' => 'Name',
+				'name_en' => 'Name En',
+				'rss_url' => 'Rss Url',
+				'introduction' => 'Introduction',
+				'photos' => 'Photos',
+				'location' => 'Location' 
 		);
 	}
-
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
@@ -100,61 +126,62 @@ class Company extends CActiveRecord
 	 * - Pass data provider to CGridView, CListView or any similar widget.
 	 *
 	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
+	 *         based on the search/filter conditions.
 	 */
-	public function search()
-	{
+	public function search() {
 		// @todo Please modify the following code to remove attributes that should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('is_actived',$this->is_actived);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('name_en',$this->name_en,true);
-		$criteria->compare('rss_url',$this->rss_url,true);
-		$criteria->compare('introduction',$this->introduction,true);
-		$criteria->compare('photos',$this->photos,true);
-		$criteria->compare('location',$this->location,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-			'pagination' => array(
-					'pageSize' => 20,
-			),
-		));
+		$criteria = new CDbCriteria ();
+		
+		$criteria->compare ( 'id', $this->id );
+		$criteria->compare ( 'is_actived', $this->is_actived );
+		$criteria->compare ( 'name', $this->name, true );
+		$criteria->compare ( 'name_en', $this->name_en, true );
+		$criteria->compare ( 'rss_url', $this->rss_url, true );
+		$criteria->compare ( 'introduction', $this->introduction, true );
+		$criteria->compare ( 'photos', $this->photos, true );
+		$criteria->compare ( 'location', $this->location, true );
+		
+		return new CActiveDataProvider ( $this, array (
+				'criteria' => $criteria,
+				'pagination' => array (
+						'pageSize' => 20 
+				) 
+		) );
 	}
-
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
+	 * 
+	 * @param string $className
+	 *        	active record class name.
 	 * @return Company the static model class
 	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
+	public static function model($className = __CLASS__) {
+		return parent::model ( $className );
 	}
-	
 	public function getAllRssUrl() {
-		$criteria = new CDbCriteria();
-		$criteria->select = array('rss_url', 'id');
+		$criteria = new CDbCriteria ();
+		$criteria->select = array (
+				'rss_url',
+				'id' 
+		);
 		$criteria->condition = 't.is_actived=:is_actived';
-		$criteria->params = array(':is_actived'=>1);
-		return $this->findAll($criteria);
+		$criteria->params = array (
+				':is_actived' => 1 
+		);
+		return $this->findAll ( $criteria );
 	}
-	
 	public function afterSave() {
-		if($this->isNewRecord)
-		{
-			$rss_notification = new RssNotification();
+		if ($this->isNewRecord) {
+			$rss_notification = new RssNotification ();
 			$rss_notification->company_id = $this->id;
 			$rss_notification->notify = 1;
-			$rss_notification->last_post_pubDate = date('2000-01-01 00:00:00');
-			$rss_notification->save();
-			if(isset($this->rss_url) && $this->rss_url!='')
-				RssNotificationController::getFeeds($this->rss_url);
+			$rss_notification->last_post_pubDate = date ( '2000-01-01 00:00:00' );
+			$rss_notification->save ();
+			if (isset ( $this->rss_url ) && $this->rss_url != '')
+				RssNotificationController::getFeeds ( $this->rss_url );
 		}
-		return parent::afterSave();
+		return parent::afterSave ();
 	}
 }

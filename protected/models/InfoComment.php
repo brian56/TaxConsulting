@@ -16,19 +16,18 @@
  * @property User $user
  */
 class InfoComment extends CActiveRecord {
-	//add new attributes to model
+	// add new attributes to model
 	public function getUserName() {
 		return $this->user->email;
 	}
 	public function getInfoCommentTimeCreate() {
-		return strtotime($this->date_create)*1000;
+		return strtotime ( $this->date_create ) * 1000;
 	}
-	
 	public function getAttributes($names = true) {
-		$attrs = parent::getAttributes($names);
-		$attrs['userName'] = $this->getUserName();
-		$attrs['infoCommentTimeCreate'] = $this->getInfoCommentTimeCreate();
-	
+		$attrs = parent::getAttributes ( $names );
+		$attrs ['userName'] = $this->getUserName ();
+		$attrs ['infoCommentTimeCreate'] = $this->getInfoCommentTimeCreate ();
+		
 		return $attrs;
 	}
 	/**
@@ -98,11 +97,11 @@ class InfoComment extends CActiveRecord {
 	public function attributeLabels() {
 		return array (
 				'id' => 'ID',
-				'user_id' => Yii::t('strings','Author'),
-				'info_id' => Yii::t('strings','Info'),
-				'content' => Yii::t('strings','Content'),
-				'date_create' => Yii::t('strings','Date Create'),
-				'date_update' => Yii::t('strings','Date Update'),
+				'user_id' => Yii::t ( 'strings', 'Author' ),
+				'info_id' => Yii::t ( 'strings', 'Info' ),
+				'content' => Yii::t ( 'strings', 'Content' ),
+				'date_create' => Yii::t ( 'strings', 'Date Create' ),
+				'date_update' => Yii::t ( 'strings', 'Date Update' ) 
 		);
 	}
 	
@@ -137,7 +136,7 @@ class InfoComment extends CActiveRecord {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * 
+	 *
 	 * @param string $className
 	 *        	active record class name.
 	 * @return InfoComment the static model class
@@ -145,33 +144,30 @@ class InfoComment extends CActiveRecord {
 	public static function model($className = __CLASS__) {
 		return parent::model ( $className );
 	}
-	public function beforeSave()
-	{
-		if($this->isNewRecord)
-		{
-			$this->date_create= date('Y-m-d H:i:s');
-		}else{
-			$this->date_update = date('Y-m-d H:i:s');
+	public function beforeSave() {
+		if ($this->isNewRecord) {
+			$this->date_create = date ( 'Y-m-d H:i:s' );
+		} else {
+			$this->date_update = date ( 'Y-m-d H:i:s' );
 		}
-		return parent::beforeSave();
+		return parent::beforeSave ();
 	}
-	
-	public function afterSave(){
-		//send notification to author only
-		if($this->user->id!=$this->info->user->id) {
+	public function afterSave() {
+		// send notification to author only
+		if ($this->user->id != $this->info->user->id) {
 			$userDeviceId = $this->info->user->device_id;
-			if(!is_null($userDeviceId) && $userDeviceId!='') {
+			if (! is_null ( $userDeviceId ) && $userDeviceId != '') {
 				$message = "You have new reply.";
-				SendNotification::actionPushOneDevice($userDeviceId, $message, $this->content, $this->info->info_type_id, $this->id);
+				SendNotification::actionPushOneDevice ( $userDeviceId, $message, $this->content, $this->info->info_type_id, $this->id );
 			}
 		}
-		if(isset($this->info->receiver)) {
+		if (isset ( $this->info->receiver )) {
 			$userDeviceId = $this->info->receiver->device_id;
-			if(!is_null($userDeviceId) && $userDeviceId!='') {
+			if (! is_null ( $userDeviceId ) && $userDeviceId != '') {
 				$message = "You have new reply.";
-				SendNotification::actionPushOneDevice($userDeviceId, $message, $this->content, $this->info->info_type_id, $this->id);
+				SendNotification::actionPushOneDevice ( $userDeviceId, $message, $this->content, $this->info->info_type_id, $this->id );
 			}
 		}
-		return parent::afterSave();
+		return parent::afterSave ();
 	}
 }

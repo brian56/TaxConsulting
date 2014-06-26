@@ -2,14 +2,26 @@
 /* @var $this InfoCommentController */
 /* @var $model InfoComment */
 
-$this->breadcrumbs=array(
-	'Info Comments'=>array('index'),
-	'Create',
+$this->breadcrumbs = array (
+		'Info Comments' => array (
+				'index' 
+		),
+		'Create' 
 );
 
-$this->menu=array(
-	array('label'=>'List InfoComment', 'url'=>array('index')),
-	array('label'=>'Manage InfoComment', 'url'=>array('admin')),
+$this->menu = array (
+		array (
+				'label' => 'List InfoComment',
+				'url' => array (
+						'index' 
+				) 
+		),
+		array (
+				'label' => 'Manage InfoComment',
+				'url' => array (
+						'admin' 
+				) 
+		) 
 );
 ?>
 

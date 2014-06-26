@@ -1,42 +1,82 @@
 <?php
 /* @var $this InfoController */
 /* @var $model Info */
-$this->breadcrumbs=array(
-// 		Yii::t('strings','Manager')=>array("/manager"),
-	Yii::t('strings','Individual Page')=>array('myPage'),
-	$model->title,
+$this->breadcrumbs = array (
+		// Yii::t('strings','Manager')=>array("/manager"),
+		Yii::t ( 'strings', 'Individual Page' ) => array (
+				'myPage' 
+		),
+		$model->title 
 );
 
-	$this->menu=array(
-			array('label'=>Yii::t('strings','Create Individual Page'), 'url'=>array('individualPagecreate')),
-			array('label'=>Yii::t('strings','Update Individual Page'), 'url'=>array('individualPageupdate', 'id'=>$model->id)),
-			array('label'=>Yii::t('strings','Delete Individual Page'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id), 'params' => array('returnUrl'=>'question'),'confirm'=>'Are you sure you want to delete this item?')),
-			array('label'=>Yii::t('strings','Manage Individual Page'), 'url'=>array('myPage')),
-			array('label'=>Yii::t('strings','Tracking new Individual Page'), 'url'=>array('trackingIndividualPage')),
-	);
+$this->menu = array (
+		array (
+				'label' => Yii::t ( 'strings', 'Create Individual Page' ),
+				'url' => array (
+						'individualPagecreate' 
+				) 
+		),
+		array (
+				'label' => Yii::t ( 'strings', 'Update Individual Page' ),
+				'url' => array (
+						'individualPageupdate',
+						'id' => $model->id 
+				) 
+		),
+		array (
+				'label' => Yii::t ( 'strings', 'Delete Individual Page' ),
+				'url' => '#',
+				'linkOptions' => array (
+						'submit' => array (
+								'delete',
+								'id' => $model->id 
+						),
+						'params' => array (
+								'returnUrl' => 'question' 
+						),
+						'confirm' => 'Are you sure you want to delete this item?' 
+				) 
+		),
+		array (
+				'label' => Yii::t ( 'strings', 'Manage Individual Page' ),
+				'url' => array (
+						'myPage' 
+				) 
+		),
+		array (
+				'label' => Yii::t ( 'strings', 'Tracking new Individual Page' ),
+				'url' => array (
+						'trackingIndividualPage' 
+				) 
+		) 
+);
 
 ?>
 
-<center><h3><?php echo Yii::t('strings','View Individual Page').' #'; echo $model->id; ?></h3></center>
+<center>
+	<h3><?php echo Yii::t('strings','View Individual Page').' #'; echo $model->id; ?></h3>
+</center>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		array(
-				'name' => 'user_id',
-				'value' => $model->getInfoUserName(),
-		),
-		array(
-			'name' => 'receiver_id',
-			'value' => $model->getReceiverName(),
-		),
-		'title',
-		'content',
-		'date_create',
-		'date_update',
-	),
-)); 
+<?php
+
+$this->widget ( 'zii.widgets.CDetailView', array (
+		'data' => $model,
+		'attributes' => array (
+				'id',
+				array (
+						'name' => 'user_id',
+						'value' => $model->getInfoUserName () 
+				),
+				array (
+						'name' => 'receiver_id',
+						'value' => $model->getReceiverName () 
+				),
+				'title',
+				'content',
+				'date_create',
+				'date_update' 
+		) 
+) );
 
 ?>
 <?php
@@ -48,21 +88,26 @@ $this->breadcrumbs=array(
 
 <div class="form">
 
-<?php 
-//=================form cau tra loi====================//
-$infoComment = new InfoComment();		//cau tra loi
-$form=$this->beginWidget('CActiveForm', array(
-	'id'=>'info-comment-form',
-	'action' => array( '/manager/info/default/answerCreate' ),
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
+<?php
+// =================form cau tra loi====================//
+$infoComment = new InfoComment (); // cau tra loi
+$form = $this->beginWidget ( 'CActiveForm', array (
+		'id' => 'info-comment-form',
+		'action' => array (
+				'/manager/info/default/answerCreate' 
+		),
+		// Please note: When you enable ajax validation, make sure the corresponding
+		// controller action is handling ajax validation correctly.
+		// There is a call to performAjaxValidation() commented in generated controller code.
+		// See class documentation of CActiveForm for details on this.
+		'enableAjaxValidation' => false 
+) );
+?>
 	<br>
 	<h3><?php echo Yii::t('strings','Create answer for this question');?></h3>
-	<h6><i><?php echo Yii::t('strings','Fields with * are required');?></i></h6>
+	<h6>
+		<i><?php echo Yii::t('strings','Fields with * are required');?></i>
+	</h6>
 
 	<?php echo $form->errorSummary($infoComment); ?>
 
@@ -76,76 +121,73 @@ $form=$this->beginWidget('CActiveForm', array(
 
 	<div class="row">
 		<?php echo $form->labelEx($infoComment,'content'); ?>
-		<?php 
-// 		$this->widget(
-// 				'booster.widgets.TbRedactorJs',
-// 				[
-// 				'model' => $infoComment,
-// 				'id' => 'Post_content',
-// 				'attribute' => 'content',
-// 				'value' => '<b>Here is the text which will be put into editor view upon opening.</b>',
-// 				]
-// 		); ?>
+		<?php
+		// $this->widget(
+		// 'booster.widgets.TbRedactorJs',
+		// [
+		// 'model' => $infoComment,
+		// 'id' => 'Post_content',
+		// 'attribute' => 'content',
+		// 'value' => '<b>Here is the text which will be put into editor view upon opening.</b>',
+		// ]
+		// );		?>
 		<?php echo $form->textArea($infoComment,'content',array('rows'=>3, 'cols'=>100)); ?>
 		<?php echo $form->error($infoComment,'content'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php 
-		$this->widget(
-				'booster.widgets.TbButton',
-				array(
-						'label' => $infoComment->isNewRecord ? Yii::t('strings','Create') : Yii::t('strings','Save'),
-						'context' => 'primary',
-						'buttonType' => 'submit',
-				)
-		);?>
+		<?php
+		$this->widget ( 'booster.widgets.TbButton', array (
+				'label' => $infoComment->isNewRecord ? Yii::t ( 'strings', 'Create' ) : Yii::t ( 'strings', 'Save' ),
+				'context' => 'primary',
+				'buttonType' => 'submit' 
+		) );
+		?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
 
 
-</div><!-- form -->
-<center><h3><?php  echo Yii::t('strings','Answers');?></h3></center>
-<?php 
-//==================list cac cau tra loi cua cau hoi=================//
-$this->widget('booster.widgets.TbGridView', array(
-			'type'=>'bordered condensed',
-			'id' => 'gridComments',
-			'dataProvider' => new CActiveDataProvider('InfoComment', array(
-					'data'=>$model->infoComments,
-			)),
-			'columns'=>array(
+</div>
+<!-- form -->
+<center>
+	<h3><?php  echo Yii::t('strings','Answers');?></h3>
+</center>
+<?php
+// ==================list cac cau tra loi cua cau hoi=================//
+$this->widget ( 'booster.widgets.TbGridView', array (
+		'type' => 'bordered condensed',
+		'id' => 'gridComments',
+		'dataProvider' => new CActiveDataProvider ( 'InfoComment', array (
+				'data' => $model->infoComments 
+		) ),
+		'columns' => array (
 				'id',
-				array(
+				array (
 						'name' => 'user_id',
-						'value' => '$data->userName',
+						'value' => '$data->userName' 
 				),
 				'content',
 				'date_create',
 				'date_update',
-				array(
-					'class'=>'booster.widgets.TbButtonColumn',
-					'template'=>'{view}{update}{delete}',
-					'buttons'=>array
-					(
-							'view' => array
-							(
-								'label' => Yii::t('strings','View'),
-									'url'=> 'Yii::app()->createUrl("manager/infocomment/default/view", array("id"=>$data->id))',
-							),
-							'update' => array
-							(
-								'label' => Yii::t('strings','Update'),
-									'url'=> 'Yii::app()->createUrl("manager/infocomment/default/update", array("id"=>$data->id))',
-							),
-							'delete' => array
-							(
-								'label' => Yii::t('strings','Delete'),
-									'url'=> 'Yii::app()->createUrl("manager/infocomment/default/delete", array("id"=>$data->id))',
-							),
-					),
+				array (
+						'class' => 'booster.widgets.TbButtonColumn',
+						'template' => '{view}{update}{delete}',
+						'buttons' => array (
+								'view' => array (
+										'label' => Yii::t ( 'strings', 'View' ),
+										'url' => 'Yii::app()->createUrl("manager/infocomment/default/view", array("id"=>$data->id))' 
+								),
+								'update' => array (
+										'label' => Yii::t ( 'strings', 'Update' ),
+										'url' => 'Yii::app()->createUrl("manager/infocomment/default/update", array("id"=>$data->id))' 
+								),
+								'delete' => array (
+										'label' => Yii::t ( 'strings', 'Delete' ),
+										'url' => 'Yii::app()->createUrl("manager/infocomment/default/delete", array("id"=>$data->id))' 
+								) 
+						),
 				),
 			),
 	));

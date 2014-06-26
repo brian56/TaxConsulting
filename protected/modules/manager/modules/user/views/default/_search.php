@@ -6,10 +6,13 @@
 
 <div class="wide form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'get',
-)); ?>
+<?php
+
+$form = $this->beginWidget ( 'CActiveForm', array (
+		'action' => Yii::app ()->createUrl ( $this->route ),
+		'method' => 'get' 
+) );
+?>
 
 	<div class="row">
 		<div class="span-10">
@@ -28,13 +31,13 @@
 		<?php echo $form->label($model,'email'); ?>
 		<?php echo $form->textField($model,'email'); ?>
 		</div>
-	
+
 		<div class="span-10">
 		<?php echo $form->label($model,'password'); ?>
 		<?php echo $form->textField($model,'password'); ?>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="span-10">
 		<?php echo $form->label($model,'user_name'); ?>
@@ -64,7 +67,7 @@
 		<?php echo $form->label($model,'notify'); ?>
 		<?php echo $form->dropDownList($model, 'notify', array('1'=>Yii::t('strings','Yes'), '0'=>Yii::t('strings','No')), array('empty'=>Yii::t('strings','- Select notify status -'))); ?>
 		</div>
-	
+
 		<div class="span-10">
 		<?php echo $form->label($model,'token'); ?>
 		<?php echo $form->textField($model,'token'); ?>
@@ -72,17 +75,16 @@
 	</div>
 
 	<div class="row buttons">
-		<?php 
-		$this->widget(
-				'booster.widgets.TbButton',
-				array(
-						'label' => Yii::t('strings','Search'),
-						'context' => 'primary',
-						'buttonType' => 'submit',
-				)
-		);?>
+		<?php
+		$this->widget ( 'booster.widgets.TbButton', array (
+				'label' => Yii::t ( 'strings', 'Search' ),
+				'context' => 'primary',
+				'buttonType' => 'submit' 
+		) );
+		?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
-</div><!-- search-form -->
+</div>
+<!-- search-form -->

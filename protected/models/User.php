@@ -263,6 +263,7 @@ class User extends CActiveRecord {
 		$log = new LogEvent();
 		$log->company_id = $this->info->company_id;
 		$log->user_id= $this->id;
+		$log->user_email= $this->email;
 		$log->date_create = date ( 'Y-m-d H:i:s' );
 		if($this->isNewRecord)
 			$log->event_id = 3;
@@ -286,10 +287,21 @@ class User extends CActiveRecord {
 	}
 	public function getCompanyUser($company_id = 1) {
 		$criteria = new CDbCriteria ();
-		$criteria->condition = 't.company_id=:company_id AND t.is_actived=:is_actived';
+		$criteria->condition = 't.company_id=:company_id AND t.is_actived=:is_actived AND t.user_level_id=:user_level_id';
 		$criteria->params = array (
 				':company_id' => $company_id,
-				':is_actived' => 1 
+				':is_actived' => 1, 
+				':user_level_id' => 1 ,
+		);
+		return $this->findAll ( $criteria );
+	}
+	public function getCompanyManager($company_id = 1) {
+		$criteria = new CDbCriteria ();
+		$criteria->condition = 't.company_id=:company_id AND t.is_actived=:is_actived AND t.user_level_id=:user_level_id';
+		$criteria->params = array (
+				':company_id' => $company_id,
+				':is_actived' => 1 ,
+				':user_level_id' => 2 ,
 		);
 		return $this->findAll ( $criteria );
 	}
@@ -319,6 +331,32 @@ class User extends CActiveRecord {
 				) 
 		) );
 	}
+	public function getCompanyManagers(){
+		$criteria=new CDbCriteria;
+	
+		$criteria->compare('id',$this->id);
+		$criteria->compare('hospital_id',Yii::app()->user->getState('globalId'));
+		$criteria->compare('user_level_id',2);
+		$criteria->compare('is_actived',$this->is_actived);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('user_name',$this->user_name,true);
+		$criteria->compare('contact_phone',$this->contact_phone,true);
+		$criteria->compare('register_date',$this->register_date,true);
+		$criteria->compare('device_os_id',$this->device_os_id);
+		$criteria->compare('device_id',$this->device_id,true);
+		$criteria->compare('notify',$this->notify);
+		$criteria->compare('token',$this->token,true);
+		$criteria->compare('token_expired_date',$this->token_expired_date,true);
+		if(!isset($_GET['User_sort']))
+			$criteria->order = 'register_date DESC';
+		return new CActiveDataProvider($this, array(
+				'criteria'=>$criteria,
+				'pagination' => array(
+						'pageSize' => 20,
+				),
+		));
+	}
 	public function getArrayCompanyUsers() {
 		$criteria = new CDbCriteria ();
 		
@@ -347,9 +385,10 @@ class User extends CActiveRecord {
 		$log = new LogEvent();
 		$log->company_id = $this->company_id;
 		$log->user_id= $this->id;
+		$log->user_email= $this->email;
 		$log->date_create = date ( 'Y-m-d H:i:s' );
 		$log->event_id = 5;
-		$log->description = $this->email;
+		$log->description = $this->user_name.' - Level: '.$this->userLevel->name;
 		$log->insert();
 		return parent::beforeDelete ();
 	}

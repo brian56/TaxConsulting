@@ -4,7 +4,7 @@
 
 $this->breadcrumbs = array (
 		// Yii::t('strings','Manager')=>array("/manager"),
-		Yii::t ( 'strings', 'Individual Page' ) => array (
+		Yii::t ( 'strings', 'Individual Info' ) => array (
 				'individualPage' 
 		),
 		Yii::t ( 'strings', 'Create' ) 
@@ -12,22 +12,16 @@ $this->breadcrumbs = array (
 
 $this->menu = array (
 		array (
-				'label' => Yii::t ( 'strings', 'Manage Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Manage Individual Info' ),
 				'url' => array (
 						'individualPage' 
 				) 
 		),
-		array (
-				'label' => Yii::t ( 'strings', 'Tracking new Individual Page' ),
-				'url' => array (
-						'trackingIndividualPage' 
-				) 
-		) 
 );
 ?>
 
 <center>
-	<h3><?php echo Yii::t('strings','Create Individual Page');?></h3>
+	<h3><?php echo Yii::t('strings','Create Individual Info');?></h3>
 </center>
 
 <?php $this->renderPartial('individualPage_form', array('model'=>$model)); ?>

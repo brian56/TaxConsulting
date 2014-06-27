@@ -82,7 +82,7 @@
 		$activedQuestionItem = true;
 	}
 	$activedIndividualPageItem = false;
-	if (isset ( Yii::app ()->controller->id ) && checkController ( Yii::app ()->controller->action->id, 'individualquestion' )) {
+	if (isset ( Yii::app ()->controller->id ) && checkController ( Yii::app ()->controller->action->id, 'individualPage' )) {
 		$activedIndividualPageItem = true;
 	}
 	$activedAppointmentItem = false;

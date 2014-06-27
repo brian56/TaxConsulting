@@ -24,6 +24,12 @@ $form = $this->beginWidget ( 'CActiveForm', array (
 
 	<div class="row">
 		<div class="span-10">
+		<?php echo $form->labelEx($model,'user_id'); ?>
+		<?php echo $form->dropDownList($model, 'user_id',array($model->user_id=>$model->user->email)); ?>
+		<?php echo $form->error($model,'user_id'); ?>
+		</div>
+		
+		<div class="span-10">
 		<?php echo $form->labelEx($model,'receiver_id'); ?>
 		<?php echo $form->dropDownList($model, 'receiver_id', CHtml::listData(User::model()->getCompanyUser(Yii::app()->user->getState('globalId')),'id','email')); ?>
 		<?php echo $form->error($model,'receiver_id'); ?>
@@ -34,12 +40,6 @@ $form = $this->beginWidget ( 'CActiveForm', array (
 		<?php echo $form->labelEx($model,'title'); ?>
 		<?php echo $form->textField($model,'title',array('size'=>60)); ?>
 		<?php echo $form->error($model,'title'); ?>
-		</div>
-
-		<div class="span-10">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model, 'user_id',array($model->user_id=>$model->user->email)); ?>
-		<?php echo $form->error($model,'user_id'); ?>
 		</div>
 	</div>
 

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs = array (
 		// Yii::t('strings','Manager')=>array("/manager"),
-		Yii::t ( 'strings', 'Individual Page' ) => array (
+		Yii::t ( 'strings', 'Individual Info' ) => array (
 				'individualPage' 
 		),
 		$model->title => array (
@@ -16,20 +16,20 @@ $this->breadcrumbs = array (
 
 $this->menu = array (
 		array (
-				'label' => Yii::t ( 'strings', 'Create Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Create Individual Info' ),
 				'url' => array (
 						'individualPagecreate' 
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'View Individual Page' ),
+				'label' => Yii::t ( 'strings', 'View Individual Info' ),
 				'url' => array (
 						'individualPageview',
 						'id' => $model->id 
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'Delete Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Delete Individual Info' ),
 				'url' => '#',
 				'linkOptions' => array (
 						'submit' => array (
@@ -43,22 +43,16 @@ $this->menu = array (
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'Manage Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Manage Individual Info' ),
 				'url' => array (
 						'individualPage' 
 				) 
 		),
-		array (
-				'label' => Yii::t ( 'strings', 'Tracking new Individual Page' ),
-				'url' => array (
-						'trackingIndividualPage' 
-				) 
-		) 
 );
 ?>
 
 <center>
-	<h3><?php echo Yii::t('strings','Update Individual Page').' #'; echo $model->id; ?></h3>
+	<h3><?php echo Yii::t('strings','Update Individual Info').' #'; echo $model->id; ?></h3>
 </center>
 
 <?php $this->renderPartial('individualPage_formUpdate', array('model'=>$model)); ?>

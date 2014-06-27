@@ -31,7 +31,7 @@ class Info extends CActiveRecord {
 		return $this->user->email;
 	}
 	public function getInfoTypeName() {
-		return $this->infoType->name;
+		return Yii::t('strings',$this->infoType->name);
 	}
 	public function getInfoCompany() {
 		if (isset ( $this->company ))
@@ -41,16 +41,15 @@ class Info extends CActiveRecord {
 		return count ( $this->infoComments );
 	}
 	public function getInfoAccessLevelName() {
-		return $this->accessLevel->name;
-	}
-	public function getAppointmentStatusName() {
-		if ($this->appointment_status == 0) {
-			return 'Pending';
-		} elseif ($this->appointment_status == 1) {
-			return 'Confirmed';
-		} else
-			return 'Rejected';
-	}
+			return Yii::t('strings',$this->accessLevel->name);
+		}
+		public function getAppointmentStatusName() {
+			if($this->appointment_status==0) {
+				return Yii::t('strings','Pending');
+			} elseif ($this->appointment_status==1) {
+				return Yii::t('strings','Confirmed');
+			} else return Yii::t('strings','Rejected');
+		}
 	public function getInfoTimeCreate() {
 		return strtotime ( $this->date_create ) * 1000;
 	}
@@ -399,7 +398,9 @@ class Info extends CActiveRecord {
 		$log = new LogEvent();
 		$log->company_id = $this->company_id;
 		$log->info_id= $this->id;
+		$log->info_title= $this->title;
 		$log->user_id= $this->user_id;
+		$log->user_email= $this->user->email;
 		$log->date_create = date ( 'Y-m-d H:i:s' );
 		if($this->isNewRecord)
 			$log->event_id = 3;
@@ -413,6 +414,8 @@ class Info extends CActiveRecord {
 		$log->company_id = $this->company_id;
 		$log->info_id= $this->id;
 		$log->user_id= $this->user_id;
+		$log->info_title= $this->title;
+		$log->user_email= $this->user->email;
 		$log->date_create = date ( 'Y-m-d H:i:s' );
 		$log->event_id = 5;
 		$log->description = $this->title;

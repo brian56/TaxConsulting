@@ -6,9 +6,12 @@
  * The followings are the available columns in table 'log_event':
  * @property string $id
  * @property integer $user_id
+ * @property string $user_email
  * @property integer $event_id
  * @property integer $info_id
+ * @property string $info_title
  * @property integer $company_id
+ * @property string $company_name
  * @property string $description
  * @property string $date_create
  *
@@ -35,10 +38,10 @@ class LogEvent extends CActiveRecord
 		return array(
 			array('company_id', 'required'),
 			array('user_id, event_id, info_id, company_id', 'numerical', 'integerOnly'=>true),
-			array('date_create, info_id, description', 'safe'),
+			array('date_create, company_name, description, user_email, info_id, info_title', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, event_id, info_id, company_id, description, date_create', 'safe', 'on'=>'search'),
+			array('id, user_id, user_email, event_id, info_id, info_title, company_id, company_name, description, date_create', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,9 +65,12 @@ class LogEvent extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'User',
+			'user_email' => 'User Email',
 			'event_id' => 'Event',
 			'info_id' => 'Info',
+			'info_title' => 'Info Title',
 			'company_id' => 'Company',
+			'company_name' => 'Company Name',
 			'description' => 'Description',
 			'date_create' => 'Date Create',
 		);
@@ -90,9 +96,33 @@ class LogEvent extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('user_email',$this->user_email,true);
 		$criteria->compare('event_id',$this->event_id);
 		$criteria->compare('info_id',$this->info_id);
+		$criteria->compare('info_title',$this->info_title,true);
 		$criteria->compare('company_id',$this->company_id);
+		$criteria->compare('company_name',$this->company_name,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('date_create',$this->date_create,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+	public function searchCompanyEvents()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('user_email',$this->user_email,true);
+		$criteria->compare('event_id',$this->event_id);
+		$criteria->compare('info_id',$this->info_id);
+		$criteria->compare('info_title',$this->info_title,true);
+		$criteria->compare('company_id',Yii::app()->user->getState('globalId'));
+		$criteria->compare('company_name',$this->company_name,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('date_create',$this->date_create,true);
 
@@ -112,3 +142,6 @@ class LogEvent extends CActiveRecord
 		return parent::model($className);
 	}
 }
+
+
+

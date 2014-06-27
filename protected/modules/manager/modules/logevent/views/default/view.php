@@ -16,14 +16,20 @@ $this->menu=array(
 );
 ?>
 
-<h4>View LogEvent #<?php echo $model->id; ?></h4>
+<h1>View LogEvent #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
 		'user_id',
+		'user_email',
 		'event_id',
+		'info_id',
+		'info_title',
+		'company_id',
+		'company_name',
+		'description',
 		'date_create',
 	),
 )); ?>

@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h4>Manage Log Events</h4>
+<h1>Manage Log Events</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -47,8 +47,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'user_id',
+		'user_email',
 		'event_id',
+		'info_id',
+		'info_title',
+		/*
+		'company_id',
+		'company_name',
+		'description',
 		'date_create',
+		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

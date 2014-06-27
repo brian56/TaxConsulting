@@ -11,20 +11,20 @@ $this->breadcrumbs = array (
 
 $this->menu = array (
 		array (
-				'label' => Yii::t ( 'strings', 'Create Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Create Individual Info' ),
 				'url' => array (
 						'individualPagecreate' 
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'Update Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Update Individual Info' ),
 				'url' => array (
 						'individualPageupdate',
 						'id' => $model->id 
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'Delete Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Delete Individual Info' ),
 				'url' => '#',
 				'linkOptions' => array (
 						'submit' => array (
@@ -38,23 +38,17 @@ $this->menu = array (
 				) 
 		),
 		array (
-				'label' => Yii::t ( 'strings', 'Manage Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Manage Individual Info' ),
 				'url' => array (
 						'myPage' 
 				) 
 		),
-		array (
-				'label' => Yii::t ( 'strings', 'Tracking new Individual Page' ),
-				'url' => array (
-						'trackingIndividualPage' 
-				) 
-		) 
 );
 
 ?>
 
 <center>
-	<h3><?php echo Yii::t('strings','View Individual Page').' #'; echo $model->id; ?></h3>
+	<h3><?php echo Yii::t('strings','View Individual Info').' #'; echo $model->id; ?></h3>
 </center>
 
 <?php
@@ -104,7 +98,7 @@ $form = $this->beginWidget ( 'CActiveForm', array (
 ) );
 ?>
 	<br>
-	<h3><?php echo Yii::t('strings','Create answer for this');?></h3>
+	<h3><?php echo Yii::t('strings','Create reply for this');?></h3>
 	<h6>
 		<i><?php echo Yii::t('strings','Fields with * are required');?></i>
 	</h6>
@@ -152,7 +146,7 @@ $form = $this->beginWidget ( 'CActiveForm', array (
 </div>
 <!-- form -->
 <center>
-	<h3><?php  echo Yii::t('strings','Answers');?></h3>
+	<h3><?php  echo Yii::t('strings','Replies');?></h3>
 </center>
 <?php
 // ==================list cac cau tra loi cua cau hoi=================//
@@ -171,24 +165,24 @@ $this->widget ( 'booster.widgets.TbGridView', array (
 				'content',
 				'date_create',
 				'date_update',
-				array (
-						'class' => 'booster.widgets.TbButtonColumn',
-						'template' => '{view}{update}{delete}',
-						'buttons' => array (
-								'view' => array (
-										'label' => Yii::t ( 'strings', 'View' ),
-										'url' => 'Yii::app()->createUrl("manager/infocomment/default/view", array("id"=>$data->id))' 
-								),
-								'update' => array (
-										'label' => Yii::t ( 'strings', 'Update' ),
-										'url' => 'Yii::app()->createUrl("manager/infocomment/default/update", array("id"=>$data->id))' 
-								),
-								'delete' => array (
-										'label' => Yii::t ( 'strings', 'Delete' ),
-										'url' => 'Yii::app()->createUrl("manager/infocomment/default/delete", array("id"=>$data->id))' 
-								) 
-						),
-				),
+// 				array (
+// 						'class' => 'booster.widgets.TbButtonColumn',
+// 						'template' => '{view}{update}{delete}',
+// 						'buttons' => array (
+// 								'view' => array (
+// 										'label' => Yii::t ( 'strings', 'View' ),
+// 										'url' => 'Yii::app()->createUrl("manager/infocomment/default/view", array("id"=>$data->id))' 
+// 								),
+// 								'update' => array (
+// 										'label' => Yii::t ( 'strings', 'Update' ),
+// 										'url' => 'Yii::app()->createUrl("manager/infocomment/default/update", array("id"=>$data->id))' 
+// 								),
+// 								'delete' => array (
+// 										'label' => Yii::t ( 'strings', 'Delete' ),
+// 										'url' => 'Yii::app()->createUrl("manager/infocomment/default/delete", array("id"=>$data->id))' 
+// 								) 
+// 						),
+// 				),
 			),
 	));
 ?>

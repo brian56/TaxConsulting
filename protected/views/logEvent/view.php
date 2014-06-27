@@ -23,7 +23,13 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'user_id',
+		'user_email',
 		'event_id',
+		'info_id',
+		'info_title',
+		'company_id',
+		'company_name',
+		'description',
 		'date_create',
 	),
 )); ?>

@@ -24,7 +24,16 @@ $form = $this->beginWidget ( 'CActiveForm', array (
 	<div class="row">
 		<div class="span-10">
 		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
+		<?php
+		$listData = CHtml::listData ( User::model ()->getCompanyManager(Yii::app ()->user->getState ( 'globalId' ) ), 'id', 'email' );
+		$t_listData = array ();
+		foreach ( $listData as $key => $item ) {
+			$t_listData [$key] = Yii::t ( 'strings', $item );
+		}
+		echo $form->dropDownList ( $model, 'receiver_id', $t_listData, array (
+				'empty' => Yii::t ( 'strings', '- Select sender -' ) 
+		) );
+		?>
 		</div>
 
 		<div class="span-10">

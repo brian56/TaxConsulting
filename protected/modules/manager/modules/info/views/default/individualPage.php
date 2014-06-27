@@ -22,27 +22,21 @@ $('.search-form form').submit(function(){
 
 $this->breadcrumbs = array (
 		// Yii::t('strings','Manager')=>array("/manager"),
-		Yii::t ( 'strings', 'Individual Page' ) 
+		Yii::t ( 'strings', 'Individual Info' ) 
 );
 $this->menu = array (
 		array (
-				'label' => Yii::t ( 'strings', 'Create Individual Page' ),
+				'label' => Yii::t ( 'strings', 'Create Individual Info' ),
 				'url' => array (
 						'individualPageCreate' 
 				) 
 		),
-		array (
-				'label' => Yii::t ( 'strings', 'Tracking new Individual Page' ),
-				'url' => array (
-						'trackingIndividualPage' 
-				) 
-		) 
 )
 ;
 
 ?>
 <center>
-	<h3><?php echo Yii::t('strings','Manage Individual Page');?></h3>
+	<h3><?php echo Yii::t('strings','Manage Individual Info');?></h3>
 </center>
 <p>
 <?php

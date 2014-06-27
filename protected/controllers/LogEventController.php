@@ -1,8 +1,8 @@
 <?php
 
-class DefaultController extends Controller
+class LogEventController extends Controller
 {
-/**
+	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
@@ -14,7 +14,8 @@ class DefaultController extends Controller
 	public function filters()
 	{
 		return array(
-				'accessControl',
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -36,7 +37,7 @@ class DefaultController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('@'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -121,10 +122,7 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$criteria = new CDbCriteria();
-		$criteria->condition = 't.company_id=:company_id';
-		$criteria->params = array(':company_id'=>Yii::app()->user->getState('globalId'));
-		$dataProvider=new CActiveDataProvider('LogEvent', array('criteria'=>$criteria));
+		$dataProvider=new CActiveDataProvider('LogEvent');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -173,4 +171,3 @@ class DefaultController extends Controller
 		}
 	}
 }
-	
